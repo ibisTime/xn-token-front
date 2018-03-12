@@ -1,0 +1,21 @@
+{
+  "name": "zhpay-share",
+  "version": "2.0.0",
+  "description": "",
+  "main": "fis-conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "fis3 release -d ../../xn-health-front/dist -w",
+    "dev": "fis3 release -d D:/chengdai_dabao/bcoin_h5 -w",
+    "build": "fis3 release -d D:/chengdai_dabao/bcoin_h5 prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "fis-parser-handlebars-3.x": "^0.0.1",
+    "fis3-hook-amd": "^0.2.0",
+    "fis3-hook-commonjs": "^0.1.26",
+    "fis3-postpackager-loader": "^2.1.4",
+    "fis3-preprocessor-autoprefixer": "^0.1.1"
+  }
+}

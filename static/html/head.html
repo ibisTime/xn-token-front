@@ -1,0 +1,29 @@
+<meta charset="UTF-8">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=no">
+<meta itemprop="name" content="" />
+<meta itemprop="description" name="description" content="" />
+<meta itemprop="image" content="" />
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/share.css">
+<script data-loader type="text/javascript">
+    (function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth < 750)
+                    docEl.style.fontSize = clientWidth / 7.5 + 'px';
+                else
+                    docEl.style.fontSize = '100px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+    })(document, window);
+</script>
+<script type="text/javascript" src="../js/app/config.js"></script>
