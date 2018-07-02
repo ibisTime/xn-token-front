@@ -1,18 +1,20 @@
 {
-  "name": "zhpay-share",
-  "version": "2.0.0",
+  "name": "xn-gym-cfront",
+  "version": "1.0.0",
   "description": "",
-  "main": "fis-conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "fis3 release -d ../../xn-health-front/dist -w",
-    "dev": "fis3 release -d D:/chengdai_dabao/bcoin_h5 -w",
-    "build": "fis3 release -d D:/chengdai_dabao/bcoin_h5 prod"
+    "dist": "fis3 release -d ../dist -w",
+    "prod": "fis3 release -d ../dist prod"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "better-picker": "^1.1.3",
+    "fis-parser-babel-6.x": "^6.24.1",
     "fis-parser-handlebars-3.x": "^0.0.1",
+    "fis-parser-node-sass": "^1.0.1",
     "fis3-hook-amd": "^0.2.0",
     "fis3-hook-commonjs": "^0.1.26",
     "fis3-postpackager-loader": "^2.1.4",

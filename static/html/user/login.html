@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<link rel="import" href="../head.html?__inline">
+		<title></title>
+		<!--SCRIPT_PLACEHOLDER-->
+	</head>
+
+	<body>
+		<body class="bg_fff">
+			<div class="login-wrap">
+				<div class="title"></div>
+				<form id="formWrapper" class="form-wrapper">
+			        <div class="form-item border-bottom-1px mt20">
+		                <div class="am-flexbox">
+		                    <select class="select-item" id="interCode" name="interCode"/>
+				            </select>
+		                </div>
+			        </div>
+		            <div class="form-item">
+		                <div class="am-flexbox">
+		                	<span class="item-title" id="interNum"></span>
+		                    <input type="text" pattern="[0-9]*" placeholder="请输入手机号码" id="mobile" name="mobile" class="input-item"/>
+		                </div>
+		            </div>
+		            <div class="form-item form-btn-item border-bottom-1px mt20">
+		                <div class="am-flexbox">
+		                    <div class="input-item smsCaptcha-item"><input type="text" placeholder="请输入验证码" id="smsCaptcha" name="smsCaptcha"/></div>
+		                    <button class="item-button smsCaptcha-btn am-button am-button-small am-button-ghost" id="getVerification">获取验证码</button>
+		                </div>
+		            </div>
+		        </form>
+		        
+		        <div class="login-btn wp100">
+		            <button id="loginBtn" class="am-button am-button-primary wp100">登录</button>
+		        </div>
+			</div>
+			
+			<link rel="import" href="../footer.html?__inline">
+			<script>
+				require(['app/controller/user/Login']);
+			</script>
+		</body>
+
+</html>

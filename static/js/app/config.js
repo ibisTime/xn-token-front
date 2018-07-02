@@ -1,6 +1,16 @@
-var SYSTEM_CODE = "CD-COIN000017";
-var COMPANY_CODE = "CD-COIN000017";
-var PIC_PREFIX = 'http://ozfszueqz.bkt.clouddn.com';
-var THUMBNAIL_SUFFIX = '?imageView2/1/w/750/h/420';
-var THUMBNAIL_SUFFIX2 = '?imageMogr2/auto-orient/thumbnail/!375x210r';
-var THUMBNAIL_INDEX = '?imageView2/1/w/80/h/80';
+var SYSTEM_CODE = "CD-TOKEN00018";
+//七牛地址
+var PIC_PREFIX = 'http://pajvine9a.bkt.clouddn.com/';
+var PIC_SHOW = '?imageMogr2/auto-orient/interlace/1';
+
+// 当前语言
+var NOWLANG = getUrlParam('lang') || 'cn';
+
+function getUrlParam(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null)
+	    return decodeURIComponent(r[2]);
+	return '';
+}
+

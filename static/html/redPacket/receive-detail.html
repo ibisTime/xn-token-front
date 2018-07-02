@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<link rel="import" href="../head.html?__inline">
+		<title></title>
+		<!--SCRIPT_PLACEHOLDER-->
+	</head>
+
+	<body>
+
+		<body class="bg_fff">
+			<div class="rpReceiveDetail-wrap">
+				<div class="detail-wrap">
+					<div class="photo"></div>
+					<div class="nickname"></div>
+					<div class="txt2"></div>
+					<div class="count"></div>
+					<div class="countCNY"></div>
+				</div>
+				<div class="receivedNum"></div>
+				<div class="receiverList"></div>
+				<div style="height: 1.6rem;"></div>
+			</div>
+			<div class="download-footer">
+	    		<div class="fl">
+	    			<img class="fl" src="../../images/logo.png" />
+	    			<p class="fl txt"></p>
+	    		</div>
+	    		<div class="fr">
+	    			<div class="am-button am-button-ghost" id="downloadBtn"></div>
+	    		</div>
+	    	</div>
+
+			<link rel="import" href="../footer.html?__inline">
+			<script>
+				require(['app/controller/redPacket/ReceiveDetail']);
+			</script>
+		</body>
+
+</html>

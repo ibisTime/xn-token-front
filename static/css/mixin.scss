@@ -1,0 +1,70 @@
+@mixin border-bottom-1px($color) {
+    position: relative;
+
+    &:after {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+        content: ' ';
+    }
+}
+@mixin border-top-1px($color) {
+    position: relative;
+
+    &:before {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+        content: ' ';
+    }
+}
+@mixin border-right-1px($color) {
+    position: relative;
+
+    &:after {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        border-right: 1px solid $color;
+        content: ' ';
+    }
+}
+@mixin border-none() {
+    &:after {
+        display: none;
+    }
+    &:before {
+        display: none;
+    }
+}
+@mixin bg-image($url) {
+    background-image: url("../images/" + $url + "@2x.png");
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        background-image: url("../images/" + $url + "@3x.png");
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5) {
+    .border-bottom-1px, .border-top-1px, .border-right-1px {
+        &::after {
+            -webkit-transform: scaleY(0.7);
+            transform: scaleY(0.7);
+        }
+    }
+    
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2) {
+    .border-bottom-1px, .border-top-1px, .border-right-1px {
+        &::after {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+}

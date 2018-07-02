@@ -7,10 +7,10 @@ fis.hook('amd', {
         'jweixin': 'lib/jweixin-1.2.0',
         'jValidate': "lib/validate/jquery.validate",
         'jquery': "lib/jquery-2.1.4",
-        'swiper': "lib/swiper/swiper-3.3.1.jquery.min",
         'picker': "lib/picker/picker.min.js",
-        'clipboard': "lib/clipboard/clipboard.min.js",
-        'html2canvas': "lib/html2canvas/html2canvas.min.js"
+        'swiper': "lib/swiper/swiper-3.3.1.jquery.min",
+        'Quill': "lib/quill/quill",
+        'echarts': "lib/echarts/echarts"
     },
     shim: {
         "IScroll": {
@@ -34,6 +34,21 @@ fis.match('*.{css,less,scss}', {
     "cascade": true
   })
 })
+fis.match('**/*.scss', {
+    rExt: '.css',
+    parser: fis.plugin('node-sass', {
+        //fis-parser-node-sass option
+    })
+});
+fis.match('{/js/app/controller/**.js,/js/app/interface/**.js,/js/app/module/**.js}', {
+    parser: fis.plugin('babel-6.x', {
+        sourceMaps: true,
+        presets: [
+            'latest', 'es2016', 'ES2015', 'stage-0'
+        ]
+    }),
+    rExt: 'js'
+});
 fis.match('*.{js,css}', {
     useHash: true
 }).match('config.js', {

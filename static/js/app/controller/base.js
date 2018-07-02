@@ -1,27 +1,18 @@
 define([
-    'jquery',
-    'app/util/ajax',
     'app/util/dialog',
-    'app/module/loading/loading'
-], function($, Ajax, dialog, loading) {
-
-    if (Number.prototype.toFixed) {
-        var ori_toFixed = Number.prototype.toFixed;
-        Number.prototype.toFixed = function() {
-            var num = ori_toFixed.apply(this, arguments);
-            if (num == 0 && num.indexOf('-') == 0) { // -0 and 0
-                num = num.slice(1);
-            }
-            return num;
-        }
-    }
-
-    String.prototype.temp = function(obj) {
-        return this.replace(/\$\w+\$/gi, function(matchs) {
-            var returns = obj[matchs.replace(/\$/g, "")];
-            return (returns + "") == "undefined" ? "" : returns;
-        });
-    };
+    'app/util/cookie',
+    'app/module/loading',
+    'app/util/ajax'
+], function(dialog, CookieUtil, loading, Ajax) {
+	$("body").on("click", ".goHref", function() {
+		var thishref = $(this).attr("data-href");
+		if(thishref != "" && thishref) {
+			if(Base.isLogin()){
+				Base.updateLoginTime();
+			}
+			Base.gohref(thishref)
+		}
+	})
 
     Date.prototype.format = function(format) {
         var o = {
@@ -39,7 +30,9 @@ define([
 
         for (var k in o) {
             if (new RegExp("(" + k + ")").test(format)) {
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                    ? o[k]
+                    : ("00" + o[k]).substr(("" + o[k]).length));
             }
         }
         return format;
@@ -58,8 +51,43 @@ define([
         }
         return o;
     };
-
+    
+    //给form表单赋值
+    $.fn.setForm = function(jsonValue) {  
+	    var obj=this;  
+	    $.each(jsonValue, function (name, ival) { 
+	    	if(obj.find("#" + name).length){
+	    		var $oinput = obj.find("#" + name);
+	    		if ($oinput.attr("type")== "radio" || $oinput.attr("type")== "checkbox"){  
+		            $oinput.each(function(){  
+		                if(Object.prototype.toString.apply(ival) == '[object Array]'){//是复选框，并且是数组  
+		                    for(var i=0;i<ival.length;i++){  
+		                        if($(this).val()==ival[i])  
+		                        $(this).attr("checked", "checked");  
+		                    }  
+		                }else{  
+		                    if($(this).val()==ival){
+		                        $(this).attr("checked", "checked")
+		                    };
+		                }  
+		            });  
+		        }else if($oinput.attr("type")== "textarea"){//多行文本框  
+		            obj.find("[name="+name+"]").html(ival);  
+		        }else{
+		        	if($oinput.attr("data-format")){ //需要格式化的日期 如:data-format="yyyy-MM-dd"
+		        		obj.find("[name="+name+"]").val(Base.formatDate(ival,$oinput.attr("data-format")));   
+		        	}else if($oinput.attr("data-amount")){ //需要格式化的日期 如:data-format="yyyy-MM-dd"
+		        		obj.find("[name="+name+"]").val(Base.formatMoney(ival));   
+		        	}else{
+		        		obj.find("[name="+name+"]").val(ival);   
+		        	}
+		        }  
+	    	}
+	   });  
+	};
+    
     var Base = {
+        // simple encrypt information with ***
         encodeInfo: function(info, headCount, tailCount, space) {
             headCount = headCount || 0;
             tailCount = tailCount || 0;
@@ -72,18 +100,25 @@ define([
             if (space) {
                 mask = '**** **** **** **** **** **** **** **** **** **** **** ****';
             }
-            return maskLen > 0 ? (header + mask.substring(0, maskLen + (space ? maskLen / 4 : 0)) + (space ? ' ' : '') + tailer) : info;
+            return maskLen > 0
+                ? (header + mask.substring(0, maskLen + (space
+                    ? maskLen / 4
+                    : 0)) + (space
+                    ? ' '
+                    : '') + tailer)
+                : info;
         },
         formatDate: function(date, format) {
-            return date ? new Date(date).format(format) : "--";
+            if (!date)
+                return "--";
+
+            return new Date(date).format(format||'yyyy-dd-MM');
         },
-        getImg: function(pic) {
-            return pic ? (PIC_PREFIX + pic + THUMBNAIL_SUFFIX) : "";
-        },
-        getUrlParam: function(name, locat) {
+        getUrlParam: function(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            var r = (locat || window.location.search).substr(1).match(reg);
-            if (r != null) return decodeURIComponent(r[2]);
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)
+                return decodeURIComponent(r[2]);
             return '';
         },
         findObj: function(array, key, value, key2, value2) {
@@ -98,20 +133,15 @@ define([
                 }
             }
         },
-        formatMoney: function(s, t) {
-            return $.isNumeric(s) ? (+s / 1000).toFixed(t || 2) : "--";
+        showMsg: function(msg, time) {
+            var d = dialog({content: msg, quickClose: true});
+            d.show();
+            setTimeout(function() {
+                d.close().remove();
+            }, time || 1500);
         },
-        fZeroMoney: function(s) {
-            if (!$.isNumeric(s))
-                return 0;
-            s = +s / 1000;
-            return s.toFixed(0);
-        },
-        getDictList: function(type,code) {
-            return Ajax.get(code, {
-                parentKey: type
-            });
-        },
+
+        //判断密码强度
         calculateSecurityLevel: function(password) {
             var strength_L = 0;
             var strength_M = 0;
@@ -123,21 +153,15 @@ define([
                 if (code >= 48 && code <= 57) {
                     strength_L++;
                     // 小写字母 大写字母
-                } else if ((code >= 65 && code <= 90) ||
-                    (code >= 97 && code <= 122)) {
+                } else if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122)) {
                     strength_M++;
                     // 特殊符号
-                } else if ((code >= 32 && code <= 47) ||
-                    (code >= 58 && code <= 64) ||
-                    (code >= 94 && code <= 96) ||
-                    (code >= 123 && code <= 126)) {
+                } else if ((code >= 32 && code <= 47) || (code >= 58 && code <= 64) || (code >= 94 && code <= 96) || (code >= 123 && code <= 126)) {
                     strength_H++;
                 }
             }
             // 弱
-            if ((strength_L == 0 && strength_M == 0) ||
-                (strength_L == 0 && strength_H == 0) ||
-                (strength_M == 0 && strength_H == 0)) {
+            if ((strength_L == 0 && strength_M == 0) || (strength_L == 0 && strength_H == 0) || (strength_M == 0 && strength_H == 0)) {
                 return "1";
             }
             // 强
@@ -147,252 +171,85 @@ define([
             // 中
             return "2";
         },
-        calculateDays: function(start, end) {
-            if (!start || !end)
-                return 0;
-            start = new Date(start);
-            end = new Date(end);
-            return (end - start) / (3600 * 24 * 1000);
+        getUserId: function() {
+            return sessionStorage.getItem("userId") || "";
         },
-        isAddrEqual: function(name1, name2) {
-            return name1 == name2 || name2.indexOf(name1) != -1 || name1.indexOf(name2) != -1 || false
+        setSessionUser: function(data) {
+            sessionStorage.setItem("userId", data.userId);
+            sessionStorage.setItem("token", data.token);
         },
-        getPic: function(pic, suffix) {
-            return PIC_PREFIX + pic + (suffix || "");
+        setSessionQiniuUrl: function(data) {
+            CookieUtil.set("qiniuUrl", data);
         },
-        //获取全国所有城市信息
-    	getRealLocation:function (initFun, province, city, area, longitude, latitude, errFun) {
-	        Base.getAddress()
-	            .then(function(data) {
-	                citylist = data.citylist;
-	                var html = "",
-	                    k = 0;
-	                //遍历省
-	                $.each(citylist, function(i, prov) {
-	                    if(Base.isAddrEqual(prov.p, province)){
-	                        province = prov.p;
-	                        $.each(prov.c, function(j, c) {
-	                            //如果是当前定位的位置，则显示并保存到session中
-	                            if (Base.isAddrEqual(c.n, city)) {
-	                                city = c.n;
-	                                if(c.a && c.a[0].s && area){
-	                                    $.each(c.a, function (k, a) {
-	                                        if(Base.isAddrEqual(a.s, area)){
-	                                            area = a.s;
-	                                        }
-	                                    });
-	                                }
-	                            }
-	                        });
-	                    }
-	                });
-	                loading.hideLoading();
-	                if(!province){
-	                    Base.showMsg("定位失败");
-	                    errFun && errFun();
-	                }else{
-	                    sessionStorage.setItem("dw-province", province);
-	                    sessionStorage.setItem("dw-city", city);
-	                    sessionStorage.setItem("dw-area", area);
-	                    sessionStorage.setItem("dw-longitude", longitude);
-	                    sessionStorage.setItem("dw-latitude", latitude);
-	                    //直辖市
-	                    if(area == ""){
-	                        area = city;
-	//                      city = province;
-	                    }
-//	                    area = "";
-	                    sessionStorage.setItem("province", province);
-	                    sessionStorage.setItem("city", city);
-	                    sessionStorage.setItem("area", area);
-	                    sessionStorage.setItem("longitude", longitude);
-	                    sessionStorage.setItem("latitude", latitude);
-	
-	                    initFun(citylist);
-	                }
-	            });
-	    },
-	    getInitLocation: function (initFun, errFun){
-	    	var province = sessionStorage.getItem("province") || "",
-                city = sessionStorage.getItem("city") || "",
-                area = sessionStorage.getItem("area") || "",
-                longitude = sessionStorage.getItem("longitude", longitude),
-                latitude = sessionStorage.getItem("latitude", latitude);
-                loading.createLoading("定位中...");
-                
-                if(!province){
-                	//加载地图，调用浏览器定位服务
-			        map = new AMap.Map('', {
-			            resizeEnable: true
-			        });
-			        map.plugin('AMap.Geolocation', function() {
-			            geolocation = new AMap.Geolocation({
-			                enableHighAccuracy: true,//是否使用高精度定位，默认:true
-			                timeout: 4000,          //超过5秒后停止定位，默认：无穷大
-			            });
-			            map.addControl(geolocation);
-			            geolocation.getCurrentPosition();
-			            AMap.event.addListener(geolocation, 'complete', function(data) {
-			                var lng = data.position.getLng(),
-			                    lat = data.position.getLat(),
-			                    addressComponent = data.addressComponent,
-			                    province = addressComponent.province,
-			                    city = addressComponent.city,
-			                    area = addressComponent.district;
-			                
-			                if(province && city && area){
-				                sessionStorage.setItem("province",province),
-				                sessionStorage.setItem("city",city),
-				                sessionStorage.setItem("area",area),
-				                sessionStorage.setItem("longitude", lng),
-				                sessionStorage.setItem("latitude", lat);
-				                loading.hideLoading();
-				                initFun();	
-			                }else{
-			                	loading.hideLoading();
-			                	errFun();
-			                }
-			               
-			            });
-			            AMap.event.addListener(geolocation, 'error', function(data) {
-			            	loading.hideLoading();
-			                errFun();
-			            });      //返回定位出错信息
-			        });
-                }else{
-                	loading.hideLoading();
-                    initFun();
-                }
-	    },
-        //获取地址json
-        getAddress: function() {
-            var addr = localStorage.getItem("addr");
-            if (addr) {
-                var defer = jQuery.Deferred();
-                addr = $.parseJSON(addr);
-                if (!addr.citylist) {
-                    addr = $.parseJSON(addr);
-                }
-                defer.resolve(addr);
-                return defer.promise();
-            } else {
-                return Ajax.get1("/static/js/lib/city.min.json")
-                    .then(function(res) {
-                        if (res.citylist) {
-                            localStorage.setItem("addr", JSON.stringify(res));
-                            return res;
-                        }
-                        localStorage.setItem("addr", JSON.stringify(res));
-                        return $.parseJSON(res);
-                    });
-            }
+        clearSessionUser: function() {
+            sessionStorage.removeItem("userId"); //userId
+            sessionStorage.removeItem("token"); //token
+            sessionStorage.removeItem("qiniuUrl"); //qiniuUrl
+        },
+        isLogin: function() {
+            return !!Base.getUserId();
         },
         getDomain: function() {
             return location.origin;
         },
-        isNotFace: function(value) {
-            var pattern = /^[\s0-9a-zA-Z\u4e00-\u9fa5\u00d7\u300a\u2014\u2018\u2019\u201c\u201d\u2026\u3001\u3002\u300b\u300e\u300f\u3010\u3011\uff01\uff08\uff09\uff0c\uff1a\uff1b\uff1f\uff0d\uff03\uffe5\x21-\x7e]*$/;
-            return pattern.test(value)
+        goLogin: function() {
+            sessionStorage.setItem("l-return", location.pathname + location.search);
+            Base.gohref("../user/login.html");
         },
-        showMsg: function(msg, time) {
-            var d = dialog({
-                content: msg,
-                quickClose: true
-            });
-            d.show();
-            setTimeout(function() {
-                d.close().remove();
-            }, time || 1500);
+        throttle: function(method, context, t) {
+            var tt = t || 100;
+            clearTimeout(method.tId);
+            method.tId = setTimeout(function() {
+                method.call(context);
+            }, tt)
         },
-        makeReturnUrl: function(param) {
-            var url = location.pathname + location.search;
-            if (param) {
-                var str = "";
-                for (var n in param) {
-                    str += "&" + n + "=" + param[n];
-                }
-                if (/\?/i.test(url)) {
-                    url = url + str;
-                } else {
-                    url = url + "?" + str.substr(1, str.length);
-                }
+        // 获取图片
+        getImg: function(pic, suffix) {
+            if (!pic) {
+                return "";
             }
-            return encodeURIComponent(url);
-        },
-        getReturnParam: function() {
-            var re = Base.getUrlParam("return");
-            if (re) {
-                return encodeURIComponent(re);
+            if (pic) {
+                pic = pic.split(/\|\|/)[0];
             }
-            return "";
-        },
-        goBackUrl: function(url) {
-            var rUrl = Base.getUrlParam("return");
-            if (rUrl) {
-                location.href = rUrl;
-            } else {
-                location.href = url || "../index.html";
+            if (!/^http/i.test(pic)) {
+                suffix = suffix || '?imageMogr2/auto-orient/interlace/1';
+                pic = PIC_PREFIX + pic + suffix;
             }
+            return pic
         },
-        addIcon: function() {
-            var icon = sessionStorage.getItem("icon");
-            if (icon && icon != "undefined") {
-                $("head").append('<link rel="shortcut icon" type="image/ico" href="' + icon + '">');
+        getAvatar: function(pic) {
+			var defaultAvatar = __inline("../images/default-avatar.png");
+			if(!pic) {
+				pic = defaultAvatar;
+			} else {
+				pic = Base.getImg(pic, "?imageMogr2/auto-orient/thumbnail/!200x200r")
+			}
+            return pic;
+        },
+        // 获取分享的图片
+        getShareImg: function(pic) {
+            if (!pic) {
+                return location.origin + '/static/images/share.png';
             }
+            return Base.getImg(pic);
         },
-        isLogin: function() {
-            return !!sessionStorage.getItem("user");
+        formatMoney: function(s) {
+            if (!$.isNumeric(s))
+                return "--";
+            s = (+s / 1000).toString();
+            s = s.replace(/(\.\d\d)\d+/ig, "$1");
+            return parseFloat(s).toFixed(2);
         },
-        getUser: function(refresh) {
-            return Ajax.get("805043", {}, !refresh)
-                .then(function(res) {
-                    if (res.success) {
-                        Base.setSessionUserInfo(res.data);
-                    }
-                    return res;
-                }, function(res) {
-                    return res;
-                });
-        },
-        getUserId: function() {
-            return sessionStorage.getItem("user") || "";
-        },
-        setSessionUser: function(res) {
-            sessionStorage.setItem("user", res.data.userId);
-            sessionStorage.setItem("tk", res.data.token);
-        },
-        //清除sessionStorage中和用户相关的数据
-        clearSessionUser: function() {
-            sessionStorage.removeItem("user"); //userId
-            sessionStorage.removeItem("tk"); //token
-        },
-        //登出
-        logout: function() {
-            Base.clearSessionUser();
-        },
-        confirm: function(msg,okValue) {
-            return (new Promise(function (resolve, reject) {
-                var d = dialog({
-                	title:'提示',
-                    content: msg,
-                    ok: function () {
-                        var that = this;
-                        setTimeout(function () {
-                            that.close().remove();
-                        }, 1000);
-                        resolve();
-                        return true;
-                    },
-                    cancel: function () {
-                        reject();
-                        return true;
-                    },
-                    cancelValue: '取消',
-                    okValue: okValue||'去下载App'
-                });
-                d.showModal();
-            }));
-
+        // 模糊银行卡
+        getBankCard: function(card) {
+            if (!card)
+                return "";
+            if (card.length == 16) {
+                card = "**** **** **** " + card.substr(12);
+            } else if (card.length == 19) {
+                card = "**** **** **** **** " + card.substr(16);
+            }
+            return card;
         },
         //判断终端
         getUserBrowser:function(){
@@ -421,37 +278,38 @@ define([
             	return 'android';
             }
         },
-        loadImg: function (html) {
-            var wrap = $(html);
-            var imgs = wrap.find("img");
-            for (var i = 0; i < imgs.length; i++) {
-                var img = imgs.eq(i);
-                if (img[0].complete) {
-                    var width = img[0].width,
-                        height = img[0].height;
-                    if (width > height) {
-                        img.addClass("hp100");
-                    } else {
-                        img.addClass("wp100");
-                    }
-                    // img.closest(".default-bg").removeClass("default-bg");
-                    continue;
-                }
-                (function(img) {
-                    img[0].onload = (function() {
-                        var width = this.width,
-                            height = this.height;
-                        if (width > height) {
-                            img.addClass("hp100");
-                        } else {
-                            img.addClass("wp100");
-                        }
-                        // img.closest(".default-bg").removeClass("default-bg");
-                    });
-                })(img);
+        //判断是否是微信
+		is_weixn:function (){ 
+			var ua = navigator.userAgent.toLowerCase(); 
+			if(ua.match(/MicroMessenger/i)=="micromessenger") { 
+				return true; 
+			} else { 
+				return false; 
+			} 
+		},
+        // 确认框
+        confirm: function(msg, cancelValue, okValue) {
+            return (new Promise(function(resolve, reject) {
+                var d = dialog({
+                    content: msg,
+                    ok: function() {
+                        var that = this;
+                        setTimeout(function() {
+                            that.close().remove();
+                        }, 1000);
+                        resolve();
+                        return true;
+                    },
+                    cancel: function() {
+                        reject()
+                        return true;
+                    },
+                    cancelValue: cancelValue || Base.getText("关闭"),
+                    okValue: okValue || Base.getText("确认")
+                });
+                d.showModal();
+            }));
 
-            }
-            return wrap;
         },
         // 显示loading
         showLoading: function(msg, hasBottom) {
@@ -461,16 +319,118 @@ define([
         hideLoading: function() {
             loading.hideLoading();
         },
-		is_weixn:function (){ 
-			var ua = navigator.userAgent.toLowerCase(); 
-			if(ua.match(/MicroMessenger/i)=="micromessenger") { 
-				return true; 
-			} else { 
-				return false; 
-			} 
+        // 清除内容里的标签
+        clearTag: function(content) {
+            return content.replace(/<[^>]+>|<\/[^>]+>|<[^>]+\/>|&nbsp;/ig, "");
+        },
+        encode: function(str) {
+            if (!str || str.length === 0) {
+                return '';
+            }
+            var s = '';
+            s = str.replace(/&amp;/g, "&");
+            s = s.replace(/<(?=[^o][^)])/g, "&lt;");
+            s = s.replace(/>/g, "&gt;");
+            s = s.replace(/\"/g, "&quot;");
+            s = s.replace(/\n/g, "<br>");
+            return s;
+        },
+		/* 
+		 * url 目标url 
+		 * arg 需要替换的参数名称 
+		 * arg_val 替换后的参数的值 
+		 * return url 参数替换后的url 
+		 */
+		changeURLArg: function(url, arg, arg_val) {
+			var pattern = arg + '=([^&]*)';
+			var replaceText = arg + '=' + arg_val;
+			if(url.match(pattern)) {
+				var tmp = '/(' + arg + '=)([^&]*)/gi';
+				tmp = url.replace(eval(tmp), replaceText);
+				return tmp;
+			} else {
+				if(url.match('[\?]')) {
+					return url + '&' + replaceText;
+				} else {
+					return url + '?' + replaceText;
+				}
+			}
+			return url + '\n' + arg + '\n' + arg_val;
+		},
+		//跳转 location.href
+		gohref: function(href) {
+			var timestamp = new Date().getTime();
+			//判断链接后是否有带参数
+			if(href.split("?")[1]) {
+				//判断是否有带v的参数，有则替换v的参数
+				if(Base.getUrlParam("v", href) != "" && Base.getUrlParam("v", href)) {
+					location.href = Base.changeURLArg(href, "v", timestamp);
+				} else {
+					location.href = href + "&v=" + timestamp + '&lang=' + NOWLANG;
+				}
+			} else {
+				location.href = href + "?v=" + timestamp + '&lang=' + NOWLANG;
+			}
+		},
+		//跳转 location.replace
+		gohrefReplace: function(href) {
+			var timestamp = new Date().getTime();
+			//判断链接后是否有带参数
+			if(href.split("?")[1]) {
+				//判断是否有带v的参数，有则替换v的参数
+				if(Base.getUrlParam("v", href) != "" && Base.getUrlParam("v", href)) {
+					location.replace(Base.changeURLArg(href, "v", timestamp));
+				} else {
+					location.replace(href + "&v=" + timestamp + '&lang=' + NOWLANG);
+				}
+			} else {
+				location.replace(href + "?v=" + timestamp + '&lang=' + NOWLANG);
+			}
+		},
+		// 根据语言获取文本
+		getText: function(text){
+			var t = LANGUAGE[text] && LANGUAGE[text][NOWLANG] ? LANGUAGE[text][NOWLANG] : '';
+			if(t === '') {
+				t = LANGUAGE[text]['cn'];
+				console.log(NOWLANG + '没有[' + text +']语言配置');
+			}
+			return t;
+		},
+		// 获取时间差
+		getTimeDifference: function(date1,date2){
+			var difference = '';
+			
+	        var date3 = new Date(date2).getTime() - new Date(date1).getTime();   //时间差的毫秒数
+	 
+	        //计算出相差天数
+	        var days=Math.floor(date3/(24*3600*1000));
+	 
+	        //计算出小时数
+	 
+	        var leave1=date3%(24*3600*1000);    //计算天数后剩余的毫秒数
+	        var hours=Math.floor(leave1/(3600*1000));
+	        
+	        //计算相差分钟数
+	        var leave2=leave1%(3600*1000);       //计算小时数后剩余的毫秒数
+	        var minutes=Math.floor(leave2/(60*1000));
+	        
+	        //计算相差秒数
+	        var leave3=leave2%(60*1000);      //计算分钟数后剩余的毫秒数
+	        var seconds=Math.round(leave3/1000);
+	        if(days != '0') {
+	        	difference += days+"天";
+	        }
+	        if(hours != '0'){
+	        	difference += hours+"小时";
+	        }
+	        if(minutes != '0'){
+	        	difference += minutes+"分钟";
+	        }
+	        
+	        difference += seconds+"秒";
+			return difference;
 		}
-	
+		
     };
-	
     return Base;
 });

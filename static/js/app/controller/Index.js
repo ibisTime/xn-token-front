@@ -1,7 +1,14 @@
 define([
-    'app/controller/base',
-    'app/util/ajax',
-    'app/module/loading/loading'
-], function(base, Ajax, loading) {
-		
+    'app/controller/base'
+], function(base) {
+    
+    init();
+    
+    function init(){
+    	
+        addListener()
+    }
+    
+    function addListener(){
+    }
 });

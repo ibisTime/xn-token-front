@@ -1,3 +1,6 @@
+button{
+	outline: none !important;
+}
 .ui-dialog {
     *zoom:1;
     _float: left;
@@ -8,7 +11,7 @@
     outline: 0;
     background-clip: padding-box;
     font-family: Helvetica, arial, sans-serif;
-    font-size: 14px;
+    font-size: .28rem;
     line-height: 1.428571429;
     color: #333;
     opacity: 0;
@@ -122,12 +125,11 @@
     vertical-align: middle;
 }
 .ui-dialog-button {
-    float: right;
     white-space: nowrap;
 }
 .ui-dialog-footer button+button {
     margin-bottom: 0;
-    margin-left: 5px;
+    float: right;
 }
 .ui-dialog-footer button {
     width:auto;
@@ -135,7 +137,6 @@
     display: inline-block;
     padding: 6px 12px;
     _margin-left: 5px;
-    margin-bottom: 0;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.428571429;
@@ -151,6 +152,7 @@
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    margin: 0 .3rem;
 }
 
 .ui-dialog-footer button:focus {
@@ -208,16 +210,16 @@
 
 .ui-dialog-footer button.ui-dialog-autofocus {
     color: #ffffff;
-    background-color: #428bca;
-    border-color: #357ebd;
+    background-color: #2f93ed;
+    border-color: #2f93ed;
 }
 
 .ui-dialog-footer button.ui-dialog-autofocus:hover,
 .ui-dialog-footer button.ui-dialog-autofocus:focus,
 .ui-dialog-footer button.ui-dialog-autofocus:active {
     color: #ffffff;
-    background-color: #3276b1;
-    border-color: #285e8e;
+    background-color: #2f93ed;
+    border-color: #2f93ed;
 }
 
 .ui-dialog-footer button.ui-dialog-autofocus:active {

@@ -1,5 +1,5 @@
 /*! artDialog v6.0.5 | https://github.com/aui/artDialog */
-define(['jquery'], function($) {
+define([], function() {
     var css = __inline('ui-dialog.css');
     $('<style>' + css + '</style>').appendTo('head');
     var __modules__ = {};
@@ -660,7 +660,7 @@ define(['jquery'], function($) {
 
 
         /** 当前叠加高度 */
-        Popup.zIndex = 9999;
+        Popup.zIndex = 1024;
 
 
         /** 顶层浮层的实例 */

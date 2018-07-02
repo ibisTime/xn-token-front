@@ -1,0 +1,27 @@
+.loading-module-wrap{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    bottom: 0;
+}
+.loading-module-wrap.loading-has-bottom{
+	bottom: 49px;
+}
+.loading-module-wrap .loading-module-cont{
+	min-width: 60px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: rgba(58,58,58,.9);
+    line-height: 1.5;
+    padding: 9px 15px;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+    max-width: 50%;
+}
+.loading-module-wrap .loading-module-cont .loading-module-text{
+	font-size: .28rem;
+}
