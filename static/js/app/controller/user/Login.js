@@ -37,9 +37,9 @@ define([
     		base.hideLoading();
     		base.showMsg(base.getText('操作成功！'));
     		base.setSessionUser(data);
-//  		setTimeout(function() {
-//  			base.gohref(sessionStorage.getItem("l-return"));
-//  		}, 1200)
+    		setTimeout(function() {
+    			base.gohref(sessionStorage.getItem("l-return"));
+    		}, 1200)
         }, () => {
             $("#getVerification").text("获取验证码").prop("disabled", false);
             clearInterval(timer);
