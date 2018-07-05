@@ -35,19 +35,45 @@ define([
     function getRedPacketDetail(){
     	return RedPacketCtr.getRedPacketDetail({code, userId: base.getUserId()}).then((data) => {
     		base.hideLoading();
+    		$(".detail-wrap .nickname").html(data.sendUserNickname);
+    		$(".detail-wrap .photo").css({"background-image": "url('"+base.getAvatar(data.sendUserPhoto)+"')"});
     		$(".detail-wrap .txt2").html(data.greeting);
-    		$(".receivedNum").html(data.sendNum + base.getText('个红包')+'&nbsp;&nbsp;&nbsp;' + base.getTimeDifference(data.createDateTime, data.lastReceivedDatetime) + base.getText('被抢完'));
+    		if (data.isReceived == '0') {
+    			if(NOWLANG == 'cn') {
+	    			if(data.status == '2') {
+		    			$(".receivedNum-wrap").html(`<div class="receivedNum">${data.receiverList.length}/${data.sendNum}个红包&nbsp;&nbsp;&nbsp;${base.getTimeDifference(data.createDateTime, data.lastReceivedDatetime)}被抢完<div>`);
+		    		} else {
+		    			$(".receivedNum-wrap").html(`<div class="receivedNum">${data.receiverList.length}/${data.sendNum}个红包<div>`);
+		    		}
+	    		} else {
+	    			$(".receivedNum-wrap").html(`<div class="receivedNum">Opened${data.receiverList.length}/${data.sendNum}<div>`);
+	    		}
+    		}
+    		
     		var html = '';
+    		var flag = false;
     		data.receiverList.forEach(item => {
-    			if(item.userId){
-		    		$(".detail-wrap .nickname").html(item.userNickname);
-		    		$(".detail-wrap .photo").css({"background-image": "url('"+base.getAvatar(item.userPhoto)+"')"});
+    			if(item.userId == base.getUserId()){
     				$(".detail-wrap .count").html(item.count+'<samp>'+data.symbol+'</samp>');
     				$(".detail-wrap .countCNY").html(base.getText('价值') + item.countCNY );
     			}
+    			if(!flag){
+    				flag = true;
+    				if (data.isReceived == '1') {
+		    			if(NOWLANG == 'cn') {
+			    			if(data.status == '2') {
+				    			$(".receivedNum-wrap").html(`<div class="receivedNum">${data.receiverList.length}/${data.sendNum}个红包&nbsp;&nbsp;&nbsp;${base.getTimeDifference(data.createDateTime, data.lastReceivedDatetime)}被抢完</div>`);
+				    		} else {
+				    			$(".receivedNum-wrap").html(`<div class="receivedNum">${data.receiverList.length}/${data.sendNum}个红包</div>`);
+				    		}
+			    		} else {
+			    			$(".receivedNum-wrap").html(`<div class="receivedNum">Opened${data.receiverList.length}/${data.sendNum}</div>`);
+			    		}
+		    		}
+    			}
     			
     			var bestHtml = '';
-    			if(data.bestHandUser == item.userId && data.type == '1'){
+    			if(data.bestHandUser == item.userId && data.type == '1' && data.status == '2'){
     				bestHtml = `<div class="isBest"><samp><i></i>${base.getText('手气最佳')}</samp></div>`;
     			}
     			

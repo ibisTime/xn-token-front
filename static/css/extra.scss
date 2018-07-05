@@ -182,6 +182,18 @@ label.error{
         overflow: hidden;
         padding: 0 .5rem;
     }
+    .txt3{
+        width: 100%;
+        font-size: .48rem;
+        color: #FFB968;
+        margin: .6rem 0 0;
+    }
+    .goDetail{
+        width: 100%;
+        font-size: .26rem;
+        color: #FFB968;
+        margin: 3.2rem 0 0;
+    }
     .btn{
         width: 2rem;
         height: 2rem;
@@ -300,7 +312,6 @@ label.error{
             color: #aaa;
         }
         .count{
-            height: 1rem;
             font-size: 1rem;
             line-height: 1;
             color: #151515;
@@ -311,7 +322,6 @@ label.error{
             }
         }
         .countCNY{
-            height: .24rem;
             font-size: .24rem;
             line-height: 1;
             color: #aaa;

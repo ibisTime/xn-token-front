@@ -5,6 +5,7 @@ define([
     'app/module/smsCaptcha',
 ], function(base, UserCtr, Validate, smsCaptcha) {
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
+	var lang = base.getUrlParam('lang') || 'cn';
     var timer;
     
     init();
@@ -12,7 +13,10 @@ define([
     function init(){
     	$("title").html(base.getText('登录'));
     	$(".title").html(base.getText('绑定手机号并登录'));
+    	$("#mobile").attr("placeholder", base.getText('请输入手机号码'));
+    	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码'));
     	$("#getVerification").html(base.getText('获取验证码'));
+    	$("#loginBtn").html(base.getText('登录'));
     	base.showLoading();
     	getListCountry();
     	
@@ -25,9 +29,15 @@ define([
     		base.hideLoading();
     		var html = `<option value ="">${base.getText("请选择国家")}</option>`;
     		data.forEach(v => {
-    			html += `<option value ="${v.interCode}">${v.chineseName}</option>`;
+    			if(lang == 'cn') {
+    				html += `<option value ="${v.interCode}">${v.chineseName}</option>`;
+    			} else {
+    				html += `<option value ="${v.interCode}">${v.interName}</option>`;
+    			}
     		})
     		$("#interCode").html(html);
+    		$("#interCode").val('0086');
+    		$("#interCode").change();
     	}, base.hideLoading);
     }
     

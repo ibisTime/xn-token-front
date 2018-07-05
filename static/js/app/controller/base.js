@@ -389,10 +389,14 @@ define([
 		},
 		// 根据语言获取文本
 		getText: function(text){
-			var t = LANGUAGE[text] && LANGUAGE[text][NOWLANG] ? LANGUAGE[text][NOWLANG] : '';
-			if(t === '') {
-				t = LANGUAGE[text]['cn'];
-				console.log(NOWLANG + '没有[' + text +']语言配置');
+			var t =  LANGUAGE[text] && LANGUAGE[text][NOWLANG] ? LANGUAGE[text][NOWLANG] : '';
+			if(!LANGUAGE[text] || t == '') {
+				t = text;
+				if(!LANGUAGE[text]){
+					console.log('[' + text +']没有翻译配置');
+				} else {
+					console.log(NOWLANG + ': [' + text +']没有翻译配置');
+				}
 			}
 			return t;
 		},

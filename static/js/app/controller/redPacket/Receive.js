@@ -4,7 +4,7 @@ define([
 ], function(base, RedPacketCtr) {
 	var code = base.getUrlParam('code');
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
-	var isReceived;// 是否抢过该红包:0没抢过1:一抢过
+	var lang = base.getUrlParam('lang');
     
     init();
     
@@ -14,8 +14,6 @@ define([
     	}
         sessionStorage.removeItem("l-return", '');
     	$("title").html(base.getText('分享红包'));
-    	$(".rpReceive-wrap .txt1").html(base.getText('给您发了一个红包'));
-    	$(".rpReceive-wrap .btn div").html(base.getText('开'));
     	base.showLoading();
     	getRedPacketDetail();
     	
@@ -28,39 +26,56 @@ define([
     		base.hideLoading();
     		$(".rpReceive-wrap .nickname").html(data.sendUserNickname);
     		$(".rpReceive-wrap .photo div").css({"background-image": "url('"+base.getAvatar(data.sendUserPhoto)+"')"});
-    		$(".rpReceive-wrap .txt2").html(data.greeting);
     		
-    		isReceived = data.isReceived;
-    		
-    		// 已抢
-    		if(data.isReceived === '1') {
-    			$(".rpReceive-wrap .btn div").html(base.getText('已抢'));
+    		if (data.status == '0' || data.status == '1') {
+    			var openBtnHtml = '';
+    			if(data.isReceived === '1') {
+	    			openBtnHtml = base.getText('已抢');
+	    		} else {
+	    			openBtnHtml = base.getText('开');
+	    		}
+    			$(".receiveWrap1").html(`
+    				<div class="txt1">${base.getText('给您发了一个红包')}</div>
+					<div class="txt2">${data.greeting}</div>
+					<div class="btn" id="openBtn"><div>${openBtnHtml}</div></div>`);
     		} else {
-    			$(".rpReceive-wrap .btn div").html(base.getText('开'));
+    			$(".receiveWrap1").html(`
+    				<div class="txt3">${base.getText('红包已派完!')}</div>
+					<div class="goDetail">${base.getText('看看大家的手气')}></div>`);
     		}
+    		
+    		// 打开红包
+	    	$("#openBtn").click(function(){
+	    		// 可领取的红包
+	    		if (data.status == '0' || data.status == '1') {
+		    		if(!base.isLogin()){
+		            	sessionStorage.setItem("l-return", location.pathname + location.search);
+		    			base.gohref('../user/login.html?inviteCode='+ inviteCode);
+		    			return;
+		    		}
+	    		}
+	    		// 领取过或 红包不可领取  isReceived 是否抢过该红包:0没抢过1:已抢过
+	    		if(data.isReceived == '1' || data.status == '2' || data.status == '3' || data.status == '4') {
+	    			base.gohref('../redPacket/receive-detail.html?code='+code);
+	    			return;
+	    		}
+	    		// 领取
+	    		base.showLoading();
+	    		RedPacketCtr.receiveRedPacket(code).then(() => {
+	    			base.hideLoading();
+	    			base.gohref('../redPacket/receive-detail.html?code='+code);
+	    		}, base.hideLoading)
+	    		
+	    	})
+	    	
+	    	// 打开红包
+	    	$(".goDetail").click(function(){
+    			base.gohref('../redPacket/receive-detail.html?code='+code);
+	    	})
     	}, base.hideLoading)
     }
     
     function addListener(){
-    	// 打开红包
-    	$("#openBtn").click(function(){
-    		if(!base.isLogin()){
-            	sessionStorage.setItem("l-return", location.pathname + location.search);
-    			base.gohref('../user/login.html?inviteCode='+ inviteCode);
-    			return;
-    		}
-    		if(isReceived === '1') {
-    			base.confirm(base.getText('此红包已抢过啦'));
-    			return;
-    		}
-    		// 领取
-    		base.showLoading();
-    		RedPacketCtr.receiveRedPacket(code).then(() => {
-    			base.hideLoading();
-    			base.gohref('../redPacket/receive-detail.html?code='+code);
-    		}, base.hideLoading)
-    		
-    		
-    	})
+    	
     }
 });
