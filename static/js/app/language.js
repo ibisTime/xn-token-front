@@ -83,11 +83,11 @@
 	},
 	'下载提取': {
 		'cn': '下载提取',
-		'en': 'download，withdraw'
+		'en': 'Download'
 	},
 	'下载THA钱包，即可提取': {
 		'cn': '下载THA钱包，即可提取',
-		'en': 'withdraw right away after downloading the THA wallet'
+		'en': 'Withdraw from THA wallet'
 	},
 	'价值': {
 		'cn': '价值',
