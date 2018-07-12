@@ -19,6 +19,45 @@
 					
 				</div>
 			</div>
+			
+			<div class="popup rpReceivePopup hidden" id="rpReceivePopup">
+				<div class="popup-mask"></div>
+				<div class="popup-body">
+					<div class="icon-close close"></div>
+					<div class="popup-header">
+					</div>
+					<div class="popup-content login-wrap">
+						<form id="formWrapper" class="form-wrapper">
+				            <div class="form-item form-mobile">
+				                <div class="am-flexbox">
+				                	<div class="national-flag" id="nationalFlag"></div>
+				                	<div class="national-select">
+				                		<span id="interCode"></span>
+				                		<i class="icon"></i>
+				                	</div>
+				                    <input type="text" pattern="[0-9]*" placeholder="" id="mobile" name="mobile" class="input-item"/>
+				                </div>
+				            </div>
+				            <div class="form-item form-btn-item mt30">
+				                <div class="am-flexbox">
+				                    <div class="input-item smsCaptcha-item"><input type="text" placeholder="" id="smsCaptcha" name="smsCaptcha"/></div>
+				                    <button class="item-button smsCaptcha-btn am-button am-button-small am-button-ghost" id="getVerification"></button>
+				                </div>
+				            </div>
+				        </form>
+				        <div class="login-btn wp100">
+				            <button id="loginBtn" class="am-button am-button-primary wp100"></button>
+				        </div>
+					</div>
+				</div>
+			</div>
+			<div class="popup countryPopup hidden" id="countryPopup">
+				<div class="popup-header">
+					<div class="icon-return close"></div>
+				</div>
+				<div class="popup-content" id="countryList">
+				</div>
+			</div>
 
 			<link rel="import" href="../footer.html?__inline">
 			<script>

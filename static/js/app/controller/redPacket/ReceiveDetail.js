@@ -77,6 +77,12 @@ define([
     				bestHtml = `<div class="isBest"><samp><i></i>${base.getText('手气最佳')}</samp></div>`;
     			}
     			
+    			var  countCNY = `<div class="countCNY fr">${base.getText('价值') + item.countCNY}</div>`
+    			
+    			if(item.countCNY == '0' || item.countCNY == '0.00') {
+    				countCNY = '';
+    			}
+    			
     			html += `<div class="item">
     					<div class="wp100 over-hide wrap">
 							<div class="photo fl" style="background-image: url('${base.getAvatar(item.userPhoto)}')"></div>
@@ -87,7 +93,7 @@ define([
 								</div>
 								<div class="bottom">
 									<div class="time fl">${base.formatDate(item.createDatetime, 'MM-dd hh:mm')}</div>
-									<div class="countCNY fr">${base.getText('价值') + item.countCNY}</div>
+									${countCNY}
 								</div>
 							</div>
 						</div>

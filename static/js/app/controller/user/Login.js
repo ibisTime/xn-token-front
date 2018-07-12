@@ -60,9 +60,6 @@ define([
     	var _formWrapper = $("#formWrapper");
         _formWrapper.validate({
             'rules': {
-                interCode: {
-                    required: true,
-                },
                 mobile: {
                     required: true,
                     number: true
@@ -88,7 +85,7 @@ define([
     	$("#loginBtn").click(function(){
     		if(_formWrapper.valid()) {
     			var params = _formWrapper.serializeObject();
-    			params.inviteCode = inviteCode;
+    			params.inviteCode = $("#interCode").text();
     			base.showLoading();
     			login(params);
     		}

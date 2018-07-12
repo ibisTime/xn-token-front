@@ -28,14 +28,14 @@ define([
         mobile: "mobile",
         interCode: "interCode",
         checkInfo: function () {
-            return $("#" + this.interCode).valid() && $("#" + this.mobile).valid();
+    		return $("#" + this.mobile).valid();
         },
         sendCode: '805950'
     };
     initSms.prototype.handleSendVerifiy = function() {
         var verification = $("#" + this.options.id);
         verification.prop("disabled", true);
-        GeneralCtr.sendCaptcha(this.options.bizType, $("#" + this.options.mobile).val(), $("#" + this.options.interCode).val(), this.options.sendCode)
+        GeneralCtr.sendCaptcha(this.options.bizType, $("#" + this.options.mobile).val(), $("#" + this.options.interCode).attr("value"), this.options.sendCode)
             .then(() => {
                 var i = 60;
                 this.timer = window.setInterval(() => {

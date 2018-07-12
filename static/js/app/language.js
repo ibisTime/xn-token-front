@@ -61,7 +61,7 @@
 	},
 	'获取验证码': {
 		'cn': '获取验证码',
-		'en': 'send code'
+		'en': 'Get code'
 	},
 	'操作成功！': {
 		'cn': '操作成功！',
@@ -69,11 +69,11 @@
 	},
 	'请输入手机号码': {
 		'cn': '请输入手机号码',
-		'en': 'please enter the cell-phone number'
+		'en': 'Enter mobile number'
 	},
 	'请输入验证码': {
 		'cn': '请输入验证码',
-		'en': 'please enter the verification code'
+		'en': 'Enter code'
 	},
 	
 	// 领取红包
@@ -100,6 +100,19 @@
 	'手气最佳': {
 		'cn': '手气最佳',
 		'en': 'luckiest draw'
-	}
+	},
 	
+	/* v150 */
+	'查看领取情况': {
+		'cn': '查看领取情况',
+		'en': 'View detail'
+	},
+	'红包已过期!': {
+		'cn': '红包已过期!',
+		'en': 'Expired'
+	},
+	'输入手机号码<br/>领取红包': {
+		'cn': '输入手机号码<br/>领取红包',
+		'en': 'Enter phone number <br/> receive red packet '
+	}
 }
