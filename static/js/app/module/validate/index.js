@@ -2,7 +2,7 @@
     'jValidate'
 ], function(V) {
     jQuery.extend(jQuery.validator.messages, {
-        required: LANGUAGE['不能为空'][NOWLANG] || LANGUAGE['不能为空']['cn'],
+        required: LANGUAGE['不能为空'][NOWLANG] || LANGUAGE['不能为空']['en'],
         remote: "请修正该字段",
         email: "请输入正确格式的电子邮件",
         url: "请输入合法的网址",

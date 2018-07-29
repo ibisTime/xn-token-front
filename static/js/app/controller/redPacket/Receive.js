@@ -7,9 +7,10 @@ define([
 ], function(base, RedPacketCtr, UserCtr, Validate, smsCaptcha) {
 	var code = base.getUrlParam('code');
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
-	var lang = base.getUrlParam('lang');
+	var lang = base.getUrlParam('lang').toLowerCase();
     var timer;
     var receiverList = [];
+	var interCode = '0086'; // 设置默认interCode
     
     init();
     
@@ -18,21 +19,26 @@ define([
     		return;
     	}
         sessionStorage.removeItem("l-return", '');
-    	$("title").html(base.getText('分享红包'));
-    	$("#rpReceivePopup .popup-header").html(base.getText('输入手机号码<br/>领取红包'));
+    	setHtml();
     	
-    	$("#mobile").attr("placeholder", base.getText('请输入手机号码'));
-    	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码'));
-    	$("#getVerification").html(base.getText('获取验证码'));
-    	$("#loginBtn").html(base.getText('领取红包'));
+        addListener();
+    }
+    
+    // 设置页面吧、html
+    function setHtml(){
+    	$("title").html(base.getText('分享红包', lang));
+    	$("#rpReceivePopup .popup-header").html(base.getText('输入手机号码<br/>领取红包', lang));
+    	
+    	$("#mobile").attr("placeholder", base.getText('请输入手机号码', lang));
+    	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码', lang));
+    	$("#getVerification").html(base.getText('获取验证码', lang));
+    	$("#loginBtn").html(base.getText('领取红包', lang));
     	base.showLoading();
 	
 		$.when(
     		getRedPacketDetail(),
     		getListCountry()
     	)
-    	
-        addListener();
     }
     
 	// 获取红包详情
@@ -51,19 +57,19 @@ define([
 	    			openBtnHtml = base.getText('开');
 	    		}
     			$(".receiveWrap1").html(`
-    				<div class="txt1">${base.getText('给您发了一个红包')}</div>
+    				<div class="txt1">${base.getText('给您发了一个红包', lang)}</div>
 					<div class="txt2">${data.greeting}</div>
 					<div class="btn" id="openBtn"><div>${openBtnHtml}</div></div>`);
     		} else {
     			var html = ``;
     			
     			if(data.status == '2') {
-    				html += `<div class="txt3">${base.getText('红包已派完!')}</div>`;
+    				html += `<div class="txt3">${base.getText('红包已派完!', lang)}</div>`;
     			} else {
-    				html += `<div class="txt3">${base.getText('红包已过期!')}</div>`;
+    				html += `<div class="txt3">${base.getText('红包已过期!', lang)}</div>`;
     			}
     			
-    			html += `<div class="goDetail">${base.getText('查看领取情况')}>></div>`;
+    			html += `<div class="goDetail">${base.getText('查看领取情况', lang)}>></div>`;
     			$(".receiveWrap1").html(html);
     		}
     		
@@ -78,7 +84,7 @@ define([
 	    		}
 	    		// 领取过或 红包不可领取  isReceived 是否抢过该红包:0没抢过1:已抢过
 	    		if(data.isReceived == '1' || data.status == '2' || data.status == '3' || data.status == '4') {
-	    			base.gohref('../redPacket/receive-detail.html?code='+code);
+	    			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
 	    			return;
 	    		}
 		    		
@@ -86,7 +92,7 @@ define([
 	    	
 	    	// 打开红包
 	    	$(".goDetail").click(function(){
-    			base.gohref('../redPacket/receive-detail.html?code='+code);
+    			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
 	    	})
     	}, base.hideLoading)
     }
@@ -95,7 +101,7 @@ define([
     function receiveRedPacket(){
 		RedPacketCtr.receiveRedPacket(code).then(() => {
 			base.hideLoading();
-			base.gohref('../redPacket/receive-detail.html?code='+code);
+			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
 		}, base.hideLoading)
     }
     
@@ -111,24 +117,13 @@ define([
     				countryPic = v.pic;
     				on = 'on';
     			}
-    			if(lang == 'cn') {
-    				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}">
-    							<img class="img" src="${base.getImg(v.pic)}" />
-    							<samp>${v.chineseName} +${v.interCode.substring(2)}</samp>
-    							<i class="icon"></i>
-    						</div>`;
-    			} else {
-    				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}">
-	    						<img class="img" src="${base.getImg(v.pic)}" />
-	    						<samp>${v.interName} +${v.interCode.substring(2)}</samp>
-    							<i class="icon"></i>
-    						</div>`;
-    			}
+				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${v.interSimpleCode}">
+							<img class="img" src="${base.getImg(v.pic)}" />
+							<samp>${lang == 'cn' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
+							<i class="icon"></i>
+						</div>`;
     		})
     		$("#countryList").html(html);
-    		
-    		// 设置默认interCode
-    		var interCode = '0086';
     		
     		$("#nationalFlag").css({"background-image": `url('${base.getImg(countryPic)}')`});
     		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode);
@@ -152,11 +147,11 @@ define([
 	    			base.showLoading();
 	    			receiveRedPacket();
 	    		} else {
-	    			base.gohref('../redPacket/receive-detail.html?code='+code);
+	    			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
 	    		}
     		}, 1200)
         }, () => {
-            $("#getVerification").text("获取验证码").prop("disabled", false);
+            $("#getVerification").text(base.getText('获取验证码', lang)).prop("disabled", false);
             clearInterval(timer);
         });
     }
@@ -207,6 +202,8 @@ define([
     	})
     	
     	$("#countryList").on("click", ".country-list", function(){
+    		lang = $(this).attr("data-lang").toLowerCase();
+    		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": `url('${base.getImg($(this).attr("data-pic"))}')`});
     		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value"));

@@ -4,7 +4,7 @@ var PIC_PREFIX = 'http://pajvine9a.bkt.clouddn.com/';
 var PIC_SHOW = '?imageMogr2/auto-orient/interlace/1';
 
 // 当前语言
-var NOWLANG = getUrlParam('lang') || 'cn';
+var NOWLANG = getUrlParam('lang').toLowerCase() || 'en';
 
 function getUrlParam(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");

@@ -11,15 +11,9 @@ define([
     init();
     
     function init(){
-    	$("title").html(base.getText('登录'));
-    	$(".title").html(base.getText('绑定手机号并登录'));
-    	$("#mobile").attr("placeholder", base.getText('请输入手机号码'));
-    	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码'));
-    	$("#getVerification").html(base.getText('获取验证码'));
-    	$("#loginBtn").html(base.getText('登录'));
     	base.showLoading();
+    	setHtml();
     	getListCountry();
-    	
         addListener();
     }
     
@@ -27,7 +21,7 @@ define([
     function getListCountry(){
     	return UserCtr.getListCountry().then((data) => {
     		base.hideLoading();
-    		var html = `<option value ="">${base.getText("请选择国家")}</option>`;
+    		var html = `<option class="selectTitle" value ="">${base.getText("请选择国家")}</option>`;
     		data.forEach(v => {
     			if(lang == 'cn') {
     				html += `<option value ="${v.interCode}">${v.chineseName}</option>`;
@@ -36,9 +30,20 @@ define([
     			}
     		})
     		$("#interCode").html(html);
-    		$("#interCode").val('0086');
+    		var interCode = $("#interCode").val() ? $("#interCode").val() : '0086';
+    		$("#interCode").val(interCode);
     		$("#interCode").change();
     	}, base.hideLoading);
+    }
+    
+    // 根据设置文本
+    function setHtml(){
+    	$("title").html(base.getText('登录'));
+    	$(".title").html(base.getText('绑定手机号并登录'));
+    	$("#mobile").attr("placeholder", base.getText('请输入手机号码'));
+    	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码'));
+    	$("#getVerification").html(base.getText('获取验证码'));
+    	$("#loginBtn").html(base.getText('登录'));
     }
     
     // 登录
@@ -51,7 +56,7 @@ define([
     			base.gohref(sessionStorage.getItem("l-return"));
     		}, 1200)
         }, () => {
-            $("#getVerification").text("获取验证码").prop("disabled", false);
+            $("#getVerification").text(base.getText('获取验证码')).prop("disabled", false);
             clearInterval(timer);
         });
     }

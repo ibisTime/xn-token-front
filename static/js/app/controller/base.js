@@ -358,7 +358,7 @@ define([
 			return url + '\n' + arg + '\n' + arg_val;
 		},
 		//跳转 location.href
-		gohref: function(href) {
+		gohref: function(href,lang = NOWLANG) {
 			var timestamp = new Date().getTime();
 			//判断链接后是否有带参数
 			if(href.split("?")[1]) {
@@ -366,14 +366,14 @@ define([
 				if(Base.getUrlParam("v", href) != "" && Base.getUrlParam("v", href)) {
 					location.href = Base.changeURLArg(href, "v", timestamp);
 				} else {
-					location.href = href + "&v=" + timestamp + '&lang=' + NOWLANG;
+					location.href = href + "&v=" + timestamp + '&lang=' + lang;
 				}
 			} else {
-				location.href = href + "?v=" + timestamp + '&lang=' + NOWLANG;
+				location.href = href + "?v=" + timestamp + '&lang=' + lang;
 			}
 		},
 		//跳转 location.replace
-		gohrefReplace: function(href) {
+		gohrefReplace: function(href,lang = NOWLANG) {
 			var timestamp = new Date().getTime();
 			//判断链接后是否有带参数
 			if(href.split("?")[1]) {
@@ -381,21 +381,22 @@ define([
 				if(Base.getUrlParam("v", href) != "" && Base.getUrlParam("v", href)) {
 					location.replace(Base.changeURLArg(href, "v", timestamp));
 				} else {
-					location.replace(href + "&v=" + timestamp + '&lang=' + NOWLANG);
+					location.replace(href + "&v=" + timestamp + '&lang=' + lang);
 				}
 			} else {
-				location.replace(href + "?v=" + timestamp + '&lang=' + NOWLANG);
+				location.replace(href + "?v=" + timestamp + '&lang=' + lang);
 			}
 		},
 		// 根据语言获取文本
-		getText: function(text){
-			var t =  LANGUAGE[text] && LANGUAGE[text][NOWLANG] ? LANGUAGE[text][NOWLANG] : '';
+		getText: function(text, lang = NOWLANG){
+			var t =  LANGUAGE[text] && LANGUAGE[text][lang] ? LANGUAGE[text][lang] : '';
 			if(!LANGUAGE[text] || t == '') {
-				t = text;
 				if(!LANGUAGE[text]){
+					t = text;
 					console.log('[' + text +']没有翻译配置');
 				} else {
-					console.log(NOWLANG + ': [' + text +']没有翻译配置');
+					t = LANGUAGE[text]['en'];
+					console.log(lang + ': [' + text +']没有翻译配置');
 				}
 			}
 			return t;
