@@ -2,7 +2,7 @@
     'jValidate'
 ], function(V) {
     jQuery.extend(jQuery.validator.messages, {
-        required: LANGUAGE['不能为空'][NOWLANG] || LANGUAGE['不能为空']['en'],
+        required: LANGUAGE['不能为空'][NOWLANG],
         remote: "请修正该字段",
         email: "请输入正确格式的电子邮件",
         url: "请输入合法的网址",
@@ -113,7 +113,7 @@
     }, "电话或手机格式错误");
     //短信验证码规则
     jQuery.validator.addMethod("sms", function(value, element) {
-        var tm = /^\d{4}$/;
+        var tm = /^[0-9]\d*$/;
         return this.optional(element) || (tm.test(value));
     }, "验证码格式错误");
     //身份证号码的验证规则

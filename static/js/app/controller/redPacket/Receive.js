@@ -7,10 +7,11 @@ define([
 ], function(base, RedPacketCtr, UserCtr, Validate, smsCaptcha) {
 	var code = base.getUrlParam('code');
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
-	var lang = base.getUrlParam('lang').toLowerCase();
+	var lang = base.getUrlParam('lang');
     var timer;
     var receiverList = [];
 	var interCode = '0086'; // 设置默认interCode
+	var firstLoad = true;
     
     init();
     
@@ -113,13 +114,14 @@ define([
     		var html = ``;
     		data.forEach(v => {
     			var on = '';
-    			if(v.interSimpleCode == 'CN') {
+    			if(v.interCode == '0086' && firstLoad) {
     				countryPic = v.pic;
     				on = 'on';
+    				firstLoad = false;
     			}
-				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${v.interSimpleCode}">
+				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode]}">
 							<img class="img" src="${base.getImg(v.pic)}" />
-							<samp>${lang == 'cn' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
+							<samp>${lang == 'ZH_CN' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
 							<i class="icon"></i>
 						</div>`;
     		})
@@ -202,7 +204,7 @@ define([
     	})
     	
     	$("#countryList").on("click", ".country-list", function(){
-    		lang = $(this).attr("data-lang").toLowerCase();
+    		lang = $(this).attr("data-lang");
     		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": `url('${base.getImg($(this).attr("data-pic"))}')`});

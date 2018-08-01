@@ -395,7 +395,7 @@ define([
 					t = text;
 					console.log('[' + text +']没有翻译配置');
 				} else {
-					t = LANGUAGE[text]['en'];
+					t = LANGUAGE[text]['ZH_CN'];
 					console.log(lang + ': [' + text +']没有翻译配置');
 				}
 			}
