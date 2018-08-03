@@ -30,7 +30,7 @@ define([
         checkInfo: function () {
     		return $("#" + this.mobile).valid();
         },
-        sendCode: '805950'
+        sendCode: '805953'
     };
     initSms.prototype.handleSendVerifiy = function() {
         var verification = $("#" + this.options.id);
