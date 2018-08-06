@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="import" href="../head.html?__inline">
+    <title></title>
+    <!--SCRIPT_PLACEHOLDER-->
+</head>
+
+<body class="uploadBg">
+	<div class="upload-logo">
+		<img src="../../images/logo-shadow.png" />
+	</div>
+	<div class="upload-text">
+		<p class="txt1"></p>
+		<p class="txt2"></p>
+	</div>
+	<div class="uploadWrap">
+		<div class="upload-btn upload-android" id="upload_android"></div>
+		<div class="upload-btn upload-ios" id="upload_ios"></div>
+	</div>
+	<div class="upload-mask hidden">
+		<img src="../../images/rightArrow.png" />
+		<p>请点击右上角<br/>点击在浏览器打开下载APP</p>
+	</div>
+    <link rel="import" href="../footer.html?__inline">
+    <script data-loader>
+        require(['app/controller/share/ShareUpload']);
+    </script>
+</body>
+</html>

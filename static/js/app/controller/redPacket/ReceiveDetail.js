@@ -17,18 +17,9 @@ define([
     	$(".download-footer .am-button").html(base.getText('下载提取'));
     	
     	base.showLoading();
-    	$.when(
-    		getRedPacketDetail(),
-    		getDownload()
-    	);
+    	getRedPacketDetail();
     	
         addListener();
-    }
-    
-    function getDownload(){
-    	return GeneralCtr.getSysConfigKey('downloadAppUrl').then((data) => {
-    		downloadUrl = data.cvalue;
-    	},()=>{});
     }
     
 	// 获取红包详情
@@ -108,7 +99,7 @@ define([
     
     function addListener(){
     	$("#downloadBtn").click(function(){
-    		location.href = downloadUrl;
+    		base.gohref("../share/share-upload.html");
     	})
     }
 });
