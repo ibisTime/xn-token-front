@@ -11,7 +11,7 @@ define([
     function init() {
     	
     	
-    	$("title").html(base.getText('下载OGC钱包'));
+    	$("title").html(base.getText('下载THA钱包'));
     	$(".upload-text .txt1").html(base.getText('Theia跨链生态钱包'));
     	$(".upload-text .txt2").html(base.getText('一站式数字应用管理平台'));
     	$(".upload-android").html(base.getText('安卓下载'));
