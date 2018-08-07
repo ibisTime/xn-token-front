@@ -287,6 +287,15 @@ define([
 				return false; 
 			} 
 		},
+		//判断是否是qq内置浏览器
+		is_mqqbrowser:function(){
+			var ua = navigator.userAgent.toLowerCase(); 
+			if(ua.match(/\sQQ/i) !== null){  
+				return true;
+			}else{
+				return false;
+			}
+		},
         // 确认框
         confirm: function(msg, cancelValue, okValue) {
             return (new Promise(function(resolve, reject) {
@@ -304,8 +313,8 @@ define([
                         reject()
                         return true;
                     },
-                    cancelValue: cancelValue || Base.getText("关闭"),
-                    okValue: okValue || Base.getText("确认")
+                    cancelValue: cancelValue || Base.getText("取消"),
+                    okValue: okValue || Base.getText("确定")
                 });
                 d.showModal();
             }));
@@ -395,7 +404,7 @@ define([
 					t = text;
 					console.log('[' + text +']没有翻译配置');
 				} else {
-					t = LANGUAGE[text]['ZH_CN'];
+					t = LANGUAGE[text]['EN'];
 					console.log(lang + ': [' + text +']没有翻译配置');
 				}
 			}

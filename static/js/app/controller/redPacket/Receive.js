@@ -25,7 +25,7 @@ define([
         addListener();
     }
     
-    // 设置页面吧、html
+    // 设置页面html
     function setHtml(){
     	$("title").html(base.getText('分享红包', lang));
     	$("#rpReceivePopup .popup-header").html(base.getText('输入手机号码<br/>领取红包', lang));
@@ -119,7 +119,7 @@ define([
     				on = 'on';
     				firstLoad = false;
     			}
-				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode]}">
+				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode] ? LANGUAGECODELIST[v.interCode] : 'EN'}">
 							<img class="img" src="${base.getImg(v.pic)}" />
 							<samp>${lang == 'ZH_CN' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
 							<i class="icon"></i>
@@ -199,7 +199,7 @@ define([
     		$("#countryPopup").addClass("hidden");
     	})
     	
-    	$("#interCode").click((v) => {
+    	$("#interCode").click(() => {
     		$("#countryPopup").removeClass("hidden");
     	})
     	

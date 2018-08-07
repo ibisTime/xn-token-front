@@ -14,8 +14,8 @@ var LANGUAGE = {
 		'EN': 'close',
 		'KO': '닫기',
 	},
-	'确认': {
-		'ZH_CN': '确认',
+	'确定': {
+		'ZH_CN': '确定',
 		'EN': 'ok',
 		'KO': '확인',
 	},
@@ -156,60 +156,54 @@ var LANGUAGE = {
 	//下载页
 	'下载THA钱包':{
 		'ZH_CN': '下载THA钱包',
-		'EN': '',
-		'KO': '',
+		'EN': 'Download THEIA Wallet',
+		'KO': 'THA지갑 다운로드',
 	},
 	'安卓下载':{
 		'ZH_CN': '安卓下载',
-		'EN': '',
-		'KO': '',
+		'EN': 'Download for Android',
+		'KO': 'Android 버전',
 	},
-	'IOS下载':{
-		'ZH_CN': 'IOS下载',
-		'EN': '',
-		'KO': '',
-	},
-	'IOS下载':{
-		'ZH_CN': 'IOS下载',
-		'EN': '',
-		'KO': '',
+	'iOS下载':{
+		'ZH_CN': 'iOS下载',
+		'EN': 'Download for iOS',
+		'KO': 'iOS 버전',
 	},
 	'请点击右上角<br/>点击在浏览器打开下载APP':{
 		'ZH_CN': '请点击右上角<br/>点击在浏览器打开下载APP',
-		'EN': '',
-		'KO': '',
+		'EN': 'Please click on the top right corner <br/> download app on the browser',
+		'KO': '위의 버튼을 클릭하여 <br/> 욉 브라우저에서 APP 다운',
 	},
 	'当前版本尚未上线，敬请期待！':{
 		'ZH_CN': '当前版本尚未上线，敬请期待！',
-		'EN': '',
-		'KO': '',
+		'EN': 'The current version is not available yet, please look forward to it!',
+		'KO': '현재 버전 준비중,곧 출시!',
 	},
-	'当前为iPhone系统请点击下载iPhone版！':{
-		'ZH_CN': '当前为iPhone系统请点击下载iPhone版！',
-		'EN': '',
-		'KO': '',
+	'请点击下载iOS版！':{
+		'ZH_CN': '请点击下载iOS版！',
+		'EN': 'Please click to download iOS version!',
+		'KO': 'iOS 버전을 다운하십시오!!',
 	},
-	'当前为android系统请点击下载android版！':{
-		'ZH_CN': '当前为iPhone系统请点击下载iPhone版！',
-		'EN': '',
-		'KO': '',
+	'请点击下载Android版！':{
+		'ZH_CN': '请点击下载Android版！',
+		'EN': 'Please click to download Android version!',
+		'KO': 'Android 버전을 다운하십시오!!',
 	},
 	'获取下载地址失败！':{
 		'ZH_CN': '获取下载地址失败！',
-		'EN': '',
-		'KO': '',
+		'EN': 'Failed to get the download url!',
+		'KO': '다운로드 실패!',
 	},
 	'Theia跨链生态钱包':{
 		'ZH_CN': 'Theia跨链生态钱包',
-		'EN': '',
-		'KO': '',
+		'EN': 'THEIA CROSS-CHAIN PROFIT SHARING WALLET',
+		'KO': 'Theia크로스체인 생태지갑',
 	},
 	'一站式数字应用管理平台':{
 		'ZH_CN': '一站式数字应用管理平台',
-		'EN': '',
-		'KO': '',
+		'EN': 'One-stop digital application management platform',
+		'KO': '원스톱 디지털자산 관리 플랫폼',
 	},
-	
 	
 }
 

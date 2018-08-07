@@ -10,10 +10,27 @@ var LANGUAGECODELIST={
 	'0062': 'EN',
 	'0060': 'EN',
 	'0082': 'KO',
+	'00886': 'ZH_CN',
+	'00853': 'ZH_CN',
+	'00852': 'ZH_CN'
 }
 
+//当前语言设置列表
+var LANGUAGELIST=[
+	{
+		'key':'ZH_CN',
+		'value': '中文简体'
+	},{
+		'key':'EN',
+		'value': 'English'
+	},{
+		'key':'KO',
+		'value': '한국어'
+	}
+];
+
 // 当前语言
-var NOWLANG = getUrlParam('lang') || 'ZH_CN';
+var NOWLANG = getUrlParam('lang') || 'EN';
 
 // 获取链接入参
 function getUrlParam(name) {

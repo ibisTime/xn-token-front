@@ -53,6 +53,8 @@ fis.match('*.{js,css}', {
     useHash: true
 }).match('config.js', {
     useHash: false
+}).match('language.js', {
+    useHash: false
 });
 
 //npm install -g fis-parser-handlebars-3.x
@@ -98,6 +100,11 @@ fis.media("prod")
     .match('/js/app/config.js', {
         optimizer: null,
         packTo: '/config/config.js',
+        useHash: false
+    })
+    .match('/js/app/language.js', {
+        optimizer: null,
+        packTo: '/language/language.js',
         useHash: false
     })
     .match('**.png', {
