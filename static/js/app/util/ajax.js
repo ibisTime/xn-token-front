@@ -27,19 +27,22 @@ define([
         return d;
     }
     return {
-        get: function(code, json, reload) {
+        get: function(code, json, reload, noToken) {
             if (typeof json == "undefined" || typeof json == "boolean") {
                 reload = json;
                 json = {};
             }
-            return this.post(code, json, !!reload);
+            return this.post(code, json, !!reload, noToken);
         },
-        post: function(code, json, reload) {
+        post: function(code, json, reload, noToken) {
             reload = typeof reload == "undefined" ? true : reload;
+            noToken = typeof noToken == "undefined" ? false : reload;
 
             var token = sessionStorage.getItem("token") || "";
 
-            token && (json["token"] = token);
+            if(!noToken){
+            	token && (json["token"] = token);
+            }
             json["systemCode"] = SYSTEM_CODE;
             json["companyCode"] = SYSTEM_CODE;
             json["client"] = CLIENT;

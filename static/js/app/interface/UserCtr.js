@@ -16,11 +16,11 @@ define([
     	},
     	// 列表查询国家
     	getListCountry(){
-    		return Ajax.get("801120", {status: 1});
+    		return Ajax.get("801120", {status: 1}, true, true);
     	},
     	// 短信验证码登录
     	login(config) {
-    		return Ajax.get("805044", config);
+    		return Ajax.get("805044", config, true, true);
     	}
     };
 })

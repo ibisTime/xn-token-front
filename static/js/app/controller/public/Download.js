@@ -132,9 +132,9 @@ define([
     		}
     		base.showLoading();
     		if(lang == 'ZH_CN'){
-    			window.location.href = '../share/share-upload.html';
+    			window.location.href = '../public/download.html';
     		} else {
-    			window.location.href = '../share/share-upload-'+ lang +'.html';
+    			window.location.href = '../public/download-'+ lang +'.html';
     		}
     		base.hideLoading();
     	})

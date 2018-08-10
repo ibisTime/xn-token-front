@@ -99,7 +99,7 @@ define([
     
     function addListener(){
     	$("#downloadBtn").click(function(){
-    		base.gohref("../share/share-upload.html");
+    		base.gohref("../public/download.html");
     	})
     }
 });

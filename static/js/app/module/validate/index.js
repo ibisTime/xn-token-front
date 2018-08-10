@@ -115,7 +115,7 @@
     jQuery.validator.addMethod("sms", function(value, element) {
         var tm = /^[0-9]\d*$/;
         return this.optional(element) || (tm.test(value));
-    }, "验证码格式错误");
+    }, LANGUAGE["验证码格式错误"][NOWLANG]);
     //身份证号码的验证规则
     function isIdCardNo(num) {
         var len = num.length,

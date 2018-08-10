@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<link rel="import" href="../head.html?__inline">
+		<title></title>
+		<!--SCRIPT_PLACEHOLDER-->
+	</head>
+
+	<body>
+		<body class="register-bg">
+			<div class="register-wrap">
+				<div class="logo">
+					<img src="/static/images/theia-logo@3x.png" />
+				</div>
+				<div class="slogan"></div>
+				<div class="register-from">
+					<form id="formWrapper" class="form-wrapper wp100">
+			            <div class="form-item form-mobile">
+			                <div class="am-flexbox">
+			                	<div class="national-flag" id="nationalFlag"></div>
+			                	<div class="national-select">
+			                		<p id="interCode"></p>
+			                		<i class="icon"></i>
+			                	</div>
+			                    <input type="text" pattern="[0-9]*" placeholder="" id="mobile" name="mobile" class="input-item"/>
+			                </div>
+			            </div>
+			            <div class="form-item form-btn-item mt20">
+			                <div class="am-flexbox">
+			                    <div class="input-item smsCaptcha-item"><input type="text" placeholder="" id="smsCaptcha" name="smsCaptcha"/></div>
+			                    <button class="item-button smsCaptcha-btn am-button am-button-small am-button-ghost" id="getVerification"></button>
+			                </div>
+			            </div>
+			        </form>
+		            <div class="btnWrap">
+			            <button id="subBtn" class="am-button wp100"></button>
+			        </div>
+				</div>
+			</div>
+			
+			<div class="popup countryPopup hidden" id="countryPopup">
+				<div class="popup-header">
+					<div class="icon-return close"></div>
+				</div>
+				<div class="popup-content" id="countryList">
+				</div>
+			</div>
+			
+			<link rel="import" href="../footer.html?__inline">
+			<script>
+				require(['app/controller/user/Register']);
+			</script>
+		</body>
+
+</html>

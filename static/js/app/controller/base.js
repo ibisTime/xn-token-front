@@ -404,7 +404,11 @@ define([
 					t = text;
 					console.log('[' + text +']没有翻译配置');
 				} else {
-					t = LANGUAGE[text]['EN'];
+					if(!LANGUAGE[text]['EN']){
+						t = LANGUAGE[text]['ZH_CN']
+					}else{
+						t = LANGUAGE[text]['EN'];
+					}
 					console.log(lang + ': [' + text +']没有翻译配置');
 				}
 			}

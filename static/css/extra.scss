@@ -501,102 +501,103 @@ label.error{
         background-image: url('../images/红包弹窗背景@2x.png');
         background-size: 100% 100%;
     }
-    .popup-content{
-        .form-wrapper{
-            margin-top: .4rem;
+}
+.popup-content,
+.register-from{
+    .form-wrapper{
+        margin-top: .4rem;
+        
+        .form-item{
+            border-radius: .08rem;
+            padding: .26rem .3rem;
             
-            .form-item{
-                border-radius: .08rem;
-                padding: .26rem .3rem;
-                
-                &.form-btn-item{
-                    padding: 0.2rem 0.3rem;
+            &.form-btn-item{
+                padding: 0.2rem 0.3rem;
+            }
+            
+            &.form-mobile{
+                .national-flag{
+                    display: inline-block;
+                    width: .7rem;
+                    height: .32rem;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    
                 }
-                
-                &.form-mobile{
-                    .national-flag{
+                .national-select{
+                    width: 1.6rem;
+                    height: .32rem;
+                    position: relative;
+                    padding-right: .2rem;
+                    
+                    span,p{
                         display: inline-block;
-                        width: .7rem;
-                        height: .32rem;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-size: 100% 100%;
-                        
+                        width: 100%;
+                        height: 100%;
+                        line-height: .32rem;
+                        text-align: center;
                     }
-                    .national-select{
-                        width: 1.6rem;
-                        height: .32rem;
-                        position: relative;
-                        padding-right: .2rem;
+                    
+                    select{
+                        width: 100%;
+                        height: 100%;
+                        font-size: .26rem;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        opacity: 0;
                         
-                        span{
-                            display: inline-block;
-                            width: 100%;
-                            height: 100%;
-                            line-height: .32rem;
-                            text-align: center;
-                        }
-                        
-                        select{
-                            width: 100%;
-                            height: 100%;
-                            font-size: .26rem;
-                            position: absolute;
-                            top: 0;
-                            right: 0;
-                            opacity: 0;
-                            
-                            img{
-                                width: 1.6rem;
-                                height: .32rem;
-                            }
-                        }
-                        
-                        i{
-                            display: inline-block;
-                            width: .1rem;
-                            height: .08rem;
-                            border-width: .1rem;
-                            border-style: solid;
-                            border-color: #ccc transparent transparent transparent;
-                            position: absolute;
-                            top: .16rem;
-                            right: 0;
+                        img{
+                            width: 1.6rem;
+                            height: .32rem;
                         }
                     }
                     
-                    input[type="number"],
-                    input[type="tel"],
-                    input[type="text"]{
-                        font-size: .28rem;
+                    i{
+                        display: inline-block;
+                        width: .1rem;
+                        height: .08rem;
+                        border-width: .1rem;
+                        border-style: solid;
+                        border-color: #ccc transparent transparent transparent;
+                        position: absolute;
+                        top: .16rem;
+                        right: 0;
                     }
-                        .input-item{
-                        width: 3rem;
-                        padding-left: .2rem;
-                    }
                 }
-                .smsCaptcha-item input{
-                    width: 2.4rem;
+                
+                input[type="number"],
+                input[type="tel"],
+                input[type="text"]{
+                    font-size: .28rem;
                 }
-                .smsCaptcha-btn{
-                    height: .5rem;
-                    line-height: .5rem;
-                    padding: 0;
-                    text-align: center;
-                    font-size: .22rem;
-                    width: 1.6rem;
+                    .input-item{
+                    width: 3rem;
+                    padding-left: .2rem;
                 }
+            }
+            .smsCaptcha-item input{
+                width: 2.4rem;
+            }
+            .smsCaptcha-btn{
+                height: .5rem;
+                line-height: .5rem;
+                padding: 0;
+                text-align: center;
+                font-size: .22rem;
+                width: 1.6rem;
             }
         }
-        .login-btn{
-            margin-top: .8rem !important;
-            
-            .am-button{
-                background-image: linear-gradient(to top, #FFB25B, #FBDEAA);
-                box-shadow: 0 7px 20px 2px rgba(254,146,48,0.29);
-                color: #A75E02;
-                font-size: .32rem;
-            }
+    }
+    .login-btn{
+        margin-top: .8rem !important;
+        
+        .am-button{
+            background-image: linear-gradient(to top, #FFB25B, #FBDEAA);
+            box-shadow: 0 7px 20px 2px rgba(254,146,48,0.29);
+            color: #A75E02;
+            font-size: .32rem;
         }
     }
 }
@@ -820,5 +821,109 @@ label.error{
         position: relative;
         top: .1rem;
         margin-left: .06rem;
+    }
+}
+.register-bg{
+    width: 100%;
+    min-height: 100%;
+    background-image: url('../images/register-bg@3x.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.register-wrap{
+    padding: 0 0.4rem;
+    
+    .logo{
+        text-align: center;
+        margin-top: 1.2rem;
+        img{
+            height: 2rem; 
+            vertical-align: bottom;
+        }
+    }
+    
+    .slogan{
+        width: 100%;
+        color: #fff;
+        font-size: .25rem;
+        font-weight: bold;
+        letter-spacing: .02rem;
+        text-align: center;
+        transform: scaleY(1.2);
+        margin-top: .8rem;
+    }
+    
+    .register-from{
+        width: calc(100% - .8rem);
+        background-color: #fff;
+        box-shadow: 0 0 .12rem 0 rgba(62,58,57,0.10);
+        border-radius: .24rem;
+        padding: .2rem .4rem .4rem;
+        position: fixed;
+        left: .4rem;
+        bottom: .8rem;
+        
+        .form-wrapper{
+            margin-top: 0;
+            
+            .form-item{
+                padding: .26rem 0;
+            }
+            
+            .form-item.form-btn-item{
+                padding: .2rem 0;
+            }
+            
+            .form-item .smsCaptcha-btn{
+                border: 1px solid #3E3A39;
+                color: #3E3A39;
+                border-radius: .04rem;
+                height: .64rem;
+                line-height: .64rem;
+                font-size: .24rem;
+                width: 2rem;
+                
+                &:disabled{
+                    border: 1px solid #ddd;
+                    color: #fff;
+                }
+            }
+            
+            .form-item.form-mobile{
+                .national-flag{
+                    width: .66rem;
+                    height: .48rem;
+                    border-radius: .04rem;
+                }
+                .national-select{
+                    width: 1.2rem;
+                    
+                    p{
+                        display: block;
+                    }
+                    i{
+                        top: .1rem;
+                    }
+                }
+            }
+            
+        }
+        .btnWrap{
+            margin-top: .52rem;
+            
+            .am-button{
+                background-image: -webkit-linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
+                background-image: -moz-linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
+                background-image: -o-linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
+                background-image: linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
+                box-shadow: inset 0 .02rem .12rem 0 rgba(255,255,255,0.50);
+                border-radius: .08rem;
+                height: 1rem;
+                line-height: 1rem;
+                color: #fff;
+                font-size: 0.32rem;
+            }
+        }
     }
 }
