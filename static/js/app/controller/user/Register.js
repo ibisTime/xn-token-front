@@ -41,14 +41,16 @@ define([
     		base.hideLoading();
     		var countryPic = '';
     		var html = ``;
+    		var firstCode = '';
     		data.forEach(v => {
     			var on = '';
     			if(v.interCode == '0086' && firstLoad) {
     				countryPic = v.pic;
     				on = 'on';
+    				firstCode = v.code;
     				firstLoad = false;
     			}
-				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode] ? LANGUAGECODELIST[v.interCode] : 'EN'}">
+				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-code="${v.code}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode] ? LANGUAGECODELIST[v.interCode] : 'EN'}">
 							<img class="img" src="${base.getImg(v.pic)}" />
 							<samp>${lang == 'ZH_CN' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
 							<i class="icon"></i>
@@ -57,7 +59,7 @@ define([
     		$("#countryList").html(html);
     		
     		$("#nationalFlag").css({"background-image": `url('${base.getImg(countryPic)}')`});
-    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode);
+    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
     	}, base.hideLoading);
     }
     
@@ -105,7 +107,7 @@ define([
     	$("#subBtn").click(function(){
     		if(_formWrapper.valid()) {
     			var params = _formWrapper.serializeObject();
-    			params.interCode = $("#interCode").attr("value")
+    			params.countryCode = $("#interCode").attr("code")
     			params.inviteCode = inviteCode;
     			base.showLoading();
     			register(params);
@@ -129,7 +131,7 @@ define([
     		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": `url('${base.getImg($(this).attr("data-pic"))}')`});
-    		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value"));
+    		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
     		$("#countryPopup").addClass("hidden");
     	})
     }
