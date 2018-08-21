@@ -68,13 +68,21 @@ define([
     	return UserCtr.login(params).then((data) => {
     		base.hideLoading();
     		base.setSessionUser(data);
-    		base.confirm(base.getText("注册成功！",lang),base.getText("取消",lang),base.getText("前往下载",lang)).then(function(){
+    		var msg = '';
+    		if(data.isRegister){
+    			msg = "注册成功！";
+    		} else {
+    			msg = "您已经是THeia用户，请前往下载APP！";
+    		}
+    		
+    		base.confirm(base.getText(msg,lang),base.getText("取消",lang),base.getText("前往下载",lang)).then(function(){
     			if(lang == 'ZH_CN'){
 	    			window.location.href = '../public/download.html';
 	    		} else {
 	    			window.location.href = '../public/download-'+ lang +'.html';
 	    		}
     		},function(){})
+    		
         }, () => {
             $("#getVerification").text(base.getText('获取验证码', lang)).prop("disabled", false);
             clearInterval(timer);
@@ -122,7 +130,7 @@ define([
     		$("#countryPopup").addClass("hidden");
     	})
     	
-    	$("#interCode").click(() => {
+    	$("#country-wrap").click(() => {
     		$("#countryPopup").removeClass("hidden");
     	})
     	

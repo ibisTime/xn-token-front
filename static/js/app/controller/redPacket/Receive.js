@@ -115,11 +115,10 @@ define([
     		var firstCode = '';
     		data.forEach(v => {
     			var on = '';
-    			if(v.interCode == '0086' && firstLoad) {
+    			if(v.interCode == '0086') {
     				countryPic = v.pic;
     				on = 'on';
     				firstCode = v.code;
-    				firstLoad = false;
     			}
 				html += `<div class="country-list ${on}" data-value="${v.interCode}" data-code="${v.code}" data-pic="${v.pic}" data-lang="${LANGUAGECODELIST[v.interCode] ? LANGUAGECODELIST[v.interCode] : 'EN'}">
 							<img class="img" src="${base.getImg(v.pic)}" />
@@ -129,8 +128,11 @@ define([
     		})
     		$("#countryList").html(html);
     		
-    		$("#nationalFlag").css({"background-image": `url('${base.getImg(countryPic)}')`});
-    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
+    		if(firstLoad){
+	    		$("#nationalFlag").css({"background-image": "url('"+base.getImg(countryPic)+"')"});
+	    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
+				firstLoad = false;
+    		}
     	}, base.hideLoading);
     }
     
@@ -207,9 +209,10 @@ define([
     	
     	$("#countryList").on("click", ".country-list", function(){
     		lang = $(this).attr("data-lang");
+    		interCode = $(this).attr("data-value")
     		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
-    		$("#nationalFlag").css({"background-image": `url('${base.getImg($(this).attr("data-pic"))}')`});
+    		$("#nationalFlag").css({"background-image": "url('"+base.getImg($(this).attr("data-pic"))+"')"});
     		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
     		$("#countryPopup").addClass("hidden");
     	})

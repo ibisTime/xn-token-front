@@ -889,26 +889,28 @@ label.error{
                     color: #fff;
                 }
             }
-            
-            .form-item.form-mobile{
-                .national-flag{
-                    width: .66rem;
-                    height: .48rem;
-                    border-radius: .04rem;
+        }
+        
+        .form-item.form-mobile{
+            .national-flag{
+                width: .66rem;
+                height: .48rem;
+                border-radius: .04rem;
+            }
+            .national-select{
+                width: 1.2rem;
+                height: .48rem;
+                
+                p{
+                    display: block;
+                    line-height: .48rem;
                 }
-                .national-select{
-                    width: 1.2rem;
-                    
-                    p{
-                        display: block;
-                    }
-                    i{
-                        top: .1rem;
-                    }
+                i{
+                    top: .16rem;
                 }
             }
-            
         }
+        
         .btnWrap{
             margin-top: .52rem;
             
