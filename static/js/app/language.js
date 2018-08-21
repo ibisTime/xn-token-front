@@ -240,5 +240,10 @@ var LANGUAGE = {
 		'EN': 'Registered successfully',
 		'KO': '성공적으로 등록',
 	},
+	'您已经是Theia用户，请前往下载APP！':{
+		'ZH_CN': '您已经是Theia用户，请前往下载APP！',
+		'EN': 'Registered successfully',
+		'KO': '성공적으로 등록',
+	}
 }
 

@@ -72,7 +72,7 @@ define([
     		if(data.isRegister){
     			msg = "注册成功！";
     		} else {
-    			msg = "您已经是THeia用户，请前往下载APP！";
+    			msg = "您已经是Theia用户，请前往下载APP！";
     		}
     		
     		base.confirm(base.getText(msg,lang),base.getText("取消",lang),base.getText("前往下载",lang)).then(function(){
