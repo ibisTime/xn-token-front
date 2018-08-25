@@ -212,38 +212,38 @@ var LANGUAGE = {
 	 * */
 	'获取下载地址失败': {
 		'ZH_CN': '获取下载地址失败',
-		'EN': 'error',
-		'KO': '',
+		'EN': 'Failed to get download address',
+		'KO': '다운로드 주소를 가져오지 못했습니다.',
 	},
 	'验证码格式错误':{
 		'ZH_CN': '验证码格式错误',
-		'EN': 'error',
-		'KO': '',
+		'EN': 'format error',
+		'KO': '인증코드오류',
 	},
 	'立即注册':{
 		'ZH_CN': '立即注册',
-		'EN': 'Register',
-		'KO': '등록',
+		'EN': 'Register now',
+		'KO': '회원가입',
 	},
 	'THA钱包 (全球首款能分红的跨链钱包)':{
 		'ZH_CN': 'THA钱包 (全球首款能分红的跨链钱包)',
-		'EN': '',
-		'KO': '',
+		'EN': "Theia Wallet (the World's first profit sharing cross-chain wallet)",
+		'KO': 'Theia지갑(세계 최초 공유크로스체인월렛)',
 	},
 	'前往下载':{
 		'ZH_CN': '前往下载',
-		'EN': 'To download',
-		'KO': '다운로드하러 가다',
+		'EN': 'Go download',
+		'KO': '다운로드하시오',
 	},
 	'注册成功！':{
 		'ZH_CN': '注册成功',
-		'EN': 'Registered successfully',
-		'KO': '성공적으로 등록',
+		'EN': 'Register successfully',
+		'KO': '가입성공',
 	},
 	'您已经是Theia用户，请前往下载APP！':{
 		'ZH_CN': '您已经是Theia用户，请前往下载APP！',
-		'EN': 'Registered successfully',
-		'KO': '성공적으로 등록',
+		'EN': 'You are alredy registered with Theia, please go download the App! ',
+		'KO': '이미 가입되어있습니다. App을 다운로드하시오',
 	}
 }
 

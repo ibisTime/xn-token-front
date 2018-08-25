@@ -7,6 +7,7 @@ define([
 	
 	var iosUpdateUrl,androidUpdateUrl;
 	var lang = $("body").attr("data-lang") || 'ZH_CN';
+	var channel = base.getUrlParam('channel') || 'theia';
 	var firstLoad = true;
 	var langValue = '';
 	
@@ -72,8 +73,8 @@ define([
 	
 	// 获取安卓下载地址
 	function getAndroidUrl(){
-		return GeneralCtr.getSysConfigType("android-c").then(function(data) {
-    		androidUpdateUrl = data.downloadUrl;
+		return GeneralCtr.getSysConfigKey("h5_download_android").then(function(data) {
+    		androidUpdateUrl = replaceChannelName(data.cvalue);
 	    }, function() {
 	        base.showMsg(base.getText("获取下载地址失败",lang));
 	    });
@@ -81,8 +82,8 @@ define([
 	
 	// 获取ios下载地址
 	function getIosUrl(){
-		return GeneralCtr.getSysConfigType("ios-c").then(function(data) {
-    		iosUpdateUrl = data.downloadUrl;
+		return GeneralCtr.getSysConfigKey("h5_download_ios").then(function(data) {
+    		iosUpdateUrl = replaceChannelName(data.cvalue);
 	    }, function() {
 	        base.showMsg(base.getText("获取下载地址失败",lang));
 	    });
@@ -111,6 +112,14 @@ define([
 		base.hideLoading();
     }
     
+    function replaceChannelName(url){
+    	var url1 = url.split('{')[0];
+    	var url2 = url.split('}')[1];
+    	var href = url1 + channel + url2;
+    	
+    	return href;
+    }
+    
     function addListener(){
     	$(".upload-mask").click(function(){
 			$(".upload-mask").addClass("hidden")
@@ -132,9 +141,9 @@ define([
     		}
     		base.showLoading();
     		if(lang == 'ZH_CN'){
-    			window.location.href = '../public/download.html';
+    			window.location.href = '../share/share-upload.html?channel='+channel;
     		} else {
-    			window.location.href = '../public/download-'+ lang +'.html';
+    			window.location.href = '../share/share-upload-'+ lang +'.html?channel='+channel;
     		}
     		base.hideLoading();
     	})
