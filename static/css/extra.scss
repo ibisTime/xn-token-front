@@ -707,20 +707,31 @@ label.error{
     overflow: hidden;
     text-align: center;
     font-size: 0;
-    margin-top: 1.3rem;
-}
-.upload-logo img{
-    width: 2.82rem;
+    margin-top: .3rem;
+    
+    .logo img{
+        width: 2.8rem;
+    }
+    
+    .txt{
+        margin-top: .2rem;
+        img{
+            width: 2.2rem;
+        }
+    } 
+    img{
+        vertical-align: bottom;
+    }
 }
 .uploadWrap{
     width: 100%;
-    margin-top: 1.6rem;
+    margin-top: 1.3rem;
 }
 .upload-btn{
     display: block;
     width: 5.3rem;
     height: 1rem;
-    margin: 0 auto .5rem;
+    margin: 0 auto;
     border-radius: .5rem;
     font-size: .32rem;
     line-height: 1rem;
@@ -740,12 +751,30 @@ label.error{
         background-image: -o-linear-gradient(to right, #eee, #bdbdbd);
         background-image: linear-gradient(to right, #eee, #bdbdbd);
     }
+    &.uploadBtn{
+        width: 2.88rem;
+        border-radius: .08rem;
+        background-image: -webkit-gradient(linear, 100% 0, 0 0, from(#0848DF), to(#2871FB));
+        background-image: -webkit-linear-gradient(to right, #0848DF, #2871FB);
+        background-image: -moz-linear-gradient(to right, #0848DF, #2871FB);
+        background-image: -o-linear-gradient(to right, #0848DF, #2871FB);
+        background-image: linear-gradient(to right, #0848DF, #2871FB);
+        box-shadow: 0 3px 10px 1px rgba(48,133,254,0.29);
+    }
+}
+.upload-remark{
+    width: 80%;
+    font-size: .3rem;
+    color: #E9544D;
+    text-align: center;
+    line-height: .52rem;
+    margin: .4rem auto 0;
 }
 .upload-text{
     width: 100%;
-    height: 1.2rem;
+    height: .66rem;
     text-align: center;
-    margin-top: .4rem;
+    margin-top: .52rem;
     
     p{
         color: #333;
@@ -753,16 +782,10 @@ label.error{
         width: 86%;
         
         &.txt1{
-            min-height: .54rem;
+            min-height: .66rem;
             font-size: .48rem;
-            line-height: .54rem;
-            margin-bottom: .24rem;
-            font-weight: 500;
-        }
-        &.txt2{
-            min-height: .4rem;
-            font-size: .3rem;
-            line-height: .4rem;
+            line-height: .66rem;
+            font-weight: 600;
         }
     }
 }
@@ -790,10 +813,14 @@ label.error{
     font-size: .28rem;
 }
 .top-lang{
-    position: fixed;
-    top: .3rem;
+    position: absolute;
+    top: .36rem;
     right: .3rem;
     z-index: 9;
+    height: .52rem;
+    border: 1px solid #666;
+    border-radius: .26rem;
+    padding: 0 .2rem 0 .24rem;
     
     .national-flag{
         display: inline-block;
@@ -807,20 +834,19 @@ label.error{
         
     samp{
         display: inline-block;
-        line-height: .26rem;
-        font-size: .26rem;
-        color: #2871FB;
+        line-height: .5rem;
+        font-size: .24rem;
+        color: #666;
     }
     i{
         display: inline-block;
-        width: .1rem;
-        height: .08rem;
-        border-width: .1rem;
-        border-style: solid;
-        border-color: #ccc transparent transparent transparent;
-        position: relative;
-        top: .1rem;
-        margin-left: .06rem;
+        width: .18rem;
+        height: .5rem;
+        background-image: url('../images/下拉@3x.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin-left: .1rem;
     }
 }
 .register-bg{
@@ -925,6 +951,70 @@ label.error{
                 line-height: 1rem;
                 color: #fff;
                 font-size: 0.32rem;
+            }
+        }
+    }
+}
+.installTutorial-wrap{
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0 0 1rem;
+    
+    .title{
+        width: 100%;
+        height: .34rem;
+        position: relative;
+        margin-bottom: .5rem;
+        
+        .line{
+            width: 100%;
+            height: 1px;
+            background-color: rgba(144,149,168,0.18);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 8;
+        }
+        
+        .txt{
+            height: .34rem;
+            line-height: .34rem;
+            padding: 0 .2rem;
+            background-color: #fff;
+            color: #9095A8;
+            font-size: .24rem;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            z-index: 9;
+            transform: translateX(-50%);
+        }
+    }
+    .section-wrap{
+        width: 100%;
+        margin-top: .1rem;
+        .txt{
+            width: 100%;
+            font-size: .28rem;
+            color: #333333;
+            line-height: .48rem;
+            padding: .2rem .4rem .1rem .6rem;
+            
+            i{
+                font-style: normal;
+                color: #2871FB;
+            }
+        }
+        .section{
+            width: 100%;
+            .img-wrap{
+                width: 5.5rem;
+                margin: .3rem auto;
+                img{
+                    width: 100%;
+                    vertical-align: bottom;
+                }
             }
         }
     }

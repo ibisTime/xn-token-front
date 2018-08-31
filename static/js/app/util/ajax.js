@@ -14,6 +14,27 @@ define([
         sessionStorage.removeItem("userId"); //userId
         sessionStorage.removeItem("token"); //token
     }
+    // 根据语言获取文本
+	function getText(text, lang){
+		if(lang == '' || !lang){
+			lang = NOWLANG
+		}
+		var t =  LANGUAGE[text] && LANGUAGE[text][lang] ? LANGUAGE[text][lang] : '';
+		if(!LANGUAGE[text] || t == '') {
+			if(!LANGUAGE[text]){
+				t = text;
+				console.log('[' + text +']没有翻译配置');
+			} else {
+				if(!LANGUAGE[text]['EN']){
+					t = LANGUAGE[text]['ZH_CN']
+				}else{
+					t = LANGUAGE[text]['EN'];
+				}
+				console.log(lang + ': [' + text +']没有翻译配置');
+			}
+		}
+		return t;
+	}
 
     function showMsg(msg, time) {
         var d = dialog({
@@ -90,11 +111,11 @@ define([
 //              }
                 if(res.errorCode != "0"){
                     loading.hideLoading();
-                    return $.Deferred().reject(res.errorInfo);
+                    return $.Deferred().reject(getText(res.errorInfo));
                 }
                 return res.data;
             }).fail(function(error){
-                error && showMsg(error);
+                error && showMsg(getText(error));
             });
         }
     };

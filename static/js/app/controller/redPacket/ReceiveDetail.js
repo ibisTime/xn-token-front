@@ -99,7 +99,12 @@ define([
     
     function addListener(){
     	$("#downloadBtn").click(function(){
-    		base.gohref("../public/download.html");
+    		
+    		if(NOWLANG == 'ZH_CN'){
+    			base.gohref(DOWNLOADLINK+'.html');
+    		} else {
+    			base.gohref(DOWNLOADLINK+'-'+ NOWLANG +'.html');
+    		}
     	})
     }
 });

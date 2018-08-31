@@ -77,9 +77,9 @@ define([
     		
     		base.confirm(base.getText(msg,lang),base.getText("取消",lang),base.getText("前往下载",lang)).then(function(){
     			if(lang == 'ZH_CN'){
-	    			window.location.href = '../public/download.html';
+	    			window.location.href = DOWNLOADLINK+'.html';
 	    		} else {
-	    			window.location.href = '../public/download-'+ lang +'.html';
+	    			window.location.href = DOWNLOADLINK+'-'+ lang +'.html';
 	    		}
     		},function(){})
     		

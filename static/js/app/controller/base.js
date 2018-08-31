@@ -397,7 +397,10 @@ define([
 			}
 		},
 		// 根据语言获取文本
-		getText: function(text, lang = NOWLANG){
+		getText: function(text, lang){
+			if(lang == '' || !lang){
+				lang = NOWLANG
+			}
 			var t =  LANGUAGE[text] && LANGUAGE[text][lang] ? LANGUAGE[text][lang] : '';
 			if(!LANGUAGE[text] || t == '') {
 				if(!LANGUAGE[text]){

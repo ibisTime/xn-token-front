@@ -24,33 +24,25 @@ define([
     function setHtml(){
 		base.showLoading()
     	$("title").html(base.getText('下载THA钱包',lang));
-    	$(".upload-text .txt1").html(base.getText('Theia跨链生态钱包',lang));
-    	$(".upload-text .txt2").html(base.getText('一站式数字应用管理平台',lang));
-    	$(".upload-android").html(base.getText('安卓下载',lang));
-    	$(".upload-ios").html(base.getText('iOS下载',lang));
+    	$(".upload-text .txt1").html(base.getText('全球首款跨链生态钱包',lang));
+    	$(".uploadBtn").html(base.getText('立即下载',lang));
+    	$(".upload-remark").html(base.getText('若无法安装或任何原因需卸载原版本...',lang))
+		$(".installTutorial-wrap .title .txt").html(base.getText('安装教程',lang))
+		$(".section .first").html(base.getText('1.第一次打开Theia钱包的时候会弹出如下框。',lang))
+		$(".section .img-wrap1").html(`<img src="/static/images/installFirst_${INSTALLIMG[lang]}.png"/>`);
+		$(".section .second").html(base.getText('2.首次安装的用户,请前往...',lang))
+		$(".section .img-wrap2").html(`<img src="/static/images/installSecond_${INSTALLIMG[lang]}.png"/>`);
+		$(".section .third").html(base.getText('3.点击信任这个证书就可以...',lang))
+		$(".section .img-wrap3").html(`<img src="/static/images/installThird_${INSTALLIMG[lang]}.png"/>`);
+		$(".upload-mask p").html(base.getText('请点击右上角<br/>点击在浏览器打开下载APP',lang))
+		
 		$.when(
 			getListCountry(),
 			getAndroidUrl(),
 			getIosUrl()
 		).then(function(){
 			base.hideLoading()
-			$("#upload_android").off('click').click(function(){
-				if(base.getUserBrowser()=="android"){
-					if(androidUpdateUrl!=""&&androidUpdateUrl){
-						if(base.is_weixn()){
-							$(".upload-mask").removeClass("hidden")
-						}else{
-							window.location.href = androidUpdateUrl;
-//							base.confirm('<div class="confirm-loading">'+base.getText("下载中",lang)+'<div class="global-loading-icon1"></div></div>').then(function(){},function(){})
-						}
-					}else{
-						base.confirm(base.getText("当前版本尚未上线，敬请期待！",lang),base.getText("取消",lang),base.getText("确定",lang)).then(function(){},function(){})
-					}
-				}else{
-					base.confirm(base.getText("请点击下载iOS版！",lang),base.getText("取消",lang),base.getText("确定",lang)).then(function(){},function(){})
-				}
-			})
-			$("#upload_ios").off('click').click(function(){
+			$("#uploadBtn").off('click').click(function(){
 				if(base.getUserBrowser()=="ios"){
 					if(iosUpdateUrl!=""&&iosUpdateUrl){
 						if(base.is_mqqbrowser()){
@@ -59,12 +51,19 @@ define([
 							$(this).addClass("on");
 							window.location.href = iosUpdateUrl;
 						}
-//							base.confirm('<div class="confirm-loading">'+base.getText("下载中",lang)+'<div class="global-loading-icon1"></div></div>').then(function(){},function(){})
 					}else{
 						base.confirm(base.getText("当前版本尚未上线，敬请期待！",lang),base.getText("取消",lang),base.getText("确定",lang)).then(function(){},function(){})
 					}
 				}else{
-					base.confirm(base.getText("请点击下载Android版！",lang),base.getText("取消",lang),base.getText("确定",lang)).then(function(){},function(){})
+					if(androidUpdateUrl!=""&&androidUpdateUrl){
+						if(base.is_weixn()){
+							$(".upload-mask").removeClass("hidden")
+						}else{
+							window.location.href = androidUpdateUrl;
+						}
+					}else{
+						base.confirm(base.getText("当前版本尚未上线，敬请期待！",lang),base.getText("取消",lang),base.getText("确定",lang)).then(function(){},function(){})
+					}
 				}
 			})
 			
@@ -141,9 +140,9 @@ define([
     		}
     		base.showLoading();
     		if(lang == 'ZH_CN'){
-    			window.location.href = '../share/share-upload.html?channel='+channel;
+    			window.location.href = DOWNLOADLINK+'.html?channel='+channel;
     		} else {
-    			window.location.href = '../share/share-upload-'+ lang +'.html?channel='+channel;
+    			window.location.href = DOWNLOADLINK+'-'+ lang +'.html?channel='+channel;
     		}
     		base.hideLoading();
     	})

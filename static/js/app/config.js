@@ -29,8 +29,19 @@ var LANGUAGELIST=[
 	}
 ];
 
+// 下载页安装教程图片语言配置
+var INSTALLIMG={
+	'ZH_CN': 'ZH_CN',
+	'EN': 'EN',
+	'KO': 'EN',
+}
+
+
 // 当前语言
 var NOWLANG = getUrlParam('lang') || 'EN';
+
+//下载页链接
+var DOWNLOADLINK = '../share/share-upload';
 
 // 获取链接入参
 function getUrlParam(name) {
