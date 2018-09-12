@@ -1019,3 +1019,186 @@ label.error{
         }
     }
 }
+.luckDraw-bg{
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/抽奖背景@3x.png');
+    background-position: center;
+    background-size: 100% 100%;
+}
+.luckDraw-wrap{
+    .luckDraw-top{
+        text-align: center;
+        width: 100%;
+        margin-top: .5rem;
+        
+        p{
+            display: inline-block;
+            overflow: hidden;
+            height: .7rem;
+            padding: 0 .4rem;
+            line-height: .7rem;
+            font-size: .28rem;
+            color: #fff;
+            border-radius: .35rem;
+            background-color: rgba(0, 0, 0, .3);
+            font-weight: normal;
+            font-family: "PingFangSC-Regular";
+            letter-spacing: 1px;
+            
+            samp{
+                font-size: .28rem;
+                font-family: "PingFangSC-Regular";
+                color: #FFD93E;
+            }
+            span{
+                display: inline-block;
+                font-family: "PingFangSC-Regular";
+                font-size: .48rem;
+                line-height: .3rem;
+                position: relative;
+                top: .06rem;
+                color: #FFD93E;
+                margin: 0 .02rem;
+            }
+        }
+    }
+    .wrapper{
+        width: 6.92rem;
+        margin: .3rem auto 0;
+        background-image: url('../images/九宫格@3x.png');
+        background-position: center;
+        background-size: 100% 100%;
+        padding: .48rem .62rem .82rem;
+        overflow: hidden;
+        
+        .wrap{
+            padding: .06rem;
+            overflow: hidden;
+        }
+        .item{
+            float: left;
+            width: 1.75rem;
+            height: 2.2rem;
+            margin: .05rem;
+            background-image: url('../images/prizeBg@3x.png');
+            background-position: center;
+            background-size: 100% 100%;
+            position: relative;
+            
+            .msk{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: .26rem;
+                transition: .1s;
+                background-color: rgba(255,231,107,.5);
+                box-shadow: 0 0 .02rem rgba(255,231,107,.5);
+                opacity: 0;
+            }
+            
+            &.active{
+                .msk{
+                    opacity: 1;
+                }
+            }
+            &.lotteryBtn{
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .prize{
+            text-align: center;
+            
+            .con{
+                img{
+                    width: .54rem;
+                    vertical-align: bottom;
+                    margin-top: .26rem;
+                }
+                .symbol{
+                    font-size: .26rem;
+                    color: #333;
+                }
+                .quantity{
+                    font-size: .48rem;
+                    color: #A02D0D;
+                    margin-top: .16rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    .winnerList{
+        width: 100%;
+        margin-top: .2rem;
+        .item{
+            width: 100%;
+            color: #BEBBDE;
+            font-size: .26rem;
+            line-height: .44rem;
+            text-align: center;
+            samp{
+                color: #BEBBDE;
+                font-size: .26rem;
+                margin: 0 .1rem 0 .05rem;
+            }
+        }
+    }
+}
+.luckDrawPopup{
+    .popup-mask{
+        background-image: url('../images/浮动@3x.png');
+        background-position: top;
+        background-size: 100% auto;
+    }
+    .popup-body{
+        width: 5.1rem;
+        height: 7.2rem;
+        background-image: url('../images/恭喜@3x.png');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-top: -.5rem;
+        
+        .popup-content{
+            text-align: center;
+            
+            .quantity{
+                color: #fff;
+                font-weight: bold;
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+                margin-top: 2.9rem;
+            }
+            .congratulations{
+                color: #fff;
+                font-size: .28rem;
+                letter-spacing: .01rem;
+                margin-top: .3rem;
+                
+                samp{
+                    font-size: .28rem;
+                    color: #FFD93E;
+                }
+            }
+            .btn{
+                width: 3.2rem;
+                height: .92rem;
+                line-height: .92rem;
+                margin: 0 auto;
+                color: #DC5500;
+                font-size: .32rem;
+                text-align: center;
+                background-image: url('../images/按钮@3x.png');
+                background-position: center;
+                background-size: 100% 100%;
+                margin-top: .64rem;
+            }
+        }
+    }
+}

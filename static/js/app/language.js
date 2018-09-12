@@ -284,6 +284,47 @@ var LANGUAGE = {
 		'ZH_CN': '3.点击<i>信任</i>这个证书就可以开始使用Theia钱包了 ;*部分手机的「<i>信任</i>」是「<i>验证</i>」',
 		'EN': '3. Click to trust the enterprise certificate to start using Cobo; On some phones <i>Trust</i> is <i>Verify</i>',
 		'KO': '',
-	}
+	},
+	
+	/**
+	 * v1.9.0
+	 * 新增抽奖
+	 * */
+	'抽奖': {
+		'ZH_CN': '抽奖',
+		'EN': 'Luck draw',
+		'KO': '',
+	},
+	'您拥有积分': {
+		'ZH_CN': '您拥有积分',
+		'EN': '',
+		'KO': '',
+	},
+	'分': {
+		'ZH_CN': '分',
+		'EN': '',
+		'KO': '',
+	},
+	'可抽奖': {
+		'ZH_CN': '可抽奖',
+		'EN': '',
+		'KO': '',
+	},
+	'次': {
+		'ZH_CN': '次',
+		'EN': '',
+		'KO': '',
+	},
+	'恭喜用户': {
+		'ZH_CN': '恭喜用户',
+		'EN': '',
+		'KO': '',
+	},
+	'获得': {
+		'ZH_CN': '获得',
+		'EN': '',
+		'KO': '',
+	},
+	
 }
 
