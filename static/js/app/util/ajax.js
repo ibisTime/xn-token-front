@@ -111,7 +111,7 @@ define([
 //              }
                 if(res.errorCode != "0"){
                     loading.hideLoading();
-                    return $.Deferred().reject(getText(res.errorInfo));
+                    return $.Deferred().reject(getText(res.errorCode));
                 }
                 return res.data;
             }).fail(function(error){

@@ -110,10 +110,10 @@ var LANGUAGE = {
 		'EN': 'Download',
 		'KO': '다운로드',
 	},
-	'下载THA钱包，即可提取': {
-		'ZH_CN': '下载THA钱包，即可提取',
-		'EN': 'Withdraw from THA wallet',
-		'KO': 'THA월렛 다운로드',
+	'下载Theia钱包，即可提取': {
+		'ZH_CN': '下载Theia钱包，即可提取',
+		'EN': 'Withdraw from Theia wallet',
+		'KO': 'Theia월렛 다운로드',
 	},
 	'价值': {
 		'ZH_CN': '价值',
@@ -154,10 +154,10 @@ var LANGUAGE = {
 	 * 新增下载页
 	 * */
 	//下载页
-	'下载THA钱包':{
-		'ZH_CN': '下载THA钱包',
+	'下载Theia钱包':{
+		'ZH_CN': '下载Theia钱包',
 		'EN': 'Download THEIA Wallet',
-		'KO': 'THA지갑 다운로드',
+		'KO': 'Theia지갑 다운로드',
 	},
 	'安卓下载':{
 		'ZH_CN': '安卓下载',
@@ -225,8 +225,8 @@ var LANGUAGE = {
 		'EN': 'Register now',
 		'KO': '회원가입',
 	},
-	'THA钱包 (全球首款能分红的跨链钱包)':{
-		'ZH_CN': 'THA钱包 (全球首款能分红的跨链钱包)',
+	'Theia钱包 (全球首款能分红的跨链钱包)':{
+		'ZH_CN': 'Theia钱包 (全球首款能分红的跨链钱包)',
 		'EN': "Theia Wallet (the World's first profit sharing cross-chain wallet)",
 		'KO': 'Theia지갑(세계 최초 공유크로스체인월렛)',
 	},
@@ -248,41 +248,41 @@ var LANGUAGE = {
 	/**
 	 * v1.8.0
 	 * 2018/09/01
-	 * 下载页重切, 红包模块error code 语言配置
+	 * 下载页重切, 仅英文翻译
 	 * */
 	'全球首款跨链生态钱包': {
 		'ZH_CN': '全球首款跨链生态钱包',
-		'EN': '',
+		'EN': "The world's first cross-chain profit sharing wallet",
 		'KO': '',
 	},
 	'立即下载': {
 		'ZH_CN': '立即下载',
-		'EN': '',
+		'EN': 'Install now',
 		'KO': '',
 	},
 	'若无法安装或任何原因需卸载原版本...':{
 		'ZH_CN': '若无法安装或任何原因需卸载原版本，请先备份好助记词，再重新安装新版本。',
-		'EN': '',
+		'EN': 'In case of installation/update difficulty, please make sure to backup HD wallet Mnemonic before uninstalling or deleting the old version.',
 		'KO': '',
 	},
 	'安装教程': {
 		'ZH_CN': '安装教程',
-		'EN': '',
+		'EN': 'Installation instructions',
 		'KO': '',
 	},
 	'1.第一次打开Theia钱包的时候会弹出如下框。': {
 		'ZH_CN': '1.第一次打开Theia钱包的时候会弹出如下框。',
-		'EN': '',
+		'EN': '1. After installing Theia for Enterprise, you will see the following pop-up on the first time you access Theia.',
 		'KO': '',
 	},
 	'2.首次安装的用户,请前往...': {
 		'ZH_CN': '2.首次安装的用户,请前往「<i>设置-通用-设备管理</i>」;*部分手机「<i>设备管理</i>」是「<i>描述文件与设备管理</i>」',
-		'EN': '',
+		'EN': '2. Head over to <i>Settings</i> -> <i>General</i> -> <i>Device Management</i> to find the certification for Theia; On some phones <i>Device Management</i> is <i>Profiles and Device Management</i>',
 		'KO': '',
 	},
 	'3.点击信任这个证书就可以...': {
 		'ZH_CN': '3.点击<i>信任</i>这个证书就可以开始使用Theia钱包了 ;*部分手机的「<i>信任</i>」是「<i>验证</i>」',
-		'EN': '',
+		'EN': '3. Click to trust the enterprise certificate to start using Cobo; On some phones <i>Trust</i> is <i>Verify</i>',
 		'KO': '',
 	}
 }

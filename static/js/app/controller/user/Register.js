@@ -28,7 +28,7 @@ define([
     // 根据设置文本
     function setHtml(){
     	$("title").html(base.getText('立即注册',lang));
-    	$(".slogan").html(base.getText('THA钱包 (全球首款能分红的跨链钱包)',lang));
+    	$(".slogan").html(base.getText('Theia钱包 (全球首款能分红的跨链钱包)',lang));
     	$("#mobile").attr("placeholder", base.getText('请输入手机号码',lang));
     	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码',lang));
     	$("#getVerification").html(base.getText('获取验证码',lang));

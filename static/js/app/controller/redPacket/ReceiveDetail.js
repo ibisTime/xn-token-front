@@ -13,7 +13,7 @@ define([
     		return;
     	}
     	$("title").html(base.getText('领取红包'));
-    	$(".download-footer .txt").html(base.getText('下载THA钱包，即可提取'));
+    	$(".download-footer .txt").html(base.getText('下载Theia钱包，即可提取'));
     	$(".download-footer .am-button").html(base.getText('下载提取'));
     	
     	base.showLoading();
