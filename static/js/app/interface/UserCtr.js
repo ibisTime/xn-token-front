@@ -21,6 +21,12 @@ define([
     	// 短信验证码登录
     	login(config) {
     		return Ajax.get("805044", config, true, true);
-    	}
+    	},
+    	// 获取用户信息
+    	getUserInfo(userId){
+    		return Ajax.get("805121", {
+    			userId
+    		});
+    	},
     };
 })

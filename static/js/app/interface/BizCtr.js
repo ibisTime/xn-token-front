@@ -5,11 +5,11 @@ define([
     return {
     	//抽奖
     	luckDraw(userId) {
-    		return Ajax.get("805951",{userId}, true);
+    		return Ajax.get("625440",{userId}, true);
     	},
-    	// 列表获取获奖人
+    	// 列表获取中奖名单
     	getListPrizeWinner() {
-    		return Ajax.get("805951",{}, true);
+    		return Ajax.get("625441",{}, true);
     	}
     };
 })

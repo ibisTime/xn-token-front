@@ -5,16 +5,14 @@
 		<link rel="import" href="../head.html?__inline">
 		<title></title>
 		<!--SCRIPT_PLACEHOLDER-->
-		<style type="text/css">
-			
-		</style>
 	</head>
 
 	<body class="luckDraw-bg">
 		<div class="luckDraw-wrap">
 			<div class="luckDraw-top"></div>
-			<div class="wrapper">
-				<div class="wrap"><div class="item prize" index="1">
+			<div class="wrapper" id="prizeWrapper">
+				<div class="wrap">
+					<div class="item prize" index="1">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/WAN@3x.png" />
@@ -22,7 +20,7 @@
 							<p class="quantity">0.1</p>
 						</div>
 					</div>
-					<div class="item prize" index="8">
+					<div class="item prize" index="2">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/BTC@3x.png" />
@@ -30,7 +28,7 @@
 							<p class="quantity">0.1</p>
 						</div>
 					</div>
-					<div class="item prize" index="7">
+					<div class="item prize" index="3">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/ETH@3x.png" />
@@ -38,7 +36,7 @@
 							<p class="quantity">1</p>
 						</div>
 					</div>
-					<div class="item prize" index="2">
+					<div class="item prize" index="8">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/WAN@3x.png" />
@@ -46,8 +44,8 @@
 							<p class="quantity">0.2</p>
 						</div>
 					</div>
-					<div class="item lotteryBtn"><img src="../../images/立即抽奖@3x.png"/></div>
-					<div class="item prize" index="6">
+					<div class="item lotteryBtn"><img src="../../images/立即抽奖@3x.png" /></div>
+					<div class="item prize" index="4">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/ETH@3x.png" />
@@ -55,7 +53,7 @@
 							<p class="quantity">0.1</p>
 						</div>
 					</div>
-					<div class="item prize" index="3">
+					<div class="item prize" index="7">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/WAN@3x.png" />
@@ -63,7 +61,7 @@
 							<p class="quantity">0.4</p>
 						</div>
 					</div>
-					<div class="item prize" index="4">
+					<div class="item prize" index="6">
 						<div class="msk"></div>
 						<div class="con">
 							<img src="../../images/WAN@3x.png" />
@@ -80,31 +78,28 @@
 						</div>
 					</div>
 				</div>
-				<!--<div class="wrap">
-					<div class="item prize" index="8"><div class="msk"></div>奖品八</div>
-					<div class="item prize" index="1"><div class="msk"></div>奖品一</div>
-					<div class="item prize" index="2"><div class="msk"></div>奖品二</div>
-					<div class="item prize" index="7"><div class="msk"></div>奖品七</div>
-					<div class="item lotteryBtn">抽奖</div>
-					<div class="item prize" index="3"><div class="msk"></div>奖品三</div>
-					<div class="item prize" index="6"><div class="msk"></div>奖品六</div>
-					<div class="item prize" index="5"><div class="msk"></div>奖品五</div>
-					<div class="item prize" index="4"><div class="msk"></div>奖品四</div>
-				</div>-->
 			</div>
-			<div class="winnerList">
-				<div class="item">恭喜用户：<samp>东XX</samp>获得0.01BTC</div>
-				<div class="item">恭喜用户：<samp>东XX</samp>获得0.01BTC</div>
-				<div class="item">恭喜用户：<samp>东XX</samp>获得0.01BTC</div>
+			<!--<div class="prize" index="1">奖品一</div>
+			<div class="prize" index="2">奖品二</div>
+			<div class="prize" index="3">奖品三</div>
+			<div class="prize" index="8">谢谢参与</div>
+			<div class="lotteryBtn">抽奖</div>
+			<div class="prize" index="4">奖品四</div>
+			<div class="prize" index="7">奖品七</div>
+			<div class="prize" index="6">奖品六</div>
+			<div class="prize" index="5">奖品五</div>-->
+			<div id="winnerListWrap" class="winnerListWrap">
+				<div class="winnerList" id="winnerList1"></div>
+				<div class="winnerList" id="winnerList2"></div>
 			</div>
 		</div>
-		
+
 		<div class="popup luckDrawPopup hidden" id="luckDrawPopup">
 			<div class="popup-mask"></div>
 			<div class="popup-body">
 				<div class="popup-content">
-					<p class="quantity">0.1</p>
-					<p class="congratulations">恭喜您,获得0.1WAN</p>
+					<p class="quantity"><samp class="count"></samp></p>
+					<p class="congratulations">恭喜您,获得<samp class="count"></samp><samp class="symbol"></samp></p>
 					<div class="btn close">知道了</div>
 				</div>
 			</div>
