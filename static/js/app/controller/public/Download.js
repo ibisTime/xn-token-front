@@ -112,10 +112,13 @@ define([
     }
     
     function replaceChannelName(url){
+    	if(!(url.indexOf("{") != -1) && !(url.indexOf("}") != -1) ){
+    		return url;
+    	}
+    	
     	var url1 = url.split('{')[0];
     	var url2 = url.split('}')[1];
     	var href = url1 + channel + url2;
-    	
     	return href;
     }
     

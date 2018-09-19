@@ -292,44 +292,53 @@ var LANGUAGE = {
 	 * */
 	'抽奖': {
 		'ZH_CN': '抽奖',
-		'EN': 'Luck draw',
-		'KO': '',
+		'EN': 'Wheel of fortune',
+		'KO': '복권',
 	},
 	'您拥有': {
 		'ZH_CN': '您拥有',
-		'EN': '',
-		'KO': '',
+		'EN': 'You have',
+		'KO': '너 자신이야',
 	},
 	'积分': {
 		'ZH_CN': '积分',
-		'EN': '',
-		'KO': '',
+		'EN': 'Points',
+		'KO': '포인트',
 	},
 	'可抽奖': {
 		'ZH_CN': '可抽奖',
-		'EN': '',
-		'KO': '',
+		'EN': 'can draw',
+		'KO': '그릴 수 있음',
 	},
 	'次': {
 		'ZH_CN': '次',
-		'EN': '',
-		'KO': '',
+		'EN': 'times',
+		'KO': '시간',
 	},
 	'恭喜用户': {
 		'ZH_CN': '恭喜用户',
-		'EN': '',
-		'KO': '',
+		'EN': 'Congratulations',
+		'KO': '사용자에게 축하드립니다',
 	},
 	'获得': {
 		'ZH_CN': '获得',
-		'EN': '',
-		'KO': '',
+		'EN': 'got',
+		'KO': '확보하다',
 	},
 	'积分余额不足': {
 		'ZH_CN': '积分余额不足',
-		'EN': '',
-		'KO': '',
+		'EN': 'Insufficient points',
+		'KO': '불충분 한 포인트 균형',
+	},
+	'恭喜您': {
+		'ZH_CN': '恭喜您',
+		'EN': 'Congratulations',
+		'KO': '축하하다',
+	},
+	'知道了': {
+		'ZH_CN': '恭喜您',
+		'EN': 'close',
+		'KO': '닫기',
 	}
-	
 }
 

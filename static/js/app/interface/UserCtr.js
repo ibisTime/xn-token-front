@@ -26,7 +26,7 @@ define([
     	getUserInfo(userId){
     		return Ajax.get("805121", {
     			userId
-    		});
+    		}, true);
     	},
     };
 })

@@ -55,6 +55,8 @@ fis.match('*.{js,css}', {
     useHash: false
 }).match('language.js', {
     useHash: false
+}).match('errorCode.js', {
+    useHash: false
 });
 
 //npm install -g fis-parser-handlebars-3.x
@@ -105,6 +107,11 @@ fis.media("prod")
     .match('/js/app/language.js', {
         optimizer: null,
         packTo: '/language/language.js',
+        useHash: false
+    })
+    .match('/js/app/errorCode.js', {
+        optimizer: null,
+        packTo: '/errorCode/errorCode.js',
         useHash: false
     })
     .match('**.png', {

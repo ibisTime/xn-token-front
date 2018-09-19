@@ -8,6 +8,7 @@ define([
 	var userId = base.getUrlParam("userId") || '';
 	var prize = null; // 中奖序号
 	var luckDrawFalg = false; // 是否可以抽奖
+	var timer;
 	
 	// 实际奖品顺序
 	var prizeIndex = {
@@ -24,22 +25,27 @@ define([
 	init();
 
 	function init() {
+		prize = null; // 中奖序号
+		luckDrawFalg = false; // 是否可以抽奖
+		
 		if(!userId){
 			base.showMsg("userId不能为空");
 			return;
 		}
 		setHtml();
+		base.showLoading();
 		$.when(
 			getListPrizeWinner(),
 			getSysConfigKey()
-		)
+		).then(base.hideLoading, base.hideLoading)
 		addListener();
 	}
 
 	// 设置页面html
 	function setHtml() {
-		//		base.showLoading()
 		$("title").html(base.getText('抽奖'));
+		$("#lotteryBtn").html(`<img src="/static/images/start_${NOWLANG}.png" />`);
+		$("#luckDrawPopup .close").html(base.getText('知道了'));
 	}
 
 	// 获取数据字典
@@ -52,7 +58,13 @@ define([
 	// 抽奖
 	function luckDraw() {
 		return BizCtr.luckDraw(userId).then((data) => {
+			var data = {prizeId: '1'};
 			prize = Number(prizeIndex[data.prizeId]);
+			var count = $("#prizeWrapper .prize"+ data.prizeId +" .quantity").text();
+			var symbol = $("#prizeWrapper .prize"+ data.prizeId +" .symbol").text();
+			
+			$("#luckDrawPopup .content").html(`<p class="quantity"><samp class="count">${count}</samp></p>
+				<p class="congratulations">${base.getText('恭喜您')},${base.getText('获得')}<samp class="count">${count}</samp><samp class="symbol">${symbol}</samp></p>`)
 		}, () => {})
 	}
 
@@ -61,11 +73,13 @@ define([
 		return UserCtr.getUserInfo(userId).then((data) => {
 			if((String(data.jfAmount/cost)).split(".")[0] > 0) {
 				luckDrawFalg = true;
+			} else {
+				luckDrawFalg = false;
 			}
 			$('.luckDraw-top').html(`<p>${base.getText('您拥有')}<samp>${data.jfAmount}</samp>${base.getText('积分')}，${base.getText('可抽奖')}<span>${(String(data.jfAmount/cost)).split(".")[0]}</span>${base.getText('次')}</p>`)
 			
 			// 抽奖按钮
-			$(".lotteryBtn").bind("click", function() {
+			$(".lotteryBtn").off("click").bind("click", function() {
 				if(!luckDrawFalg){
 					base.showMsg(base.getText("积分余额不足"));
 					return;
@@ -88,22 +102,25 @@ define([
 					html += buildHtml(v);
 				})
 				$("#winnerList1").html(html);
-				scrollTop();
+				$("#winnerList2").html(html);
+				if(data.length >= 4) {
+					scrollTop();
+				}
 			}
 		}, () => {})
 	}
 
 	function buildHtml(item) {
-		return `<div class="item">${base.getText('恭喜用户')}：<samp>${item.mobile}</samp>${base.getText('获得')}${item.count}${item.symbol}</div>`;
+		return `<div class="item">${base.getText('恭喜用户')}：<samp>${item.mobile}</samp>${base.getText('获得')} ${item.count}${item.symbol}</div>`;
 	}
 
 	// 中奖名单无缝滚动
 	function scrollTop() {
+		clearInterval(timer);
 		var speed = 40;
 		var winnerList = document.getElementById('winnerListWrap');
 		var winnerList1 = document.getElementById('winnerList1');
 		var winnerList2 = document.getElementById('winnerList2');
-		winnerList2.innerHTML = winnerList1.innerHTML;
 
 		function Marquee() {
 			if(winnerList2.offsetTop - winnerList.scrollTop <= 0){
@@ -112,8 +129,7 @@ define([
 				winnerList.scrollTop++;
 			}
 		}
-		var timer = setInterval(Marquee, speed);
-
+		timer = setInterval(Marquee, speed);
 	}
 
 	// 抽奖跑马灯
@@ -145,15 +161,12 @@ define([
 				tigerGame.goAction();
 			},
 			goAction: function() {
-				console.log(tigerGame.params.step.total);
 				if((prize || prize==0) && !tigerGame.params.step.total && tigerGame.params.step.total !=0){
 					tigerGame.params.step.total = tigerGame.params.num.circle * tigerGame.params.num.lap + prize - tigerGame.params.index + 1;
 					console.log(prize, tigerGame.params.index);
 				}
 				if(tigerGame.params.step.total == 0) {
 					tigerGame.overAction();
-					$("#luckDrawPopup .count").html($("#prizeWrapper .prize.active .quantity").text());
-					$("#luckDrawPopup .symbol").html($("#prizeWrapper .prize.active .symbol").text());
 					$("#luckDrawPopup").removeClass('hidden');
 					return false;
 				}
@@ -181,7 +194,7 @@ define([
 				}
 			},
 			overAction: function() {
-				$(".lotteryBtn").bind("click", tigerGame.startAction);
+				$(".lotteryBtn").off("click").bind("click", tigerGame.startAction);
 				tigerGame.init();
 			}
 		};
@@ -191,8 +204,9 @@ define([
 	function addListener() {
 
 		// 弹窗-关闭
-		$("#luckDrawPopup .close").click(function() {
-			location.reload(true);
+		$("#luckDrawPopup .close").off("click").bind("click", function() {
+			$("#luckDrawPopup").addClass('hidden');
+			init();
 		});
 	}
 });

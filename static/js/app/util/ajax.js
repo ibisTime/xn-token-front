@@ -15,20 +15,17 @@ define([
         sessionStorage.removeItem("token"); //token
     }
     // 根据语言获取文本
-	function getText(text, lang){
-		if(lang == '' || !lang){
-			lang = NOWLANG
-		}
-		var t =  LANGUAGE[text] && LANGUAGE[text][lang] ? LANGUAGE[text][lang] : '';
-		if(!LANGUAGE[text] || t == '') {
-			if(!LANGUAGE[text]){
-				t = text;
+	function getText(text, defaultTXT){
+		var t =  ERRORINFO[text] && ERRORINFO[text][lang] ? ERRORINFO[text][lang] : '';
+		if(!ERRORINFO[text] || t == '') {
+			if(!ERRORINFO[text]){
+				t = defaultTXT;
 				console.log('[' + text +']没有翻译配置');
 			} else {
-				if(!LANGUAGE[text]['EN']){
-					t = LANGUAGE[text]['ZH_CN']
+				if(!ERRORINFO[text]['EN']){
+					t = defaultTXT
 				}else{
-					t = LANGUAGE[text]['EN'];
+					t = defaultTXT;
 				}
 				console.log(lang + ': [' + text +']没有翻译配置');
 			}
@@ -111,11 +108,11 @@ define([
 //              }
                 if(res.errorCode != "0"){
                     loading.hideLoading();
-                    return $.Deferred().reject(getText(res.errorCode));
+                    return $.Deferred().reject(getText(res.errorBizCode, res.errorInfo));
                 }
                 return res.data;
             }).fail(function(error){
-                error && showMsg(getText(error));
+                error && showMsg(error);
             });
         }
     };
