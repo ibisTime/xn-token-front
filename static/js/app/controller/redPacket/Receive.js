@@ -3,7 +3,7 @@ define([
     'app/interface/RedPacketCtr',
     'app/interface/UserCtr',
     'app/module/validate',
-    'app/module/smsCaptcha',
+    'app/module/smsCaptchaNC',
 ], function(base, RedPacketCtr, UserCtr, Validate, smsCaptcha) {
 	var code = base.getUrlParam('code');
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号

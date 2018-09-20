@@ -7,19 +7,17 @@ define([
     	getQiniuToken() {
     		return Ajax.get("805951",{}, true, true);
     	},
-        // 发送短信
-        sendCaptcha(bizType, mobile, interCode, sendCode) {
-    		var param={
-        		bizType,
-        		sendCode,
-        		interCode
-        	}
+        /*
+         * 发送短信
+         * @config: {bizType, mobile, interCode, sendCode}
+         * */
+        sendCaptcha(sendCode, config) {
         	if(sendCode=="805952"){
-        		param.email=mobile
+        		config.email = config.mobile
         	}else{
-        		param.mobile=mobile
+        		config.mobile = config.mobile
         	}
-            return Ajax.post(sendCode, param, true, true);
+            return Ajax.post(sendCode, config, true, true);
         },
         // 查询系统参数 type
         getSysConfigType(type) {

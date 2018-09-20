@@ -909,6 +909,7 @@ label.error{
                 line-height: .64rem;
                 font-size: .24rem;
                 width: 2rem;
+                margin-right: .02rem;
                 
                 &:disabled{
                     border: 1px solid #ddd;
@@ -1216,5 +1217,24 @@ label.error{
                 margin-top: .64rem;
             }
         }
+    }
+}
+.ncCaptchaPopup{
+    height: 100%;
+    padding: .4rem;
+    background-color: #fff;
+    
+    .nc-wh{
+        width: 100%;
+        height: 2.5rem;
+        visibility: hidden;
+    }
+    .nc-container.nc-scrape .nc-toolbar{
+        font-size: .28rem;
+        margin-top: .1rem;
+        margin-bottom: .2rem;
+    }
+    .nc_iconfont{
+        font-size: .3rem;
     }
 }

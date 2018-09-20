@@ -2,14 +2,15 @@ define([
     'app/controller/base',
     'app/interface/UserCtr',
     'app/module/validate',
-    'app/module/smsCaptcha',
-], function(base, UserCtr, Validate, smsCaptcha) {
+    'app/module/smsCaptchaNC',
+    'app/interface/GeneralCtr'
+], function(base, UserCtr, Validate, smsCaptcha, GeneralCtr) {
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
 	var lang = base.getUrlParam('lang') || 'ZH_CN';
     var timer;
 	var interCode = '0086'; // 设置默认interCode
 	var firstLoad = true;
-    
+	var nc_tmpl = {};
     
 	if($("body").get(0).offsetHeight <= $("body").get(0).offsetWidth){
 		$("body").height($("body").get(0).offsetHeight + $(".register-from").height());
@@ -107,6 +108,7 @@ define([
             },
             onkeyup: false
         });
+        
         timer = smsCaptcha.init({
             bizType: '805044'
         });
@@ -142,5 +144,6 @@ define([
     		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
     		$("#countryPopup").addClass("hidden");
     	})
+    	
     }
 });

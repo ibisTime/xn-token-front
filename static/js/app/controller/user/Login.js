@@ -2,7 +2,7 @@ define([
     'app/controller/base',
     'app/interface/UserCtr',
     'app/module/validate',
-    'app/module/smsCaptcha',
+    'app/module/smsCaptchaNC',
 ], function(base, UserCtr, Validate, smsCaptcha) {
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
 	var lang = base.getUrlParam('lang') || 'cn';

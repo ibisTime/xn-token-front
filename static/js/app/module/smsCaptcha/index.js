@@ -35,8 +35,11 @@ define([
     initSms.prototype.handleSendVerifiy = function() {
         var verification = $("#" + this.options.id);
         verification.prop("disabled", true);
-        GeneralCtr.sendCaptcha(this.options.bizType, $("#" + this.options.mobile).val(), $("#" + this.options.interCode).attr("value"), this.options.sendCode)
-            .then(() => {
+        GeneralCtr.sendCaptcha({
+        	sendCode: this.options.sendCode,
+        	bizType: this.options.bizType, 
+        	mobile: $("#" + this.options.mobile).val()
+        }).then(() => {
                 var i = 60;
                 this.timer = window.setInterval(() => {
                     if(i > 0){
