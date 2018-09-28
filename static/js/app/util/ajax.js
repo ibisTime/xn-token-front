@@ -16,7 +16,7 @@ define([
     }
     // 根据语言获取文本
 	function getText(text, defaultTXT){
-		var t =  ERRORINFO[text] && ERRORINFO[text][lang] ? ERRORINFO[text][lang] : '';
+		var t =  ERRORINFO[text] && ERRORINFO[text][NOWLANG] ? ERRORINFO[text][NOWLANG] : '';
 		if(!ERRORINFO[text] || t == '') {
 			if(!ERRORINFO[text]){
 				t = defaultTXT;
@@ -27,7 +27,7 @@ define([
 				}else{
 					t = defaultTXT;
 				}
-				console.log(lang + ': [' + text +']没有翻译配置');
+				console.log(NOWLANG + ': [' + text +']没有翻译配置');
 			}
 		}
 		return t;

@@ -107,12 +107,12 @@ fis.media("prod")
     })
     .match('/js/app/language.js', {
         optimizer: null,
-        packTo: '/language/language.js',
+        packTo: '/config/language.js',
         useHash: false
     })
     .match('/js/app/errorCode.js', {
         optimizer: null,
-        packTo: '/errorCode/errorCode.js',
+        packTo: '/config/errorCode.js',
         useHash: false
     })
     .match('**.png', {
