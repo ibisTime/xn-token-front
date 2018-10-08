@@ -82,15 +82,15 @@ define([
 			$(".lotteryBtn").off("click").bind("click", function() {
 				base.showMsg(base.getText("系统升级中")+'...', 1200);
 				
-//				if(!luckDrawFalg){
-//					base.showMsg(base.getText("积分余额不足"));
-//					return;
-//				}
-//				tigerGameFun().startAction();
-//				
-//				setTimeout(function(){
-//					luckDraw();
-//				}, 500);
+				if(!luckDrawFalg){
+					base.showMsg(base.getText("积分余额不足"));
+					return;
+				}
+				tigerGameFun().startAction();
+				
+				setTimeout(function(){
+					luckDraw();
+				}, 500);
 			});
 		}, () => {})
 	}
@@ -106,9 +106,9 @@ define([
 				$("#winnerList1").html(html);
 				$("#winnerList2").html(html);
 				
-//				if(data.length >= 4) {
-//					scrollTop();
-//				}
+				if(data.length >= 4) {
+					scrollTop();
+				}
 			}
 		}, () => {})
 	}
