@@ -80,7 +80,7 @@ define([
 			
 			// 抽奖按钮
 			$(".lotteryBtn").off("click").bind("click", function() {
-				base.showMsg(base.getText("系统升级中")+'...', 1200);
+//				base.showMsg(base.getText("系统升级中")+'...', 1200);
 				
 				if(!luckDrawFalg){
 					base.showMsg(base.getText("积分余额不足"));
