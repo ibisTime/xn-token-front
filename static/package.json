@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dist": "fis3 release -d ../dist -w",
+    "dist": "fis3 release -d ../dist",
     "prod": "fis3 release -d ../dist prod"
   },
   "author": "",
