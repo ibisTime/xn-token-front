@@ -42,6 +42,10 @@ var NOWLANG = getUrlParam('lang') || 'EN';
 
 //下载页链接
 var DOWNLOADLINK = '../share/share-upload';
+// 英文版 按钮链接 appstore
+var DOWNLOADLINKAPPSTORE = 'https://itunes.apple.com/us/app/theia-wallet/id1436959010?l=zh&ls=1&mt=8';
+// 英文版 按钮链接 google
+var DOWNLOADLINKGOOGLE = 'https://play.google.com/store/apps/details?id=com.cdkj.tha';
 
 // 获取链接入参
 function getUrlParam(name) {

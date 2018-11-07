@@ -727,6 +727,28 @@ label.error{
     width: 100%;
     margin-top: 1.3rem;
 }
+.uploadWrap1{
+    text-align: center;
+
+    .upload-appStore,
+    .upload-google{
+        display: inline-block;
+        width: 2.6rem;
+        height: 0.86rem;
+        border-radius: 0.1rem;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 2.2rem;
+        background-color: #000;
+    }
+    .upload-appStore{
+        background-image: url('../images/uploadBtn-en1.png');
+        margin-right: 0.4rem;
+    }
+    .upload-google{
+        background-image: url('../images/uploadBtn-en2.png');
+    }
+}
 .upload-btn{
     display: block;
     width: 5.3rem;
@@ -742,7 +764,7 @@ label.error{
     background-image: -moz-linear-gradient(to right, #0848DF, #2871FB);
     background-image: -o-linear-gradient(to right, #0848DF, #2871FB);
     background-image: linear-gradient(to right, #0848DF, #2871FB);
-    box-shadow: 0 7px 20px 2px rgba(80,80,80,0.1);
+    box-shadow: 0 0.14rem 0.4rem 0.04rem rgba(80,80,80,0.1);
     
     &.on{
         background-image: -webkit-gradient(linear, 100% 0, 0 0, from(#eee), to(#bdbdbd));
@@ -759,9 +781,10 @@ label.error{
         background-image: -moz-linear-gradient(to right, #0848DF, #2871FB);
         background-image: -o-linear-gradient(to right, #0848DF, #2871FB);
         background-image: linear-gradient(to right, #0848DF, #2871FB);
-        box-shadow: 0 3px 10px 1px rgba(48,133,254,0.29);
+        box-shadow: 0 0.06rem 0.2rem 0.02rem rgba(48,133,254,0.29);
     }
 }
+
 .upload-remark{
     width: 80%;
     font-size: .3rem;

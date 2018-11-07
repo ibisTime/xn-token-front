@@ -41,8 +41,8 @@ define([
 			getAndroidUrl(),
 			getIosUrl()
 		).then(function(){
-			base.hideLoading()
-			$("#uploadBtn").off('click').click(function(){
+			base.hideLoading();
+            $("#uploadBtn").off('click').click(function(){
 				if(base.getUserBrowser()=="ios"){
 					if(iosUpdateUrl!=""&&iosUpdateUrl){
 						if(base.is_mqqbrowser()){
@@ -149,5 +149,11 @@ define([
     		}
     		base.hideLoading();
     	})
+        $("#upload_appStore").on("click", function(){
+			window.location.href = DOWNLOADLINKAPPSTORE;
+        })
+        $("#upload_google").on("click", function(){
+            window.location.href = DOWNLOADLINKGOOGLE;
+        })
     }
 });

@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dist": "fis3 release -d ../dist",
-    "prod": "fis3 release -d ../dist prod"
+    "dev": "fis3 release -d ../dist -w",
+    "build": "fis3 release -d ../dist prod"
   },
   "author": "",
   "license": "ISC",

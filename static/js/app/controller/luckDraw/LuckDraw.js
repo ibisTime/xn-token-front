@@ -58,7 +58,7 @@ define([
 	// 抽奖
 	function luckDraw() {
 		return BizCtr.luckDraw(userId).then((data) => {
-			var data = {prizeId: '1'};
+			var data = {prizeId: data.prizeId};
 			prize = Number(prizeIndex[data.prizeId]);
 			var count = $("#prizeWrapper .prize"+ data.prizeId +" .quantity").text();
 			var symbol = $("#prizeWrapper .prize"+ data.prizeId +" .symbol").text();
