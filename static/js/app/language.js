@@ -19,7 +19,7 @@ var LANGUAGE = {
 		'EN': 'ok',
 		'KO': '확인',
 	},
-	
+
 	// 分享红包
 	'分享红包': {
 		'ZH_CN': '分享红包',
@@ -51,7 +51,7 @@ var LANGUAGE = {
 		'EN': 'view details',
 		'KO': '여러분의 운을 볼가요',
 	},
-	
+
 	// 登录
 	'登录': {
 		'ZH_CN': '登录',
@@ -98,7 +98,7 @@ var LANGUAGE = {
 		'EN': 'Enter code',
 		'KO': '인증번호 입력'
 	},
-	
+
 	// 领取红包
 	'领取红包': {
 		'ZH_CN': '领取红包',
@@ -130,7 +130,7 @@ var LANGUAGE = {
 		'EN': 'luckiest draw',
 		'KO': '베스트 럭키',
 	},
-	
+
 	/* v150 */
 	'查看领取情况': {
 		'ZH_CN': '查看领取情况',
@@ -147,7 +147,7 @@ var LANGUAGE = {
 		'EN': 'Enter phone number <br/> receive red packet ',
 		'KO': '핸드폰번 입력하여 <br/> 훙빠우 수령',
 	},
-	
+
 	/**
 	 * v1.6.1版
 	 * 2018/8/06
@@ -204,7 +204,7 @@ var LANGUAGE = {
 		'EN': 'One-stop digital application management platform',
 		'KO': '원스톱 디지털자산 관리 플랫폼',
 	},
-	
+
 	/**
 	 * v1.7.0版
 	 * 2018/8/09
@@ -285,7 +285,7 @@ var LANGUAGE = {
 		'EN': '3. Click to trust the enterprise certificate to start using Cobo; On some phones <i>Trust</i> is <i>Verify</i>',
 		'KO': '',
 	},
-	
+
 	/**
 	 * v1.9.0
 	 * 新增抽奖
@@ -340,7 +340,7 @@ var LANGUAGE = {
 		'EN': 'close',
 		'KO': '닫기',
 	},
-	
+
 	/**
 	 * v1.9.1
 	 * 暂停抽奖功能
@@ -349,6 +349,36 @@ var LANGUAGE = {
 		'ZH_CN': '系统升级中',
 		'EN': 'The system is upgrading',
 		'KO': '시스템이 업그레이드되고 있습니다',
-	}
+	},
+
+    /**
+     * v1.9.6
+     * 抢红包页面，注册页面样式修改，添加攻略页面
+     * */
+    '密码': {
+        'ZH_CN': '密码',
+        'EN': 'Password',
+        'KO': '암호',
+    },
+	'请输入登录密码': {
+        'ZH_CN': '请输入登录密码',
+        'EN': 'Login password',
+        'KO': '',
+    },
+	'请输入您的邮箱账号': {
+        'ZH_CN': '请输入您的邮箱账号',
+        'EN': 'Email',
+        'KO': '',
+    },
+	'邮箱': {
+    	'ZH_CN': '邮箱',
+        'EN': 'Email',
+        'KO': '',
+	},
+	'手机号': {
+		'ZH_CN': '手机号',
+		'EN': 'Mobile',
+		'KO': '',
+	},
 }
 

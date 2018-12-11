@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dist": "fis3 release -d ../dist",
-    "dev": "fis3 release -d ../dist -w",
+    "start": "fis3 release -d ../dist -w",
     "build": "fis3 release -d ../dist prod"
   },
   "author": "",

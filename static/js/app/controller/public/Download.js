@@ -4,25 +4,25 @@ define([
     'app/interface/GeneralCtr',
     'app/interface/UserCtr',
 ], function(base, Ajax, GeneralCtr, UserCtr) {
-	
+
 	var iosUpdateUrl,androidUpdateUrl;
 	var lang = $("body").attr("data-lang") || 'ZH_CN';
 	var channel = base.getUrlParam('channel') || 'theia';
 	var firstLoad = true;
 	var langValue = '';
-	
+
     init();
-    
+
     function init() {
-    	
+
 		setHtml();
-		
+
 		addListener();
     }
-    
+
     // 设置页面html
     function setHtml(){
-		base.showLoading()
+		base.showLoading();
     	$("title").html(base.getText('下载Theia钱包',lang));
     	$(".upload-text .txt1").html(base.getText('全球首款跨链生态钱包',lang));
     	$(".uploadBtn").html(base.getText('立即下载',lang));
@@ -35,7 +35,7 @@ define([
 		$(".section .third").html(base.getText('3.点击信任这个证书就可以...',lang))
 		$(".section .img-wrap3").html(`<img src="/static/images/installThird_${INSTALLIMG[lang]}.png"/>`);
 		$(".upload-mask p").html(base.getText('请点击右上角<br/>点击在浏览器打开下载APP',lang))
-		
+
 		$.when(
 			getListCountry(),
 			getAndroidUrl(),
@@ -66,10 +66,10 @@ define([
 					}
 				}
 			})
-			
+
 		})
     }
-	
+
 	// 获取安卓下载地址
 	function getAndroidUrl(){
 		return GeneralCtr.getSysConfigKey("h5_download_android").then(function(data) {
@@ -78,7 +78,7 @@ define([
 	        base.showMsg(base.getText("获取下载地址失败",lang));
 	    });
 	}
-	
+
 	// 获取ios下载地址
 	function getIosUrl(){
 		return GeneralCtr.getSysConfigKey("h5_download_ios").then(function(data) {
@@ -87,7 +87,7 @@ define([
 	        base.showMsg(base.getText("获取下载地址失败",lang));
 	    });
 	}
-	
+
 	// 列表查询国家
     function getListCountry(){
     	var data = LANGUAGELIST;
@@ -106,35 +106,35 @@ define([
 					</div>`;
 		})
 		$("#countryList").html(html);
-		
+
 		$("#language").text(langValue).attr("data-key", lang);
 		base.hideLoading();
     }
-    
+
     function replaceChannelName(url){
     	if(!(url.indexOf("{") != -1) && !(url.indexOf("}") != -1) ){
     		return url;
     	}
-    	
+
     	var url1 = url.split('{')[0];
     	var url2 = url.split('}')[1];
     	var href = url1 + channel + url2;
     	return href;
     }
-    
+
     function addListener(){
     	$(".upload-mask").click(function(){
 			$(".upload-mask").addClass("hidden")
 		})
-    	
+
     	$("#languagePopup .close").click(function() {
     		$("#languagePopup").addClass("hidden");
     	})
-    	
+
     	$("#language-wrap").click(() => {
     		$("#languagePopup").removeClass("hidden");
     	})
-    	
+
 		$("#countryList").on("click", ".country-list", function(){
     		lang = $(this).attr("data-key");
     		if(lang == $("#language").attr("data-key")){

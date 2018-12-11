@@ -557,7 +557,7 @@ textarea {
     height: 50%;
     display: none;
     z-index: 1024;
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0;
 }
 
 .right-left-cont {
@@ -629,11 +629,11 @@ textarea {
             flex: 1;
             font-size: 0.3rem;
             color: #333;
-            
+
             &:disabled{
                 color: #333;
             }
-            
+
             &.placeholder{
                 color: #757575;
             }
@@ -645,19 +645,21 @@ textarea {
 
         input[type="number"],
         input[type="tel"],
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"]{
             height: .34rem;
             font-size: 0.3rem;
             line-height: .34rem;
             color: #333;
+            background-color: transparent;
         }
-        
+
         .smsCaptcha-item{
             input[type="text"]{
                 width: 3.2rem;
             }
         }
-        
+
         .select-item {
             height: .34rem;
             line-height: .34rem;
@@ -673,7 +675,7 @@ textarea {
             font-size: 0.3rem;
             color: #333;
         }
-        
+
     }
 }
 
@@ -960,7 +962,7 @@ sup {
     position: relative;
     width: 6.14rem;
     height: auto;
-    
+
     .am-modal-content {
         position: relative;
         background-color: #fff;
@@ -999,12 +1001,12 @@ sup {
     width: 100%;
     text-align: center;
     padding-top: 2rem;
-    
+
     img{
         width: 2.1rem;
         margin-left: .56rem;
     }
-    
+
     p{
         font-size: .28rem;
         color: #999;
