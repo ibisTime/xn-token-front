@@ -13,6 +13,7 @@ define([
 	var interCode = '0086'; // 设置默认interCode
 	var firstLoad = true;
 	var type = 'mobile'; // 登录类型
+    var findType = 'mobile'; // 找回密码类型
 
     init();
 
@@ -32,12 +33,20 @@ define([
 
         $(".fy_mobile").html(base.getText('手机号', lang));
         $(".fy_email").html(base.getText('邮箱', lang));
+        $(".fy_findMobile").html(base.getText('手机找回', lang));
+        $(".fy_findEmail").html(base.getText('邮箱找回', lang));
     	$("#mobile").attr("placeholder", base.getText('请输入手机号码', lang));
+        $("#mobile-find").attr("placeholder", base.getText('请输入手机号码', lang));
     	$(".form-mobile .password").attr("placeholder", base.getText('请输入登录密码', lang));
         $("#email").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
-    	$("#getVerification").html(base.getText('获取验证码', lang));
-    	$("#loginBtn").html(base.getText('领取红包', lang));
+        $("#email-find").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
+    	$("#getVerification").html(base.getText('获取验证码', lang))
+        $("#loginBtn").html(base.getText('领取红包', lang));
+    	$("#rpReceivePopup .textWrap .register").html(base.getText('注册新用户', lang) + '&nbsp;>');
+        $("#rpReceivePopup .textWrap .findPwd").html(base.getText('忘记密码', lang) + '&nbsp;>');
         $(".fy_mima").html(base.getText('密码', lang));
+        $("#findPwdPopup .popup-content .nextBtn p").html(base.getText('下一步', lang) + '&nbsp;>');
+
 
     	base.showLoading();
 
@@ -136,6 +145,7 @@ define([
     		if(firstLoad){
 	    		$("#nationalFlag").css({"background-image": "url('"+base.getImg(countryPic)+"')"});
 	    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
+                $("#interCode-find").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
 				firstLoad = false;
     		}
     	}, base.hideLoading);
@@ -259,6 +269,39 @@ define([
                 } else if (thisType === 'email') {
                     $('#formWrapperMobile').addClass('hidden');
                     $('#formWrapperEmail').removeClass('hidden');
+                }
+            }
+        })
+
+        // 登录弹窗-注册
+        $("#rpReceivePopup .textWrap .register").click(function () {
+            base.gohref('../user/register.html?inviteCode='+ inviteCode);
+        })
+
+        //  登录弹窗-找回密码
+        $("#rpReceivePopup .textWrap .findPwd").click(function () {
+            $("#findPwdPopup").removeClass('hidden');
+        })
+
+        // 找回密码弹窗 - 关闭
+        $("#findPwdPopup .close").click(function() {
+            $("#findPwdPopup").addClass("hidden");
+        })
+
+        // 找回密码弹窗 切换方式
+        $("#findPwdPopup .popup-header .item").click(function () {
+            var thisType = $(this).attr('data-type');
+            if (!$(this).hasClass('active')) {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+            if (thisType !== findType) {
+                findType = thisType;
+                if (thisType === 'mobile') {
+                    $('#findPwdEmailForm').addClass('hidden');
+                    $('#findPwdMobileForm').removeClass('hidden');
+                } else if (thisType === 'email') {
+                    $('#findPwdMobileForm').addClass('hidden');
+                    $('#findPwdEmailForm').removeClass('hidden');
                 }
             }
         })
