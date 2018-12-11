@@ -8,79 +8,77 @@
 		<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/nch5/index.js?t=2015052012"></script>
 	</head>
 
-	<body>
+    <body class="rpReceive-bg">
+        <div class="rpReceive-wrap">
+            <div class="wrap wp100 receiveWrap">
+            </div>
 
-		<body class="rpReceive-bg">
-			<div class="rpReceive-wrap">
-				<div class="wrap wp100 receiveWrap">
-				</div>
+            <div class="nickname"></div>
+        </div>
 
-				<div class="nickname"></div>
-			</div>
-
-			<div class="popup rpReceivePopup" id="rpReceivePopup">
-				<div class="popup-mask"></div>
-				<div class="popup-body">
-					<div class="icon-close close"></div>
-					<div class="popup-header">
-                        <div class="item active fy_mobile mobile" data-type="mobile"></div>
-                        <div class="item fy_email email" data-type="email"></div>
-					</div>
-					<div class="popup-content login-wrap">
-						<form id="formWrapperMobile" class="form-wrapper">
-				            <div class="form-item form-mobile form-mobile-wrap">
-				                <div class="am-flexbox">
-				                	<div class="national-select">
-				                		<span id="interCode"></span>
-				                	</div>
-				                    <input type="text" pattern="[0-9]*" placeholder="" id="mobile" name="mobile" class="input-item"/>
-				                </div>
-				            </div>
-                            <div class="form-item form-mobile">
-                                <div class="am-flexbox">
-                                    <div class="national-select">
-                                        <span class="fy_mima"></span>
-                                    </div>
-                                    <input type="password" placeholder="" name="password" class="input-item password"/>
+        <div class="popup rpReceivePopup" id="rpReceivePopup">
+            <div class="popup-mask"></div>
+            <div class="popup-body">
+                <div class="icon-close close"></div>
+                <div class="popup-header">
+                    <div class="item active fy_mobile mobile" data-type="mobile"></div>
+                    <div class="item fy_email email" data-type="email"></div>
+                </div>
+                <div class="popup-content login-wrap">
+                    <form id="formWrapperMobile" class="form-wrapper">
+                        <div class="form-item form-mobile form-mobile-wrap">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span id="interCode"></span>
                                 </div>
+                                <input type="text" pattern="[0-9]*" placeholder="" id="mobile" name="mobile" class="input-item"/>
                             </div>
-				        </form>
-                        <form id="formWrapperEmail" class="form-wrapper hidden">
-                            <div class="form-item form-mobile form-email-wrap">
-                                <div class="am-flexbox">
-                                    <div class="national-select">
-                                        <span class="fy_email"></span>
-                                    </div>
-                                    <input type="text" placeholder="" id="email" name="email" class="input-item"/>
+                        </div>
+                        <div class="form-item form-mobile">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_mima"></span>
                                 </div>
+                                <input type="password" placeholder="" name="password" class="input-item password"/>
                             </div>
-                            <div class="form-item form-mobile">
-                                <div class="am-flexbox">
-                                    <div class="national-select">
-                                        <span class="fy_mima"></span>
-                                    </div>
-                                    <input type="password" placeholder="" name="password" class="input-item password"/>
+                        </div>
+                    </form>
+                    <form id="formWrapperEmail" class="form-wrapper hidden">
+                        <div class="form-item form-mobile form-email-wrap">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_email"></span>
                                 </div>
+                                <input type="text" placeholder="" id="email" name="email" class="input-item"/>
                             </div>
-                        </form>
-				        <div class="login-btn wp100">
-				            <button id="loginBtn" class="am-button am-button-primary wp100"></button>
-				        </div>
-					</div>
-				</div>
-			</div>
-			<div class="popup countryPopup hidden" id="countryPopup">
-				<div class="popup-header">
-					<div class="icon-return close"></div>
-				</div>
-				<div class="popup-content" id="countryList">
-				</div>
-			</div>
+                        </div>
+                        <div class="form-item form-mobile">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_mima"></span>
+                                </div>
+                                <input type="password" placeholder="" name="password" class="input-item password"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="login-btn wp100">
+                        <button id="loginBtn" class="am-button am-button-primary wp100"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup countryPopup hidden" id="countryPopup">
+            <div class="popup-header">
+                <div class="icon-return close"></div>
+            </div>
+            <div class="popup-content" id="countryList">
+            </div>
+        </div>
 
-			<link rel="import" href="../footer.html?__inline">
-			<script>
-				require(['app/controller/redPacket/Receive']);
-			</script>
-		</body>
+        <link rel="import" href="../footer.html?__inline">
+        <script>
+            require(['app/controller/redPacket/Receive']);
+        </script>
+    </body>
 
 </html>
