@@ -16,7 +16,15 @@
     </div>
     <div class="slogan"></div>
     <div class="register-from">
-        <form id="formWrapper" class="form-wrapper wp100">
+        <div class="chan-box">
+            <div class="chan-left set-chan">
+                手机注册
+            </div>
+            <div class="chan-right">
+                邮箱注册
+            </div>
+        </div>
+        <form id="formWrapper" class="form-wrapper wp100 hidden">
             <div class="form-item form-mobile">
                 <div class="am-flexbox">
                     <div class="over-hide" id="country-wrap">
@@ -33,11 +41,41 @@
                 <div class="am-flexbox">
                     <div class="input-item smsCaptcha-item"><input type="text" placeholder="" id="smsCaptcha"
                                                                    name="smsCaptcha" pattern="[0-9]*"/></div>
-                    <button class="item-button smsCaptcha-btn am-button am-button-small am-button-ghost"
+                    <button class="item-button smsCaptcha-btn am-button am-button-small"
                             id="getVerification"></button>
                 </div>
             </div>
         </form>
+        <form id="formWrapper1" class="form-wrapper form-wrapper2 wp100 hidden">
+            <div class="form-item form-mobile">
+                <div class="am-flexbox">
+                    <input type="text" placeholder="请输入您的账号密码" id="zhpas" required class="input-item"/>
+                </div>
+            </div>
+            <div class="form-item form-mobile">
+                <div class="am-flexbox">
+                    <input type="text" placeholder="请确认您的账号密码" id="qr_zhpas" required class="input-item"/>
+                </div>
+            </div>
+        </form>
+        <form id="formWrapper2" class="form-wrapper form-wrapper3 wp100">
+            <div class="form-item form-mobile">
+                <div class="am-flexbox">
+                    <input type="text" placeholder="请输入您的资金密码" id="zjpas" required class="input-item"/>
+                </div>
+            </div>
+            <div class="form-item form-mobile">
+                <div class="am-flexbox">
+                    <input type="text" placeholder="请确认您的资金密码" id="qr_zjpas" required class="input-item"/>
+                </div>
+            </div>
+        </form>
+        <div class="smsCaptcha-box hidden">
+            <p>验证码已通过短信的形式发送到<span class="sms-mob">13516726254</span>手机上</p>
+        </div>
+        <div class="next-to hidden">
+            <span>下一步</span><i></i>
+        </div>
         <div class="btnWrap">
             <button id="subBtn" class="am-button wp100"></button>
         </div>

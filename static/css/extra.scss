@@ -534,14 +534,13 @@ label.error{
             border-radius: .08rem;
             padding: .26rem .3rem .26rem 0;
             background-color: transparent;
-            color: #fbaa73;
             overflow: initial;
 
             &.form-btn-item{
                 padding: 0.2rem 0.3rem;
             }
             &:after{
-                border-color: #fbaa73;
+                background-image: url('../images/bhr.png');
             }
 
             .am-flexbox{
@@ -611,12 +610,12 @@ label.error{
                     padding-left: .2rem;
                     color: #fbaa73;
                 }
-                input:-ms-input-placeholder,
+                //input:-ms-input-placeholder,
                 textarea:-ms-input-placeholder {
                     color: #fbaa73;
                 }
 
-                input::-webkit-input-placeholder,
+                //input::-webkit-input-placeholder,
                 textarea::-webkit-input-placeholder {
                     color: #fbaa73;
                 }
@@ -953,13 +952,28 @@ label.error{
         background-color: #fff;
         box-shadow: 0 0 .12rem 0 rgba(62,58,57,0.10);
         border-radius: .24rem;
-        padding: .2rem .4rem .4rem;
+        padding: .66rem .4rem .4rem;
         position: fixed;
         left: .4rem;
         bottom: .8rem;
-
+        .chan-box{
+            width: 100%;
+            display: flex;
+            div{
+                padding-bottom: 0.22rem;
+                font-size: 0.32rem;
+                color: #acacac;
+                width: 50%;
+                text-align: center;
+                border-bottom: 0.02rem solid transparent;
+            }
+            .set-chan{
+                color: #0064ff;
+                border-color: #0064ff;
+            }
+        }
         .form-wrapper{
-            margin-top: 0;
+            margin-top: 0.2rem;
 
             .form-item{
                 padding: .26rem 0;
@@ -970,20 +984,28 @@ label.error{
             }
 
             .form-item .smsCaptcha-btn{
-                border: 1px solid #3E3A39;
-                color: #3E3A39;
-                border-radius: .04rem;
+                color: #fff;
                 height: .64rem;
                 line-height: .64rem;
-                font-size: .24rem;
+                font-size: .28rem;
                 width: 2rem;
                 margin-right: .02rem;
-
+                background-image: url('../images/smsback.png');
+                -webkit-background-size: 100% 100%;
+                background-size: 100% 100%;
                 &:disabled{
                     border: 1px solid #ddd;
                     color: #fff;
                 }
             }
+        }
+        .form-wrapper2{
+            margin-top: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .form-wrapper3{
+            margin-top: 0.5rem;
+            margin-bottom: 0.6rem;
         }
 
         .form-item.form-mobile{
@@ -1005,10 +1027,34 @@ label.error{
                 }
             }
         }
-
+        .smsCaptcha-box{
+            width: 70%;
+            margin: 0.42rem auto 0.4rem;
+            padding: 0.33rem 0.42rem;
+            font-size: 0.24rem;
+            color: #0064ff;
+            background-image: url('../images/smsbox.png');
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+        .next-to{
+            text-align: right;
+            color: #0064ff;
+            font-size: 0.32rem;
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                height: 0.25rem;
+                width: 0.24rem;
+                margin-left: 0.1rem;
+                margin-bottom: 0.1rem;
+                background-image: url('../images/rright.png');
+                -webkit-background-size: 100% 100%;
+                background-size: 100% 100%;
+            }
+        }
         .btnWrap{
             margin-top: .52rem;
-
             .am-button{
                 background-image: -webkit-linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
                 background-image: -moz-linear-gradient(-180deg, #F6BB20 0%, #F19001 99%);
