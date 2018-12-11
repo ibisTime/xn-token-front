@@ -10,13 +10,14 @@
 
     <body class="rpReceive-bg">
         <div class="rpReceive-wrap">
+            <div class="logo"><img src="../../images/logo-red.png"></div>
             <div class="wrap wp100 receiveWrap">
             </div>
-
             <div class="nickname"></div>
         </div>
 
-        <div class="popup rpReceivePopup" id="rpReceivePopup">
+        <!-- 登录领取 -->
+        <div class="popup rpReceivePopup hidden" id="rpReceivePopup">
             <div class="popup-mask"></div>
             <div class="popup-body">
                 <div class="icon-close close"></div>
@@ -64,14 +65,76 @@
                     <div class="login-btn wp100">
                         <button id="loginBtn" class="am-button am-button-primary wp100"></button>
                     </div>
+                    <p class="textWrap">
+                        <span class="item register"></span>
+                        <span class="item findPwd"></span>
+                    </p>
+                </div>
+                <div class="popup-footer">
+                    <div class="logo"><img src="../../images/logo-red.png"></div>
                 </div>
             </div>
         </div>
+        <!-- 选择国家 -->
         <div class="popup countryPopup hidden" id="countryPopup">
             <div class="popup-header">
                 <div class="icon-return close"></div>
             </div>
             <div class="popup-content" id="countryList">
+            </div>
+        </div>
+        <!-- 忘记密码 -->
+        <div class="popup rpReceivePopup hidden findPwdPopup" id="findPwdPopup">
+            <div class="popup-body">
+                <div class="icon-close close"></div>
+                <div class="popup-header">
+                    <div class="item active fy_findMobile mobile" data-type="mobile"></div>
+                    <div class="item fy_findEmail email" data-type="email"></div>
+                </div>
+                <div class="popup-content login-wrap">
+                    <form id="findPwdMobileForm" class="form-wrapper">
+                        <div class="form-item form-mobile form-mobile-wrap">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span id="interCode-find"></span>
+                                </div>
+                                <input type="text" pattern="[0-9]*" placeholder="" id="mobile-find" name="mobile" class="input-item"/>
+                            </div>
+                        </div>
+                        <div class="form-item form-mobile">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_mima"></span>
+                                </div>
+                                <input type="password" placeholder="" name="password" class="input-item password"/>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="findPwdEmailForm" class="form-wrapper hidden">
+                        <div class="form-item form-mobile form-email-wrap">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_email"></span>
+                                </div>
+                                <input type="text" placeholder="" id="email-find" name="email" class="input-item"/>
+                            </div>
+                        </div>
+                        <div class="form-item form-mobile">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_mima"></span>
+                                </div>
+                                <input type="password" placeholder="" name="password" class="input-item password"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="nextBtn">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="logo"><img src="../../images/logo-red.png"></div>
+                </div>
             </div>
         </div>
 

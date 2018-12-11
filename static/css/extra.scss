@@ -145,6 +145,13 @@ label.error{
     -webkit-transform: translate(-50%, -50%);
     text-align: center;
 
+    .logo{
+        margin-top: .5rem;
+        img{
+            height: 2rem;
+        }
+    }
+
     .photo{
         width: 1.34rem;
         height: 1.34rem;
@@ -163,9 +170,6 @@ label.error{
             background-repeat: no-repeat;
             border: .06rem solid #f8991a;
         }
-    }
-    .receiveWrap{
-        margin-top: 3.3rem;
     }
     .nickname{
         height: .4rem;
@@ -500,6 +504,7 @@ label.error{
 .rpReceivePopup{
     label.error {
         color: #333;
+        right: 0;
     }
     .popup-body{
         background-image: url('../images/红包弹窗背景@2x.png');
@@ -521,6 +526,52 @@ label.error{
                 &.active{
                     border-bottom: 0.04rem solid #fbaa73;
                 }
+            }
+        }
+        .popup-content {
+            .textWrap{
+                text-align: center;
+                margin-top: 0.2rem;
+                .item{
+                    display: inline-block;
+                    height: 0.26rem;
+                    line-height: 0.26rem;
+                    font-size: 0.24rem;
+                    color: #fbaa73;
+
+                    &:first-child{
+                        padding-right: 0.15rem;
+                        margin-right: 0.1rem;
+                        border-right: 1px solid #fbaa73;
+                    }
+                }
+            }
+        }
+        .popup-footer{
+            width: 100%;
+            position: absolute;
+            bottom: .6rem;
+            left: 0;
+            text-align: center;
+            img{
+                vertical-align: bottom;
+                height: 2rem;
+            }
+        }
+    }
+}
+.findPwdPopup{
+    z-index: 1000;
+    .popup-content{
+        .nextBtn{
+            width: 100%;
+            margin-top: 1rem;
+            p{
+                font-size: .3rem;
+                color: #fbaa73;
+                display: inline-block;
+                overflow: hidden;
+                float: right;
             }
         }
     }

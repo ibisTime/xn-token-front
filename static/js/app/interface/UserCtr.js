@@ -18,9 +18,9 @@ define([
     	getListCountry(){
     		return Ajax.get("801120", {status: 1}, true, true);
     	},
-    	// 短信验证码登录
+    	// 登录
     	login(config) {
-    		return Ajax.get("805044", config, true, true);
+    		return Ajax.get("805051", config, true, true);
     	},
     	// 获取用户信息
     	getUserInfo(userId){
