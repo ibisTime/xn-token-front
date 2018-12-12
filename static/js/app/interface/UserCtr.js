@@ -18,6 +18,14 @@ define([
     	getListCountry(){
     		return Ajax.get("801120", {status: 1}, true, true);
     	},
+      // 短信注册
+      mobileRegister(config) {
+        return Ajax.get("805045", config, true, true);
+      },
+      // 邮箱注册
+      emailRegister(config) {
+        return Ajax.get("805046", config, true, true);
+      },
     	// 登录
     	login(config) {
     		return Ajax.get("805051", config, true, true);
@@ -28,5 +36,17 @@ define([
     			userId
     		}, true);
     	},
+      // 找回密码
+      getUserPass(config){
+        return Ajax.get("805076", config, true, true);
+      },
+      // 获取攻略详情
+      getStrategy(config){
+        return Ajax.get("625468", config, true, true);
+      },
+      // 攻略点赞
+      getLink(config){
+        return Ajax.get("625464", config, true, true);
+      }
     };
-})
+});

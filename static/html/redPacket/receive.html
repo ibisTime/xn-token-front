@@ -17,20 +17,20 @@
         </div>
 
         <!-- 登录领取 -->
-        <div class="popup rpReceivePopup hidden" id="rpReceivePopup">
-            <div class="popup-mask"></div>
-            <div class="popup-body">
+        <div class="popup rpReceivePopup hidden" id="rpReceivePopup" style="z-index: 800;">
+            <div class="popup-mask" style="z-index: 800;"></div>
+            <div class="popup-body" style="z-index: 800;">
                 <div class="icon-close close"></div>
                 <div class="popup-header">
                     <div class="item active fy_mobile mobile" data-type="mobile"></div>
                     <div class="item fy_email email" data-type="email"></div>
                 </div>
                 <div class="popup-content login-wrap">
-                    <form id="formWrapperMobile" class="form-wrapper">
+                    <form id="formWrapperMobile" class="form-wrapper form-color">
                         <div class="form-item form-mobile form-mobile-wrap">
                             <div class="am-flexbox">
                                 <div class="national-select">
-                                    <span id="interCode"></span>
+                                    <span id="interCode" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="text" pattern="[0-9]*" placeholder="" id="mobile" name="mobile" class="input-item"/>
                             </div>
@@ -38,17 +38,17 @@
                         <div class="form-item form-mobile">
                             <div class="am-flexbox">
                                 <div class="national-select">
-                                    <span class="fy_mima"></span>
+                                    <span class="fy_mima" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="password" placeholder="" name="password" class="input-item password"/>
                             </div>
                         </div>
                     </form>
-                    <form id="formWrapperEmail" class="form-wrapper hidden">
+                    <form id="formWrapperEmail" class="form-wrapper form-color hidden">
                         <div class="form-item form-mobile form-email-wrap">
                             <div class="am-flexbox">
                                 <div class="national-select">
-                                    <span class="fy_email"></span>
+                                    <span class="fy_email" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="text" placeholder="" id="email" name="email" class="input-item"/>
                             </div>
@@ -56,7 +56,7 @@
                         <div class="form-item form-mobile">
                             <div class="am-flexbox">
                                 <div class="national-select">
-                                    <span class="fy_mima"></span>
+                                    <span class="fy_mima" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="password" placeholder="" name="password" class="input-item password"/>
                             </div>
@@ -92,42 +92,70 @@
                     <div class="item fy_findEmail email" data-type="email"></div>
                 </div>
                 <div class="popup-content login-wrap">
-                    <form id="findPwdMobileForm" class="form-wrapper">
+                    <!--手机号-->
+                    <form id="findPwdMobileForm" class="form-wrapper form-color">
                         <div class="form-item form-mobile form-mobile-wrap">
                             <div class="am-flexbox">
-                                <div class="national-select">
-                                    <span id="interCode-find"></span>
+                                <div class="national-select" style="width: 1rem; padding: 0;">
+                                    <span id="interCode-find" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="text" pattern="[0-9]*" placeholder="" id="mobile-find" name="mobile" class="input-item"/>
                             </div>
                         </div>
-                        <div class="form-item form-mobile">
+                        <div class="form-item form-mobile" style="padding-right: 0;">
                             <div class="am-flexbox">
-                                <div class="national-select">
-                                    <span class="fy_mima"></span>
+                                <div class="national-select" style="width: 1rem; padding: 0;">
+                                    <span class="fy_yzm" style="color: #fbaa73;"></span>
                                 </div>
-                                <input type="password" placeholder="" name="password" class="input-item password"/>
+                                <input type="text" placeholder="" name="smsCaptcha" id="smsCaptcha" class="input-item smscap" style="width: 55%; margin-right: 0.1rem;"/>
+                                <button class="item-button smsCaptcha-btn am-button-small"
+                                        id="verification" style="background-color: #cf262b; color: #fbaa73;"></button>
                             </div>
                         </div>
                     </form>
-                    <form id="findPwdEmailForm" class="form-wrapper hidden">
+                    <!--邮箱-->
+                    <form id="findPwdEmailForm" class="form-wrapper form-color hidden">
                         <div class="form-item form-mobile form-email-wrap">
                             <div class="am-flexbox">
-                                <div class="national-select">
-                                    <span class="fy_email"></span>
+                                <div class="national-select" style="width: 1rem; padding: 0;">
+                                    <span class="fy_email" style="color: #fbaa73;"></span>
                                 </div>
                                 <input type="text" placeholder="" id="email-find" name="email" class="input-item"/>
                             </div>
                         </div>
-                        <div class="form-item form-mobile">
+                        <div class="form-item form-mobile" style="padding-right: 0;">
                             <div class="am-flexbox">
-                                <div class="national-select">
-                                    <span class="fy_mima"></span>
+                                <div class="national-select" style="width: 1rem; padding: 0;">
+                                    <span class="fy_yzm" style="color: #fbaa73;"></span>
                                 </div>
-                                <input type="password" placeholder="" name="password" class="input-item password"/>
+                                <input type="text" placeholder="" name="smsCaptchaEmail" id="smsCaptchaEmail" class="input-item smscap" style="width: 55%; margin-right: 0.1rem;"/>
+                                <button class="item-button smsCaptcha-btn am-button-small"
+                                        id="getEmailVerification" style="background-color: #cf262b; color: #fbaa73;"></button>
                             </div>
                         </div>
                     </form>
+                    <!--确认密码-->
+                    <form id="qrPwdForm" class="form-wrapper form-color hidden">
+                        <div class="form-item form-mobile form-email-wrap">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_mima" style="color: #fbaa73;"></span>
+                                </div>
+                                <input type="password" placeholder="" id="passmima" name="pass" class="input-item"/>
+                            </div>
+                        </div>
+                        <div class="form-item form-mobile">
+                            <div class="am-flexbox">
+                                <div class="national-select">
+                                    <span class="fy_qrmm" style="color: #fbaa73;"></span>
+                                </div>
+                                <input type="password" placeholder="" name="qrPass" id="qrPassmima" class="input-item"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="login-btn wp100 hidden">
+                        <button id="qrBtn" class="am-button am-button-primary wp100"></button>
+                    </div>
                     <div class="nextBtn">
                         <p></p>
                     </div>

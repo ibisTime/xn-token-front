@@ -12,8 +12,9 @@ define([
          * @config: {bizType, mobile, interCode, sendCode}
          * */
         sendCaptcha(sendCode, config) {
-        	if(sendCode=="805952"){
-        		config.email = config.mobile
+        	if(sendCode=="805954"){
+        		config.email = config.mobile;
+            delete config.mobile;
         	}else{
         		config.mobile = config.mobile
         	}

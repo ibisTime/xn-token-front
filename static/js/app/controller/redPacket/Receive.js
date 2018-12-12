@@ -9,6 +9,8 @@ define([
 	var inviteCode = base.getUrlParam('inviteCode') || '';// 推荐人编号
 	var lang = base.getUrlParam('lang');
     var timer;
+  var mobileTimer;
+  var emailTimer;
     var receiverList = [];
 	var interCode = '0086'; // 设置默认interCode
 	var firstLoad = true;
@@ -38,14 +40,22 @@ define([
     	$("#mobile").attr("placeholder", base.getText('请输入手机号码', lang));
         $("#mobile-find").attr("placeholder", base.getText('请输入手机号码', lang));
     	$(".form-mobile .password").attr("placeholder", base.getText('请输入登录密码', lang));
+      $(".form-mobile .smscap").attr("placeholder", base.getText('请输入验证码', lang));
         $("#email").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
         $("#email-find").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
-    	$("#getVerification").html(base.getText('获取验证码', lang))
+      $("#passmima").attr("placeholder", base.getText('请输入您的密码', lang));
+      $("#qrPassmima").attr("placeholder", base.getText('请确认您的密码', lang));
+    	$("#getVerification").html(base.getText('获取验证码', lang));
         $("#loginBtn").html(base.getText('领取红包', lang));
     	$("#rpReceivePopup .textWrap .register").html(base.getText('注册新用户', lang) + '&nbsp;>');
         $("#rpReceivePopup .textWrap .findPwd").html(base.getText('忘记密码', lang) + '&nbsp;>');
         $(".fy_mima").html(base.getText('密码', lang));
-        $("#findPwdPopup .popup-content .nextBtn p").html(base.getText('下一步', lang) + '&nbsp;>');
+      $(".fy_qrmm").html(base.getText('确认密码', lang));
+      $(".fy_yzm").html(base.getText('验证码', lang));
+      $("#findPwdPopup .popup-content .nextBtn p").html(base.getText('下一步', lang) + '&nbsp;>');
+      $("#verification").html(base.getText('获取验证码',lang));
+      $("#getEmailVerification").html(base.getText('获取验证码',lang));
+      $("#qrBtn").html(base.getText('确认', lang));
 
 
     	base.showLoading();
@@ -61,15 +71,15 @@ define([
     	return RedPacketCtr.getRedPacketDetail({code, userId: base.getUserId()}).then((data) => {
     		base.hideLoading();
     		receiverList = data.receiverList || [];
-    		$(".rpReceive-wrap .nickname").html(`<i>${data.sendUserNickname}</i> ${base.getText('给您发了一个红包')}`);
+    		$(".rpReceive-wrap .nickname").html(`<i>${data.sendUserNickname}</i> ${base.getText('给您发了一个红包', lang)}`);
     		$(".rpReceive-wrap .photo div").css({"background-image": "url('"+base.getAvatar(data.sendUserPhoto)+"')"});
 
     		if (data.status == '0' || data.status == '1') {
     			var openBtnHtml = '';
     			if(data.isReceived === '1') {
-	    			openBtnHtml = base.getText('已抢');
+	    			openBtnHtml = base.getText('已抢', lang);
 	    		} else {
-	    			openBtnHtml = base.getText('开');
+	    			openBtnHtml = base.getText('开', lang);
 	    		}
     			$(".receiveWrap").html(`
 					<div class="txt2">${data.greeting}</div>
@@ -206,6 +216,57 @@ define([
             onkeyup: false
         });
 
+      var _findPwdMobileForm = $("#findPwdMobileForm");
+      var findPwdMobileData = null;
+      _findPwdMobileForm.validate({
+        'rules': {
+          mobile: {
+            required: true,
+            number: true
+          },
+          smsCaptcha: {
+            required: true
+          }
+        },
+        onkeyup: false
+      });
+      // 手机号验证码
+      mobileTimer = smsCaptcha.init({
+        id: "verification",
+        bizType: '805076',
+        mobile: 'mobile-find',
+        sendCode: '805953'
+      });
+
+      var _findPwdEmailForm = $("#findPwdEmailForm");
+      var findPwdEmailData = null;
+      _findPwdEmailForm.validate({
+        'rules': {
+          email: {
+            required: true,
+            email: true
+          },
+          smsCaptchaEmail: {
+            required: true
+          }
+        },
+        onkeyup: false
+      });
+
+      var _qrPwdForm = $("#qrPwdForm");
+      var qrPwdData = null;
+      _qrPwdForm.validate({
+        'rules': {
+          pass: {
+            required: true
+          },
+          qrPass: {
+            required: true
+          }
+        },
+        onkeyup: false
+      });
+
         // 领取
     	$("#loginBtn").click(function(){
             var params = {};
@@ -213,7 +274,7 @@ define([
             if(type === 'mobile') {
                 if (_mobileForm.valid()) {
                     var data = _mobileForm.serializeObject();
-                    params.loginName = $("#interCode").attr("code") + '' + data.mobile;
+                    params.loginName = $("#interCode").attr("value") + '' + data.mobile;
                     params.loginPwd = data.password;
                     base.showLoading();
                     login(params);
@@ -247,7 +308,7 @@ define([
         // 国家弹窗 - 点击
     	$("#countryList").on("click", ".country-list", function(){
     		lang = $(this).attr("data-lang");
-    		interCode = $(this).attr("data-value")
+    		interCode = $(this).attr("data-value");
     		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": "url('"+base.getImg($(this).attr("data-pic"))+"')"});
@@ -264,10 +325,10 @@ define([
 			if (thisType !== type) {
                 type = thisType;
                 if (thisType === 'mobile') {
-                    $('#formWrapperEmail').addClass('hidden');
+                    $('#formWrapperEmail').addClass('hidden').validate().resetForm();
                     $('#formWrapperMobile').removeClass('hidden');
                 } else if (thisType === 'email') {
-                    $('#formWrapperMobile').addClass('hidden');
+                    $('#formWrapperMobile').addClass('hidden').validate().resetForm();
                     $('#formWrapperEmail').removeClass('hidden');
                 }
             }
@@ -275,7 +336,9 @@ define([
 
         // 登录弹窗-注册
         $("#rpReceivePopup .textWrap .register").click(function () {
-            base.gohref('../user/register.html?inviteCode='+ inviteCode);
+        		var uhref = location.href;
+        		sessionStorage.setItem('uhref', uhref);
+            base.gohref('../user/register.html?inviteCode='+ inviteCode, lang);
         })
 
         //  登录弹窗-找回密码
@@ -297,13 +360,96 @@ define([
             if (thisType !== findType) {
                 findType = thisType;
                 if (thisType === 'mobile') {
-                    $('#findPwdEmailForm').addClass('hidden');
+                    $('#findPwdEmailForm').addClass('hidden').validate().resetForm();
                     $('#findPwdMobileForm').removeClass('hidden');
+                    $('#email-find').val('');
+                    $('#smsCaptchaEmail').val('');
+                    findPwdEmailData = null;
                 } else if (thisType === 'email') {
-                    $('#findPwdMobileForm').addClass('hidden');
+                    // 邮箱验证码
+                    emailTimer = smsCaptcha.init({
+                      id: "getEmailVerification",
+                      bizType: '805076',
+                      mobile: 'email-find',
+                      sendCode: '805954'
+                    });
+                    $('#findPwdMobileForm').addClass('hidden').validate().resetForm();
                     $('#findPwdEmailForm').removeClass('hidden');
+                    $('#mobile-find').val('');
+                    $('#smsCaptcha').val('');
+                    findPwdMobileData = null;
                 }
+              $('#qrPwdForm').addClass('hidden');
+							$('#passmima').val('');
+              $('#qrPassmima').val('');
             }
-        })
+        });
+
+    		// 找回密码--下一步
+				$('.nextBtn p').click(function() {
+					if($('.fy_findMobile').hasClass('active')) {
+						if(_findPwdMobileForm.valid()) {
+              findPwdMobileData = _findPwdMobileForm.serializeObject();
+              $('#findPwdEmailForm').addClass('hidden');
+              $('#findPwdMobileForm').addClass('hidden');
+              $('#qrPwdForm').removeClass('hidden');
+              $('.nextBtn').addClass('hidden');
+              $('.login-btn').removeClass('hidden');
+						}
+					}else {
+            if(_findPwdEmailForm.valid()) {
+              findPwdEmailData = _findPwdEmailForm.serializeObject();
+              $('#findPwdEmailForm').addClass('hidden');
+              $('#findPwdMobileForm').addClass('hidden');
+              $('#qrPwdForm').removeClass('hidden');
+              $('.nextBtn').addClass('hidden');
+              $('.login-btn').removeClass('hidden');
+            }
+					}
+				});
+
+				// 找回密码 - 确认
+				$('#qrBtn').click(function() {
+					let params = {};
+          if(_qrPwdForm.valid()) {
+          	if($('#passmima').val() !== $('#qrPassmima').val()) {
+          		base.showMsg(base.getText('密码不一致，请重新输入', lang));
+              $('#passmima').val('');
+              $('#qrPassmima').val('');
+              return;
+						}
+            qrPwdData = _qrPwdForm.serializeObject();
+            console.log(findPwdEmailData, findPwdMobileData, qrPwdData);
+          	if(findPwdMobileData) {
+          		params.loginName = $("#interCode-find").attr("value") + findPwdMobileData.mobile;
+          		params.smsCaptcha = findPwdMobileData.smsCaptcha;
+          		params.newLoginPwd = qrPwdData.qrPass;
+						}else {
+              params.loginName = findPwdEmailData.email;
+              params.smsCaptcha = findPwdEmailData.smsCaptchaEmail;
+              params.newLoginPwd = qrPwdData.qrPass;
+						}
+            base.showLoading();
+            UserCtr.getUserPass(params).then(data => {
+              base.hideLoading();
+              base.showMsg(base.getText('重置密码成功', lang));
+              clearInterval(emailTimer);
+              clearInterval(mobileTimer);
+              setTimeout(() => {
+                window.location.reload();
+              }, 1200);
+            }, (err) => {
+              base.hideLoading();
+              return;
+              if(err === base.getText('用户不存在,请先注册', lang)) {
+                var uhref = location.href;
+                sessionStorage.setItem('uhref', uhref);
+                setTimeout(() => {
+                  base.gohref('../user/register.html?inviteCode='+ inviteCode, lang);
+                }, 1500);
+              };
+            });
+					}
+				});
     }
 });
