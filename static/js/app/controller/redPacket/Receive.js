@@ -39,7 +39,7 @@ define([
         $(".fy_findEmail").html(base.getText('邮箱找回', lang));
     	$("#mobile").attr("placeholder", base.getText('请输入手机号码', lang));
         $("#mobile-find").attr("placeholder", base.getText('请输入手机号码', lang));
-    	$(".form-mobile .password").attr("placeholder", base.getText('请输入登录密码', lang));
+    	$(".form-mobile .password").attr("placeholder", base.getText('请输入账号登录密码', lang));
       $(".form-mobile .smscap").attr("placeholder", base.getText('请输入验证码', lang));
         $("#email").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
         $("#email-find").attr("placeholder", base.getText('请输入您的邮箱账号', lang));
@@ -55,7 +55,7 @@ define([
       $("#findPwdPopup .popup-content .nextBtn p").html(base.getText('下一步', lang) + '&nbsp;>');
       $("#verification").html(base.getText('获取验证码',lang));
       $("#getEmailVerification").html(base.getText('获取验证码',lang));
-      $("#qrBtn").html(base.getText('确认', lang));
+      $("#qrBtn").html(base.getText('确定', lang));
 
 
     	base.showLoading();
@@ -155,7 +155,7 @@ define([
     		if(firstLoad){
 	    		$("#nationalFlag").css({"background-image": "url('"+base.getImg(countryPic)+"')"});
 	    		$("#interCode").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
-                $("#interCode-find").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
+	    		$("#interCode-find").text('+' + interCode.substring(2)).attr("value", interCode).attr("code", firstCode);
 				firstLoad = false;
     		}
     	}, base.hideLoading);
@@ -298,12 +298,17 @@ define([
         // 国家弹窗- 关闭
     	$("#countryPopup .close").click(function() {
     		$("#countryPopup").addClass("hidden");
-    	})
+    	});
 
         // 国家选择 点击
     	$("#interCode").click(() => {
     		$("#countryPopup").removeClass("hidden");
-    	})
+    	});
+
+      // 国家选择 点击
+      $("#interCode-find").click(() => {
+        $("#countryPopup").removeClass("hidden");
+      });
 
         // 国家弹窗 - 点击
     	$("#countryList").on("click", ".country-list", function(){
@@ -312,7 +317,8 @@ define([
     		setHtml();
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": "url('"+base.getImg($(this).attr("data-pic"))+"')"});
-    		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
+        $("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
+        $("#interCode-find").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
     		$("#countryPopup").addClass("hidden");
     	})
 

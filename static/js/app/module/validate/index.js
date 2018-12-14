@@ -71,10 +71,10 @@
         return this.optional(element) || /^[1-9]\d*$/.test(value);
     }, '请输入正整数');
     //邮箱
-    jQuery.validator.addMethod("mail", function(value, element) {
+    jQuery.validator.addMethod("email", function(value, element) {
         var mail = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$/;
         return this.optional(element) || (mail.test(value));
-    }, "邮箱格式错误");
+    }, LANGUAGE["邮箱格式错误"][NOWLANG]);
 
     //电话验证规则
     jQuery.validator.addMethod("phone", function(value, element) {
@@ -98,7 +98,7 @@
     jQuery.validator.addMethod("mobile", function(value, element) {
         var mobile = /^1[3|4|5|7|8|9]\d{9}$/;
         return this.optional(element) || (mobile.test(value));
-    }, "手机格式错误");
+    }, LANGUAGE["手机格式错误"][NOWLANG]);
 
     //邮箱或手机验证规则
     jQuery.validator.addMethod("mm", function(value, element) {

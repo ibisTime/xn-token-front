@@ -35,10 +35,10 @@ define([
       $("#email").attr("placeholder", base.getText('请输入邮箱号',lang));
     	$("#smsCaptcha").attr("placeholder", base.getText('请输入验证码',lang));
       $("#smsCaptchaEmail").attr("placeholder", base.getText('请输入验证码',lang));
-      $("#zhpas").attr("placeholder", base.getText('请输入您的账号密码',lang));
-      $("#qr_zhpas").attr("placeholder", base.getText('请确认您的账号密码',lang));
-      $("#zjpas").attr("placeholder", base.getText('请输入您的资金密码',lang));
-      $("#qr_zjpas").attr("placeholder", base.getText('请确认您的资金密码',lang));
+      $("#zhpas").attr("placeholder", base.getText('请输入账号登录密码',lang));
+      $("#qr_zhpas").attr("placeholder", base.getText('请确认账号登录密码',lang));
+      $("#zjpas").attr("placeholder", base.getText('请输入账号资金密码',lang));
+      $("#qr_zjpas").attr("placeholder", base.getText('请确认账号资金密码',lang));
     	$("#getVerification").html(base.getText('获取验证码',lang));
       $("#getEmailVerification").html(base.getText('获取验证码',lang));
     	$("#subBtn").html(base.getText('立即注册',lang));

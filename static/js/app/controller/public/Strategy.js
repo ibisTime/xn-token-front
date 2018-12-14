@@ -10,7 +10,7 @@ define([
 	var channel = base.getUrlParam('channel') || 'theia';
 	var firstLoad = true;
 	var langValue = '';
-	var strategyID = base.getUrlParam('strategyID') || '8';
+	var strategyID = base.getUrlParam('strategyID') || '';
   var userId = base.getUrlParam('userId') || base.getUserId();
   var params = {
     id: strategyID
@@ -59,7 +59,7 @@ define([
     function addListener(){
       $('.gl-dz').click(function() {
 
-        if(userId) {
+        if(userId && userId !== 'undefined') {
           if(isLike === '1') {  // 点过赞
             UserCtr.getLink({
               id: strategyID,
