@@ -1480,10 +1480,12 @@ label.error{
                 -webkit-border-radius: 0.6rem;
                 -moz-border-radius: 0.6rem;
                 border-radius: 0.6rem;
+                overflow: hidden;
+                vertical-align: middle;
                 i{
                     display: inline-block;
                     width: 0.28rem;
-                    height: 0.28rem;
+                    height: 0.26rem;
                     -webkit-background-size: 100% 100%;
                     background-size: 100% 100%;
                 }

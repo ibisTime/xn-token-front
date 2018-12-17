@@ -45,11 +45,11 @@ define([
         $('.gl-txt').html(data.content);
         $('.dz-num').html(likeCount);
         $('.lr-num').html(parseInt(data.scanCountFake) + parseInt(data.scanCount));
-        $('.gl-tit').html(base.getText(data.title, lang));
+        $('.gl-tit').html(data.title);
         $('.zzm').html(data.author);
         var spHtml = '';
         data.labelList.forEach(item => {
-          spHtml += `<span>${base.getText(item)}</span>`
+          spHtml += `<span>${item}</span>`
         });
         $('.gl-btns').html(spHtml);
         base.hideLoading();
