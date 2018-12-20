@@ -682,6 +682,28 @@ label.error{
                 width: 1.6rem;
             }
         }
+        .paw-box p{
+          font-size: 0.24rem;
+          color: #666;
+          padding-left: 0.2rem;
+        }
+        .paw-box {
+          i{
+            display: inline-block;
+            width: 0.2rem;
+            height: 0.2rem;
+            border: 0.01rem solid #ccc;
+            border-radius: 100%;
+          }
+          b{
+            font-size: 0.32rem;
+            color: #333;
+          }
+          .set{
+            background-color: #0064ff;
+            border: none;
+          }
+        }
     }
     .login-btn{
         margin-top: .5rem !important;
@@ -972,6 +994,7 @@ label.error{
 .register-bg{
     width: 100%;
     min-height: 100%;
+    overflow: hidden;
     background-image: url('../images/register-bg@3x.png');
     background-position: bottom;
     background-repeat: no-repeat;
@@ -997,7 +1020,7 @@ label.error{
         letter-spacing: .02rem;
         text-align: center;
         transform: scaleY(1.2);
-        margin-top: .8rem;
+        margin-top: .65rem;
     }
 
     .register-from{
@@ -1515,4 +1538,3 @@ label.error{
         }
     }
 }
-

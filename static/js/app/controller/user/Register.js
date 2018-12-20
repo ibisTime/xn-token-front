@@ -46,6 +46,10 @@ define([
       $(".chan-right").html(base.getText('邮箱注册',lang));
       $(".national-email").html(base.getText('邮箱',lang));
       $(".next-to span").html(base.getText('下一步',lang));
+      $(".paw-ws").html(base.getText('密码位数为8~25位(字母+数字)',lang));
+      $(".paw-xx").html(base.getText('密码中包含小写字母',lang));
+      $(".paw-dx").html(base.getText('密码中包含大写字母',lang));
+      $(".aqjb").html(base.getText('安全级别',lang) + ' <b class="aqtxt"></b>');
     }
 
     // 列表查询国家
@@ -68,7 +72,7 @@ define([
 							<samp>${lang == 'ZH_CN' ? v.chineseName : v.interName} +${v.interCode.substring(2)}</samp>
 							<i class="icon"></i>
 						</div>`;
-    		})
+    		});
     		$("#countryList").html(html);
 
     		$("#nationalFlag").css({"background-image": `url('${base.getImg(countryPic)}')`});
@@ -87,7 +91,9 @@ define([
     		loginParams.loginName = params.countryCode + params.mobile;
         doRegister(params, 'mobile');
         UserCtr.mobileRegister(params).then(data => {
-          doRegister(data);
+          if(data) {
+            doRegister(data);
+          }
 				}, () => {
           $("#getVerification").text(base.getText('获取验证码', lang)).prop("disabled", false);
           clearInterval(timer);
@@ -96,11 +102,13 @@ define([
 			if(type === 'email') {
         loginParams.loginName = params.email;
         UserCtr.emailRegister(params).then(data => {
-          doRegister(data);
+          if(data) {
+            doRegister(data);
+          }
         }, () => {
-          $("#getVerification").text(base.getText('获取验证码', lang)).prop("disabled", false);
+          $("#getEmailVerification").text(base.getText('获取验证码', lang)).prop("disabled", false);
           clearInterval(emailTimer);
-        })
+        });
 			}
     }
 		function doRegister(data) {
@@ -109,11 +117,11 @@ define([
       base.setSessionUser(data);
       var msg = '';
       if(data.isRegister){
-        msg = base.getText("注册成功！",lang);
-      } else {
+        msg = base.getText("注册成功，请前往下载APP！",lang);
+      }else {
         msg = base.getText("您已经是Theia用户，请前往下载APP！",lang);
       }
-      base.confirm(base.getText(msg,lang),base.getText("取消",lang),base.getText("前往下载",lang)).then(function(){
+      base.confirm(msg, base.getText("取消",lang), base.getText("前往下载",lang)).then(function(){
         if(lang == 'ZH_CN'){
           window.location.href = DOWNLOADLINK+'.html';
         } else {
@@ -124,7 +132,7 @@ define([
           base.showLoading();
           window.location.href = uhref;
         }
-      })
+      });
     }
 
     function addListener(){
@@ -155,10 +163,12 @@ define([
       _formWrapper1.validate({
         'rules': {
           zhpas: {
-            required: true
+            required: true,
+            zhpas: true
           },
           qr_zhpas: {
-            required: true
+            required: true,
+            zhpas: true
           }
         },
         onkeyup: false
@@ -166,10 +176,12 @@ define([
       _formWrapper2.validate({
         'rules': {
           zjpas: {
-            required: true
+            required: true,
+            zjpas: true
           },
           qr_zjpas: {
-            required: true
+            required: true,
+            zjpas: true
           }
         },
         onkeyup: false
@@ -223,6 +235,10 @@ define([
               base.showMsg(base.getText('密码不一致，请重新输入', lang));
               $('#zhpas').val('');
               $('#qr_zhpas').val('');
+              $('.aqtxt').text('');
+              $('.jb1').removeClass('set');
+              $('.jb2').removeClass('set');
+              $('.jb3').removeClass('set');
             }else {
               $('#formWrapper2').removeClass('hidden');
               $('#formWrapper1').addClass('hidden');
@@ -256,6 +272,7 @@ define([
 
         // 重置
         formWrapperEmailData = null;
+        $('#mobile').focus();
 			});
 
 			// 邮箱
@@ -287,6 +304,7 @@ define([
 
         // 重置
         formWrapperData = null;
+        $('#email').focus();
       });
 
         // 登录
@@ -296,6 +314,10 @@ define([
             base.showMsg(base.getText('密码不一致，请重新输入', lang));
             $('#zjpas').val('');
             $('#qr_zjpas').val('');
+            $('.aqtxt').text('');
+            $('.jb1').removeClass('set');
+            $('.jb2').removeClass('set');
+            $('.jb3').removeClass('set');
           }else{
             formWrapper2Data = _formWrapper2.serializeObject();
             if(formWrapperData) {  // 手机注册
@@ -343,7 +365,38 @@ define([
     		$("#nationalFlag").css({"background-image": `url('${base.getImg($(this).attr("data-pic"))}')`});
     		$("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
     		$("#countryPopup").addClass("hidden");
-    	})
+    	});
+
+      // 判断密码安全级别
+      let aqpaw = /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/;
+      let dxpaw = /[A-Z]/;
+      let xxpaw = /[a-z]/;
+      $('#zhpas').keyup(function() {
+        let value = $(this).val();
+        if(aqpaw.test(value) && 7 < value.length && value.length < 26) {
+          $('.jb1').addClass('set');
+          if(dxpaw.test(value)) {
+            $('.jb2').addClass('set');
+            $('.aqtxt').text(base.getText('中', lang));
+          }else {
+            $('.jb2').removeClass('set');
+          };
+          if(xxpaw.test(value)) {
+            $('.jb3').addClass('set');
+            $('.aqtxt').text(base.getText('中', lang));
+          }else {
+            $('.jb3').removeClass('set');
+          };
+          if($('.jb1').hasClass('set') && $('.jb2').hasClass('set') && $('.jb3').hasClass('set')) {
+            $('.aqtxt').text(base.getText('高', lang));
+          }
+        }else {
+          $('.aqtxt').text('');
+          $('.jb1').removeClass('set');
+          $('.jb2').removeClass('set');
+          $('.jb3').removeClass('set');
+        }
+      });
 
     }
 });

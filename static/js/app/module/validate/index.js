@@ -67,7 +67,15 @@
         return this.optional(element) || aint > 0;
     }, '请输入大于0的数字');
 
-    $.validator.addMethod("Z+", function(value, element) {
+   jQuery.validator.addMethod("zhpas", function(value, element) {
+     return this.optional(element) || /[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/.test(value) && 7 < value.length && value.length < 26;
+   }, LANGUAGE['密码格式错误'][NOWLANG]);
+
+   jQuery.validator.addMethod("zjpas", function(value, element) {
+     return this.optional(element) || value.length === 6;
+   }, LANGUAGE['资金密码为6位数'][NOWLANG]);
+
+   $.validator.addMethod("Z+", function(value, element) {
         return this.optional(element) || /^[1-9]\d*$/.test(value);
     }, '请输入正整数');
     //邮箱

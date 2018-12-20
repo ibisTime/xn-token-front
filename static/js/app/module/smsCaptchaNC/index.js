@@ -44,7 +44,11 @@ define([
             if(defaultOpt.mobile === 'email' || defaultOpt.mobile === 'email-find') {
               Base.showMsg(`${Base.getText('验证码已通过邮件的形式发送到您的邮箱里', lang)}`);
 						}else {
-              Base.showMsg(`${Base.getText('验证码已通过短信的形式发送到', lang)}${$("#" + defaultOpt.mobile).val()}${Base.getText('手机上', lang)}`);
+            	switch(lang) {
+								case 'ZH_CN': Base.showMsg(`验证码已通过短信的形式发送到${$("#" + defaultOpt.mobile).val()}手机上`);break;
+                case 'EN': Base.showMsg(`验证码已通过短信的形式发送到${$("#" + defaultOpt.mobile).val()}手机上`);break;
+                case 'KO': Base.showMsg(`인증번호가 ${$("#" + defaultOpt.mobile).val()}핸드폰에 문자로 발송되었습니다.`);break;
+							}
 						}
             timer = window.setInterval(() => {
                 if(i > 0){

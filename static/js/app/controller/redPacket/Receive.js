@@ -23,10 +23,10 @@ define([
     	if(!code){
     		return;
     	}
-        sessionStorage.removeItem("l-return", '');
+      sessionStorage.removeItem("l-return", '');
     	setHtml();
-
-        addListener();
+      getListCountry();
+      addListener();
     }
 
     // 设置页面html
@@ -57,13 +57,8 @@ define([
       $("#getEmailVerification").html(base.getText('获取验证码',lang));
       $("#qrBtn").html(base.getText('确定', lang));
 
-
     	base.showLoading();
-
-		$.when(
-    		getRedPacketDetail(),
-    		getListCountry()
-    	)
+      getRedPacketDetail()
     }
 
 	// 获取红包详情
@@ -82,51 +77,51 @@ define([
 	    			openBtnHtml = base.getText('开', lang);
 	    		}
     			$(".receiveWrap").html(`
-					<div class="txt2">${data.greeting}</div>
-					<div class="btn" id="openBtn"><div>${openBtnHtml}</div></div>`);
-    		} else {
-    			var html = ``;
+  					<div class="txt2">${data.greeting}</div>
+  					<div class="btn" id="openBtn"><div>${openBtnHtml}</div></div>`);
+      		} else {
+      			var html = ``;
 
-    			if(data.status == '2') {
-    				html += `<div class="txt3">${base.getText('红包已派完!', lang)}</div>`;
-    			} else {
-    				html += `<div class="txt3">${base.getText('红包已过期!', lang)}</div>`;
-    			}
+      			if(data.status == '2') {
+      				html += `<div class="txt3">${base.getText('红包已派完!', lang)}</div>`;
+      			} else {
+      				html += `<div class="txt3">${base.getText('红包已过期!', lang)}</div>`;
+      			}
 
-    			html += `<div class="goDetail">${base.getText('查看领取情况', lang)}>></div>`;
-    			$(".receiveWrap").html(html);
-    		}
+      			html += `<div class="goDetail">${base.getText('查看领取情况', lang)}>></div>`;
+      			$(".receiveWrap").html(html);
+      		}
 
     		// 打开红包
-	    	$("#openBtn").click(function(){
-
-	    		// 可领取的红包
+        $('.rpReceive-bg #openBtn').click(function() {
+          // 可领取的红包
 	    		if (data.status == '0' || data.status == '1') {
 		    		if(!base.isLogin()){
     					$("#rpReceivePopup").removeClass("hidden");
-		    		}
+		    		}else {
+              receiveRedPacket();
+            }
 	    		}
 	    		// 领取过或 红包不可领取  isReceived 是否抢过该红包:0没抢过1:已抢过
 	    		if(data.isReceived == '1' || data.status == '2' || data.status == '3' || data.status == '4') {
 	    			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
 	    			return;
 	    		}
+        });
 
-	    	})
+        $('.rpReceive-bg .goDetail').click(function() {
+          base.gohref('../redPacket/receive-detail.html?code='+code, lang);
+        });
 
-	    	// 打开红包
-	    	$(".goDetail").click(function(){
-    			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
-	    	})
     	}, base.hideLoading)
     }
 
 	// 领取
     function receiveRedPacket(){
-		RedPacketCtr.receiveRedPacket(code).then(() => {
-			base.hideLoading();
-			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
-		}, base.hideLoading)
+  		RedPacketCtr.receiveRedPacket(code).then(() => {
+  			base.hideLoading();
+  			base.gohref('../redPacket/receive-detail.html?code='+code, lang);
+  		}, base.hideLoading)
     }
 
     // 列表查询国家
@@ -315,6 +310,9 @@ define([
     		lang = $(this).attr("data-lang");
     		interCode = $(this).attr("data-value");
     		setHtml();
+    		if($(this).index() > 0) {
+    		  $('.popup-header').css('font-size', '0.3rem');
+        }
     		$(this).addClass("on").siblings('.country-list').removeClass('on');
     		$("#nationalFlag").css({"background-image": "url('"+base.getImg($(this).attr("data-pic"))+"')"});
         $("#interCode").text("+"+$(this).attr("data-value").substring(2)).attr("value", $(this).attr("data-value")).attr("code", $(this).attr("data-code"));
