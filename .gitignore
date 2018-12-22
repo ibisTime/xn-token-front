@@ -1,5 +1,5 @@
 /dist/
-.zip/
+dist.zip
 .project
 .idea/
 static/node_modules/

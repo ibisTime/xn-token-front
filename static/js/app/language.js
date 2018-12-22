@@ -240,6 +240,11 @@ var LANGUAGE = {
 		'EN': 'Register successfully',
 		'KO': '가입성공',
 	},
+	'注册成功，请前往下载APP！':{
+		'ZH_CN': '注册成功，请前往下载APP！',
+		'EN': 'Register successfully, please go download the App! ',
+		'KO': '가입성공. App을 다운로드하시오',
+	},
 	'您已经是Theia用户，请前往下载APP！':{
 		'ZH_CN': '您已经是Theia用户，请前往下载APP！',
 		'EN': 'You are alredy registered with Theia, please go download the App! ',
@@ -397,12 +402,12 @@ var LANGUAGE = {
     },
 	'手机找回': {
         'ZH_CN': '手机找回',
-        'EN': 'Mobile recovery',
+        'EN': 'Mobile',
         'KO': '핸드폰 회복',
     },
     '邮箱找回': {
         'ZH_CN': '邮箱找回',
-        'EN': 'Email recovery',
+        'EN': 'Email',
         'KO': '이메일 회복',
     },
 	'下一步': {
@@ -423,11 +428,11 @@ var LANGUAGE = {
   '密码格式错误': {
     'ZH_CN': '密码格式错误',
     'EN': 'error',
-    'KO': '잘못',
+    'KO': '형식 오류',
   },
 	'密码不一致，请重新输入': {
 		'ZH_CN': '密码不一致，请重新输入',
-		'EN': '',
+		'EN': 'Password is inconsistent, please re-enter',
 		'KO': '비밀번호가 일치하지 않습니다. 다시 입력해주십시오.',
 	},
   '请输入邮箱号': {
@@ -497,12 +502,12 @@ var LANGUAGE = {
   },
   '还请登录后进行操作': {
     'ZH_CN': '还请登录后进行操作',
-    'EN': 'Please log in and operate',
+    'EN': 'Please also log in after the operation',
     'KO': '접속후 조작해 주시기 바랍니다',
   },
   '验证码已通过邮件的形式发送到您的邮箱里': {
     'ZH_CN': '验证码已通过邮件的形式发送到您的邮箱里',
-    'EN': 'The verification code has been sent to your mailbox by mail',
+    'EN': 'The verification code has been sent to your mailbox in the form of a message',
     'KO': '인증번호가 이메일로 발송되었습니다.',
   },
   '密码位数为8~25位(字母+数字)': {

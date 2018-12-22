@@ -253,10 +253,12 @@ define([
       _qrPwdForm.validate({
         'rules': {
           pass: {
-            required: true
+            required: true,
+            zhpas: true
           },
           qrPass: {
-            required: true
+            required: true,
+            zhpas: true
           }
         },
         onkeyup: false

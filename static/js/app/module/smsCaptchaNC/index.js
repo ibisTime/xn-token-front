@@ -46,7 +46,7 @@ define([
 						}else {
             	switch(lang) {
 								case 'ZH_CN': Base.showMsg(`验证码已通过短信的形式发送到${$("#" + defaultOpt.mobile).val()}手机上`);break;
-                case 'EN': Base.showMsg(`验证码已通过短信的形式发送到${$("#" + defaultOpt.mobile).val()}手机上`);break;
+                case 'EN': Base.showMsg(`The verification code has been sent to the ${$("#" + defaultOpt.mobile).val()} phone via SMS`);break;
                 case 'KO': Base.showMsg(`인증번호가 ${$("#" + defaultOpt.mobile).val()}핸드폰에 문자로 발송되었습니다.`);break;
 							}
 						}

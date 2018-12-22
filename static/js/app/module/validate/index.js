@@ -72,7 +72,7 @@
    }, LANGUAGE['密码格式错误'][NOWLANG]);
 
    jQuery.validator.addMethod("zjpas", function(value, element) {
-     return this.optional(element) || value.length === 6;
+     return this.optional(element) || /^[1-9]\d*$/.test(value) && value.length === 6;
    }, LANGUAGE['资金密码为6位数'][NOWLANG]);
 
    $.validator.addMethod("Z+", function(value, element) {

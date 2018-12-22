@@ -695,6 +695,17 @@ label.error{
             border: 0.01rem solid #ccc;
             border-radius: 100%;
           }
+          .p-xx{
+            display: inline-block;
+            width: calc(100% - 0.3rem);
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: middle;
+            text-overflow: ellipsis;
+          }
+          .paw-dx{
+            width: auto;
+          }
           b{
             font-size: 0.32rem;
             color: #333;

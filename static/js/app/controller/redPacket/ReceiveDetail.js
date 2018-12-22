@@ -5,9 +5,9 @@ define([
 ], function(base, GeneralCtr, RedPacketCtr) {
 	var code = base.getUrlParam('code');
 	var downloadUrl;
-    
+
     init();
-    
+
     function init(){
     	if(!code){
     		return;
@@ -15,13 +15,13 @@ define([
     	$("title").html(base.getText('领取红包'));
     	$(".download-footer .txt").html(base.getText('下载Theia钱包，即可提取'));
     	$(".download-footer .am-button").html(base.getText('下载提取'));
-    	
+
     	base.showLoading();
     	getRedPacketDetail();
-    	
+
         addListener();
     }
-    
+
 	// 获取红包详情
     function getRedPacketDetail(){
     	return RedPacketCtr.getRedPacketDetail({code, userId: base.getUserId()}).then((data) => {
@@ -40,7 +40,7 @@ define([
 	    			$(".receivedNum-wrap").html(`<div class="receivedNum">Opened${data.receiverList.length}/${data.sendNum}<div>`);
 	    		}
     		}
-    		
+
     		var html = '';
     		var flag = false;
     		data.receiverList.forEach(item => {
@@ -62,18 +62,18 @@ define([
 			    		}
 		    		}
     			}
-    			
+
     			var bestHtml = '';
     			if(data.bestHandUser == item.userId && data.type == '1' && data.status == '2'){
     				bestHtml = `<div class="isBest"><samp><i></i>${base.getText('手气最佳')}</samp></div>`;
     			}
-    			
+
     			var  countCNY = `<div class="countCNY fr">${base.getText('价值') + item.countCNY}</div>`
-    			
+
     			if(item.countCNY == '0' || item.countCNY == '0.00') {
     				countCNY = '';
     			}
-    			
+
     			html += `<div class="item">
     					<div class="wp100 over-hide wrap">
 							<div class="photo fl" style="background-image: url('${base.getAvatar(item.userPhoto)}')"></div>
@@ -92,14 +92,14 @@ define([
 					</div>`;
     		})
     		$(".receiverList").html(html);
-    		
-    		
+
+
     	}, base.hideLoading)
     }
-    
+
     function addListener(){
     	$("#downloadBtn").click(function(){
-    		
+
     		if(NOWLANG == 'ZH_CN'){
     			base.gohref(DOWNLOADLINK+'.html');
     		} else {

@@ -50,6 +50,10 @@ define([
       $(".paw-xx").html(base.getText('密码中包含小写字母',lang));
       $(".paw-dx").html(base.getText('密码中包含大写字母',lang));
       $(".aqjb").html(base.getText('安全级别',lang) + ' <b class="aqtxt"></b>');
+
+      if(lang === 'EN') {
+        $('#formWrapper1 .paw-box').css('padding-bottom', '0.4rem');
+      }
     }
 
     // 列表查询国家
@@ -89,7 +93,6 @@ define([
 			};
     	if(type === 'mobile') {
     		loginParams.loginName = params.countryCode + params.mobile;
-        doRegister(params, 'mobile');
         UserCtr.mobileRegister(params).then(data => {
           if(data) {
             doRegister(data);
@@ -269,6 +272,10 @@ define([
         $('#qr_zhpas').val('');
         $('#zjpas').val('');
         $('#qr_zjpas').val('');
+        $('.aqtxt').text('');
+        $('.jb1').removeClass('set');
+        $('.jb2').removeClass('set');
+        $('.jb3').removeClass('set');
 
         // 重置
         formWrapperEmailData = null;
@@ -301,6 +308,10 @@ define([
         $('#qr_zhpas').val('');
         $('#zjpas').val('');
         $('#qr_zjpas').val('');
+        $('.aqtxt').text('');
+        $('.jb1').removeClass('set');
+        $('.jb2').removeClass('set');
+        $('.jb3').removeClass('set');
 
         // 重置
         formWrapperData = null;
