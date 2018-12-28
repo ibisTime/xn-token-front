@@ -372,12 +372,12 @@ var LANGUAGE = {
   },
 	'请输入登录密码': {
         'ZH_CN': '请输入登录密码',
-        'EN': 'Enter your login password',
+        'EN': 'Enter passord',
         'KO': '접속 비밀번호 입력',
     },
 	'请输入您的邮箱账号': {
         'ZH_CN': '请输入您的邮箱账号',
-        'EN': 'Please enter your email account',
+        'EN': 'Please enter your email address',
         'KO': '이메일 계정을 입력해 주세요',
     },
 	'邮箱': {
@@ -423,7 +423,7 @@ var LANGUAGE = {
 	'邮箱格式错误': {
 		'ZH_CN': '邮箱格式错误',
 		'EN': 'Mailbox format error',
-		'KO': '이메일 형식이 맞지 않습니다.',
+		'KO': '이메일 형식 오류',
 	},
   '密码格式错误': {
     'ZH_CN': '密码格式错误',
@@ -433,31 +433,31 @@ var LANGUAGE = {
 	'密码不一致，请重新输入': {
 		'ZH_CN': '密码不一致，请重新输入',
 		'EN': 'Password is inconsistent, please re-enter',
-		'KO': '비밀번호가 일치하지 않습니다. 다시 입력해주십시오.',
+		'KO': '비밀번호가 일치하지 않습니다. 다시 입력해주세요.',
 	},
   '请输入邮箱号': {
     'ZH_CN': '请输入邮箱号',
-    'EN': 'Please enter your email number',
+    'EN': 'Please enter your email address',
     'KO': '이메일 형식이 맞지 않습니다.',
   },
   '请输入账号登录密码': {
     'ZH_CN': '请输入账号登录密码',
-    'EN': 'Please enter the account login password',
+    'EN': 'Please enter password',
     'KO': '계좌 접속 비밀번호를 입력해주세요',
   },
   '请确认账号登录密码': {
     'ZH_CN': '请确认账号登录密码',
-    'EN': 'Please confirm the account login password',
+    'EN': 'Please confirm password',
     'KO': '게좌 접속 비밀번호를 확인해주세요',
   },
   '请输入账号资金密码': {
     'ZH_CN': '请输入账号资金密码',
-    'EN': 'Please enter the account fund password',
+    'EN': 'Please enter fund password',
     'KO': '계좌번호 자금 비밀번호를 입력해주세요',
   },
   '请确认账号资金密码': {
     'ZH_CN': '请确认账号资金密码',
-    'EN': 'Please confirm the account fund password',
+    'EN': 'Please confirm fund password',
     'KO': '계좌번호 자금 비밀번호를 확인해주세요',
   },
   '请输入您的密码': {
@@ -503,7 +503,7 @@ var LANGUAGE = {
   '还请登录后进行操作': {
     'ZH_CN': '还请登录后进行操作',
     'EN': 'Please also log in after the operation',
-    'KO': '접속후 조작해 주시기 바랍니다',
+    'KO': '등록 후 사용해주세요',
   },
   '验证码已通过邮件的形式发送到您的邮箱里': {
     'ZH_CN': '验证码已通过邮件的形式发送到您的邮箱里',
@@ -512,7 +512,7 @@ var LANGUAGE = {
   },
   '密码位数为8~25位(字母+数字)': {
     'ZH_CN': '密码位数为8~25位(字母+数字)',
-    'EN': 'The number of passwords is must be 8~25 digits',
+    'EN': 'Passwords must be 8~25 digits(letter + number)',
     'KO': '비밀번호 자릿수는 8~25자리 (알파벳+숫자)',
   },
   '密码中包含小写字母': {
@@ -527,7 +527,7 @@ var LANGUAGE = {
   },
   '资金密码为6位数': {
     'ZH_CN': '资金密码为6位数',
-    'EN': 'The fund password is 6 digits',
+    'EN': 'The fund password must be 6 digits',
     'KO': '자금 비밀번호는 6자리 입니다.',
   },
 	'安全级别': {
