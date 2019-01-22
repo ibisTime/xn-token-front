@@ -214,42 +214,42 @@ define([
         // 验证码下一步
 			$('.next-to span').click(function(){
 				if($('#formWrapper1').hasClass('hidden')) {
-					if($('.chan-right').hasClass('set-chan')) {
-            if(_formWrapperEmail.valid()) {
-              formWrapperEmailData = _formWrapperEmail.serializeObject();
-              $('#formWrapper').addClass('hidden');
-              $('#formWrapperEmail').addClass('hidden');
-              $('.smsCaptcha-box').addClass('hidden');
-              $('#formWrapper1').removeClass('hidden');
-            }
-					}else {
-            if(_formWrapper.valid()) {
-              formWrapperData = _formWrapper.serializeObject();
-              $('#formWrapper').addClass('hidden');
-              $('#formWrapperEmail').addClass('hidden');
-              $('.smsCaptcha-box').addClass('hidden');
-              $('#formWrapper1').removeClass('hidden');
-            }
-					}
-				}else if($('#formWrapper').hasClass('hidden') || $('#formWrapperEmail').hasClass('hidden') && !$('#formWrapper1').hasClass('hidden')) {
-          if(_formWrapper1.valid()) {
-            formWrapper1Data = _formWrapper1.serializeObject();
-            if($('#zhpas').val() !== $('#qr_zhpas').val()) {
-              base.showMsg(base.getText('密码不一致，请重新输入', lang));
-              $('#zhpas').val('');
-              $('#qr_zhpas').val('');
-              $('.aqtxt').text('');
-              $('.jb1').removeClass('set');
-              $('.jb2').removeClass('set');
-              $('.jb3').removeClass('set');
-            }else {
-              $('#formWrapper2').removeClass('hidden');
-              $('#formWrapper1').addClass('hidden');
-              $('.next-to').addClass('hidden');
-              $('.btnWrap').removeClass('hidden');
-            }
-          }
-				}
+                  if($('.chan-right').hasClass('set-chan')) {
+                    if(_formWrapperEmail.valid()) {
+                      formWrapperEmailData = _formWrapperEmail.serializeObject();
+                      $('#formWrapper').addClass('hidden');
+                      $('#formWrapperEmail').addClass('hidden');
+                      $('.smsCaptcha-box').addClass('hidden');
+                      $('#formWrapper1').removeClass('hidden');
+                    }
+                  }else {
+                  if(_formWrapper.valid()) {
+                    formWrapperData = _formWrapper.serializeObject();
+                    $('#formWrapper').addClass('hidden');
+                    $('#formWrapperEmail').addClass('hidden');
+                    $('.smsCaptcha-box').addClass('hidden');
+                    $('#formWrapper1').removeClass('hidden');
+                  }
+                }
+              }else if($('#formWrapper').hasClass('hidden') || $('#formWrapperEmail').hasClass('hidden') && !$('#formWrapper1').hasClass('hidden')) {
+                if(_formWrapper1.valid()) {
+                  formWrapper1Data = _formWrapper1.serializeObject();
+                  if($('#zhpas').val() !== $('#qr_zhpas').val()) {
+                    base.showMsg(base.getText('密码不一致，请重新输入', lang));
+                    $('#zhpas').val('');
+                    $('#qr_zhpas').val('');
+                    $('.aqtxt').text('');
+                    $('.jb1').removeClass('set');
+                    $('.jb2').removeClass('set');
+                    $('.jb3').removeClass('set');
+                  }else {
+                    $('#formWrapper2').removeClass('hidden');
+                    $('#formWrapper1').addClass('hidden');
+                    $('.next-to').addClass('hidden');
+                    $('.btnWrap').removeClass('hidden');
+                  }
+                }
+              }
 			});
 
 			// 切换登录方式

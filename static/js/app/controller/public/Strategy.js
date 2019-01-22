@@ -32,6 +32,7 @@ define([
       $('.gl-zz .zz').html(base.getText('作者', lang));
       if(userId) {
         params.userId = userId;
+        params.language = lang;
       }
       UserCtr.getStrategy(params).then(data => {
         // data.isLike  0 否  1 是
