@@ -1,7 +1,7 @@
 var SYSTEM_CODE = "CD-TOKEN00018";
 var CLIENT = "WEB_H5";// h5登录标识
 //七牛地址
-var PIC_PREFIX = 'http://qn.tha.hichengdai.com/';
+var PIC_PREFIX = 'http://img.adorkableisland.com/';
 var PIC_SHOW = '?imageMogr2/auto-orient/interlace/1';
 
 // 根据国家interCode 配置语言
